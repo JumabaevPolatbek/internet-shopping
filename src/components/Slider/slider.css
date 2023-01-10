@@ -1,0 +1,19 @@
+.slick-slider{
+    width: 100%;
+}
+.slick-track{
+    display: flex;
+}
+.slick-dots{
+    bottom: -50px;
+}
+.slick-dots li {
+    background-color: #ccc;
+    border-radius: 50%;
+}
+.slick-dots li.slick-active{
+    background-color: #da002b;
+}
+.slick-dots li button,.slick-dots li button::before{
+    opacity: 0;
+}
