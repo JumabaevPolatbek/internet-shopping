@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { pathApi } from '..';
 import { Categories, Category, NewCategories } from '../../models/categories';
 
-export const actionsCategory = createApi({
+export const actionsCategories = createApi({
     reducerPath: 'actionsCategory',
     baseQuery: fetchBaseQuery({ baseUrl: pathApi }),
     endpoints: (builder) => ({
@@ -44,4 +44,4 @@ export const actionsCategory = createApi({
     })
 })
 
-export const { useGetCategoriesQuery, useGetCategoryQuery, useGetLimitCategoryQuery, useAddNewCategoryMutation, useUpdateCategoryMutation } = actionsCategory;
+export const { useGetCategoriesQuery, useGetCategoryQuery, useGetLimitCategoryQuery, useAddNewCategoryMutation, useUpdateCategoryMutation } = actionsCategories;
