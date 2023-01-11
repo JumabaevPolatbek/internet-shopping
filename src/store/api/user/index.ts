@@ -4,7 +4,7 @@ import { User } from '../../models/userModels';
 
 export const actionsUser = createApi({
     reducerPath: 'actionsUser',
-    baseQuery: fetchBaseQuery({ baseUrl: pathApi }),
+    baseQuery: fetchBaseQuery({ baseUrl: pathApi,mode:'cors' }),
     endpoints: (builder) => ({
         getAllUsers: builder.query<User, void>({
             query:()=>`users`

@@ -4,7 +4,7 @@ import { Categories, Category, NewCategories } from '../../models/categories';
 
 export const actionsCategories = createApi({
     reducerPath: 'actionsCategory',
-    baseQuery: fetchBaseQuery({ baseUrl: pathApi }),
+    baseQuery: fetchBaseQuery({ baseUrl: pathApi,mode:"cors" }),
     endpoints: (builder) => ({
         getCategories:builder.query<Categories,void>({
             query: () => `categories/`,
