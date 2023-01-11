@@ -19,9 +19,7 @@ export function SliderItems({ data }: Props) {
     return (
         <Slider {...settings}>
             {dataProduct?.map(product => {
-                if (product.rating.rate>4.5) {
-                    return <Item image={product.image} title={product.title} key={product.id}/>
-                }
+                return <Item  product={product} key={product.id}/>
             })}
         </Slider>
     )
