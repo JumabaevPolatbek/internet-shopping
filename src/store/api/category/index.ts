@@ -7,7 +7,7 @@ export const actionsCategory = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: pathApi }),
     endpoints: (builder) => ({
         getCategories:builder.query<Categories,void>({
-            query: () => `categories`,
+            query: () => `categories/`,
         }),
         getCategory:builder.query<Category,number>({
             query: (id) => `categories/${id}`,

@@ -8,7 +8,7 @@ export const actionsProduct = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: pathApi }),
     endpoints: (builder) => ({
         getProducts: builder.query<Products,void>({
-            query: () => `products`,
+            query: () => `products/`,
         }),
         getSingleProduct: builder.query<Product,number>({
             query: (id) => `products/${id}`,
