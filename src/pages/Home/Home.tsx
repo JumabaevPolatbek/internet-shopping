@@ -2,10 +2,10 @@ import HeaderTop from "../../components/HeaderTop";
 import Navbar from "../../components/Navbar";
 import ProductItem from "../../components/Product";
 import SliderItems from "../../components/Slider";
-import { useGetProductNameQuery } from "../../store/slice/apiSlice";
+import { useGetProductsQuery } from "../../store/api/product";
 
 export function Home() {
-    const {data}=useGetProductNameQuery('products')
+    const {data}=useGetProductsQuery()
     return (
                 <div className="container mx-auto mt-3">
                     <div className="banner h-[350px]">

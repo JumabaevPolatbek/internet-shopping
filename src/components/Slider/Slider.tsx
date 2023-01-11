@@ -1,7 +1,7 @@
 import Slider from "react-slick"
 import { Item } from "./Item"
 import './slider.css'
-import { Products } from "../../store/models"
+import { Products } from "../../store/models/products"
 type Props = {
     data:Products|undefined
 }

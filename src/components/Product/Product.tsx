@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import Equalizer from "@mui/icons-material/Equalizer"
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { Product } from "../../store/models";
+import { Product } from "../../store/models/products";
 type Props = {
     product:Product
 }
@@ -16,8 +16,8 @@ export function ProductItem({product}:Props) {
                     <div>
                         <img
                             className="h-[100px] md:h-[200px]"
-                            src={product.image}
-                            alt={product.title} />
+                            src={product.images[0].image_path}
+                            alt={product.name} />
                     </div>
                     <div className="product-actions flex flex-col">
                         <button className="text-[#ccc] text-[18px]">
@@ -29,7 +29,7 @@ export function ProductItem({product}:Props) {
                     </div>
                 </div>
                 <div className="flex flex-col items-start">
-                    <div>{ product.title}</div>
+                    <div>{ product.name}</div>
                     <div className="line-through text-[16px]">3 399 000 сум</div>
                     <div className="text-[#da002b] text-[18px] font-bold">{product.price} сум</div>
                     <div className="rounded-md bg-[#ffd740] text-[16px] px-3 py-1 font-semibold">{Math.floor(product.price/12)} сум x 12мес</div>
