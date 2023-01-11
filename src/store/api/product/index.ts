@@ -5,7 +5,7 @@ import { pathApi } from '..';
 
 export const actionsProduct = createApi({
     reducerPath: 'actionsProduct',
-    baseQuery: fetchBaseQuery({ baseUrl: pathApi }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://ecommerce-h6sh.onrender.com/' }),
     endpoints: (builder) => ({
         getProducts: builder.query<Products,void>({
             query: () => `products/`,
