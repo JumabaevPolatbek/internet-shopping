@@ -5,7 +5,7 @@ import { pathApi } from '..';
 
 export const actionsProduct = createApi({
     reducerPath: 'actionsProduct',
-    baseQuery: fetchBaseQuery({ baseUrl: pathApi,mode:'no-cors' }),
+    baseQuery: fetchBaseQuery({ baseUrl: pathApi}),
     endpoints: (builder) => ({
         getProducts: builder.query<Products,void>({
             query: () => 'products/',

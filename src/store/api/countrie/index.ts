@@ -4,7 +4,7 @@ import { Countrie, Countries } from '../../models/countries';
 
 export const actionsCountrie = createApi({
     reducerPath: 'actionsCountrie',
-    baseQuery: fetchBaseQuery({ baseUrl: pathApi,mode:'cors' }),
+    baseQuery: fetchBaseQuery({ baseUrl: pathApi}),
     endpoints: (builder) => ({
         getAllCountries: builder.query<Countries,Countries>({
             query:()=>`countries`
