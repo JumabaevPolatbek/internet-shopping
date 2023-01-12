@@ -1,5 +1,5 @@
 import { Button, TextField } from "@mui/material";
-import { useForm, SubmitHandler,Controller,useFormState } from 'react-hook-form';
+import { useForm, SubmitHandler,Controller } from 'react-hook-form';
 interface Inputs{
     login: string;
     password: string;
@@ -12,7 +12,7 @@ type Props = {
 }
 export function SignUp({display,setDisplay}:Props) {
    
-    const { handleSubmit, control, formState ,getValues} = useForm<Inputs>()
+    const { handleSubmit, control, formState } = useForm<Inputs>()
     const { errors } = formState
     const btnSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
     return(

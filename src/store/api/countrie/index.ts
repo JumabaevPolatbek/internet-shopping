@@ -24,7 +24,7 @@ export const actionsCountrie = createApi({
         }),
         updateCountrie: builder.mutation<Countrie, Partial<Countrie>>({
             query(countrie) {
-                const { id, country_name } = countrie;
+                const { id } = countrie;
                 return {
                     url: `countries/${id}`,
                     method: 'PUT',
@@ -34,7 +34,7 @@ export const actionsCountrie = createApi({
         }),
         deleteCountrie: builder.mutation<Countrie, Partial<Countrie>>({
             query(countrie) {
-                const { id, country_name } = countrie;
+                const { id } = countrie;
                 return {
                     url: `countries/${id}`,
                     method:'DELETE'
@@ -44,4 +44,4 @@ export const actionsCountrie = createApi({
     })
 })
 
-export const {}=actionsCountrie
+export const {useGetAllCountriesQuery,useGetLimitCountriesQuery,useGetSingleCountrieQuery}=actionsCountrie

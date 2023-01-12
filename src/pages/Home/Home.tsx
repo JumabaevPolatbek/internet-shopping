@@ -1,5 +1,3 @@
-import HeaderTop from "../../components/HeaderTop";
-import Navbar from "../../components/Navbar";
 import ProductItem from "../../components/Product";
 import SliderItems from "../../components/Slider";
 import { useGetProductsQuery } from "../../store/api/product";

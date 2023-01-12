@@ -5,13 +5,16 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { BrowserRouter } from 'react-router-dom';
+import { ProSidebarProvider } from 'react-pro-sidebar';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <Provider store={store}>
     <BrowserRouter>
+    <ProSidebarProvider>
       <App />
+    </ProSidebarProvider>
     </BrowserRouter>
   </Provider>
 );

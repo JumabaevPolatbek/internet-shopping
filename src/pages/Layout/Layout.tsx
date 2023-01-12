@@ -1,5 +1,4 @@
 import { Outlet } from "react-router"
-import useWidth from "../../utils"
 import HeaderTop from "../../components/HeaderTop"
 import Navbar from "../../components/Navbar"
 
