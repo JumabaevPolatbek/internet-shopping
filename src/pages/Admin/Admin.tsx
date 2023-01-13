@@ -6,7 +6,6 @@ export function Admin() {
         <div className=" flex items-start">
             <SideBarAdmin/>
             <Header/>
-            
         </div>
     )
 }

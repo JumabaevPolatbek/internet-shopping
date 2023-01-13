@@ -5,13 +5,14 @@ import Layout from './pages/Layout';
 import NotFound from './pages/NotFound';
 import Auth from './pages/Auth';
 import Admin from './pages/Admin';
-import Dashboard from './components/Dashboard';
-import  Orders  from './components/Orders';
-import Users from './components/Users';
-import NewProduct from './components/NewProduct';
-import NewCategory from './components/NewCategory';
-import NewCountrie from './components/NewCountrie';
-import NewUser from './components/NewUser';
+import Dashboard from './pages/Dashboard';
+import  Orders  from './pages/Orders';
+// import Users from './pages/Users';
+import NewProduct from './pages/NewProduct';
+import NewCategory from './pages/NewCategory';
+import NewCountrie from './pages/NewCountrie';
+import NewUser from './pages/NewUser';
+import { AdminPage } from './pages/Admin/AdminPage';
 function App() {
   return (
     <Routes>
@@ -20,9 +21,10 @@ function App() {
         <Route path='/login' element={<Auth/>}/>
         <Route path='*' element={<NotFound/>}/>
         </Route>
-        <Route path='admin' element={<Admin/>}>
+      <Route path='admin' element={<Admin />}>
+          <Route index element={<AdminPage/>}/>
           <Route path='dashboard' element={<Dashboard/>}/>
-          <Route path='users' element={<Users/>}/>
+          <Route path='users' element={<NewUser/>}/>
           <Route path='orders' element={<Orders/>}/>
           <Route path='newproduct' element={<NewProduct/>}/>
           <Route path='newcategory' element={<NewCategory/>}/>

@@ -20,7 +20,7 @@ export function Header(){
   };
     return (
         <div className="flex flex-col w-full">
-            <div className="bg-[#757ce8] w-full">
+            <div className="border-b w-full">
                 <div className="container mx-auto  py-2 md:py-3 flex justify-end items-center">
                     <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
