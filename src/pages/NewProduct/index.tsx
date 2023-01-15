@@ -1,2 +1,2 @@
-import { NewProduct } from "./NewProduct";
-export default NewProduct
+import { NewAddProduct } from "./NewProduct";
+export default NewAddProduct

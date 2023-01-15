@@ -20,5 +20,5 @@ export interface ParentCategory {
 // add new categories
 export interface NewCategories{
     name: string,
-    parent_category_id:number
+    parent_category_id:number|null
 }

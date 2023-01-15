@@ -8,7 +8,7 @@ import Admin from './pages/Admin';
 import Dashboard from './pages/Dashboard';
 import  Orders  from './pages/Orders';
 // import Users from './pages/Users';
-import NewProduct from './pages/NewProduct';
+import NewAddProduct from './pages/NewProduct';
 import NewCategory from './pages/NewCategory';
 import NewCountrie from './pages/NewCountrie';
 import NewUser from './pages/NewUser';
@@ -26,7 +26,7 @@ function App() {
           <Route path='dashboard' element={<Dashboard/>}/>
           <Route path='users' element={<NewUser/>}/>
           <Route path='orders' element={<Orders/>}/>
-          <Route path='newproduct' element={<NewProduct/>}/>
+          <Route path='newproduct' element={<NewAddProduct/>}/>
           <Route path='newcategory' element={<NewCategory/>}/>
           <Route path='newcountrie' element={<NewCountrie/>}/>
           <Route path='newuser' element={<NewUser/>}/>

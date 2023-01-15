@@ -31,24 +31,33 @@ export interface User {
 }
   
 // New User
+export interface NewUserRoot {
+  user: NewUser
+  user_detail: NewUserDetail
+  user_phones: NewUserPhone[]
+  user_address: NewUserAddress
+}
 
 export interface NewUser {
-  username: string,
-  is_admin: boolean,
-  password:string
+  username: string
+  is_admin: boolean
+  password: string
 }
+
 export interface NewUserDetail {
-  first_name: string,
-  last_name: string,
-  user_image:string
+  first_name: string
+  last_name: string
+  user_image: string
 }
-export interface NewUserPhones{
-  phone_number: string,
-  type:string
+
+export interface NewUserPhone {
+  phone_number: string
+  type: string
 }
-export interface NewUserAddress{
-  street_address: string,
-  postal_code: number,
-  city: string,
-  country_id:number
+
+export interface NewUserAddress {
+  street_address: string
+  postal_code: string
+  city: string
+  country_id: number
 }

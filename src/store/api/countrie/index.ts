@@ -1,13 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { pathApi } from '..';
-import { Countrie, Countries } from '../../models/countries';
+import { Countrie, Countries,NewCountry } from '../../models/countries';
 
 export const actionsCountrie = createApi({
     reducerPath: 'actionsCountrie',
-    baseQuery: fetchBaseQuery({ baseUrl: pathApi}),
+    baseQuery: fetchBaseQuery({ baseUrl: pathApi }),
+    tagTypes:['countries'],
     endpoints: (builder) => ({
-        getAllCountries: builder.query<Countries,Countries>({
-            query:()=>`countries`
+        getAllCountries: builder.query<Countries,void>({
+            query:()=>'countries'
         }),
         getSingleCountrie: builder.query<Countrie, number>({
             query:(id)=>`countries/${id}`
@@ -15,9 +16,9 @@ export const actionsCountrie = createApi({
         getLimitCountries: builder.query<Countries, number>({
             query:(limit)=>`countries?limit=${limit}&offset=${limit}`
         }),
-        addNewCountrie: builder.mutation<Countrie, Pick<Countrie, 'country_name'> & Partial<Countrie>>({
+        addNewCountrie: builder.mutation<NewCountry, Partial<NewCountry>>({
             query: (countrie) => ({
-                url: 'countries',
+                url: `countries`,
                 method: 'POST',
                 body:JSON.stringify(countrie)
             })
@@ -44,4 +45,4 @@ export const actionsCountrie = createApi({
     })
 })
 
-export const {useGetAllCountriesQuery,useGetLimitCountriesQuery,useGetSingleCountrieQuery}=actionsCountrie
+export const {useGetAllCountriesQuery,useGetLimitCountriesQuery,useGetSingleCountrieQuery,useAddNewCountrieMutation}=actionsCountrie

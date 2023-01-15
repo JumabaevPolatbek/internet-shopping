@@ -1,13 +1,13 @@
 import Switch from "@mui/material/Switch"
 import TextField from "@mui/material/TextField"
 import { useForm ,Controller,SubmitHandler} from "react-hook-form"
-import { NewUser,NewUserAddress,NewUserDetail,NewUserPhones } from "../../store/models/userModels"
+import { NewUser,NewUserAddress,NewUserDetail } from "../../store/models/userModels"
 
 const arr = ['username','is_admin','password','first_name','last_name','user_image','phone_number','type','street_address','postal_code','city']
 
 export function AddForm() {
-    const { handleSubmit, formState, control } = useForm<NewUser|NewUserAddress|NewUserDetail|NewUserPhones >()
-    const formSubmit:SubmitHandler<NewUser|NewUserAddress|NewUserDetail|NewUserPhones>=(data)=>console.log(data)
+    const { handleSubmit, formState, control } = useForm<NewUser|NewUserAddress|NewUserDetail >()
+    const formSubmit:SubmitHandler<NewUser|NewUserAddress|NewUserDetail>=(data)=>console.log(data)
     return (
         <form
             className="flex flex-col w-[500px] h-[300px] justify-between py-2"
