@@ -23,13 +23,19 @@ export const actionsProduct = createApi({
             query: (product) => ({
                 url: `products`,
                 method: `POST`,
-                body:JSON.stringify(product)
+                body: (product),
+                headers: {
+                    'Content-type':'application/json: charset=UTF-8'
+                }
             })
         }),
         updateProduct: builder.mutation<UpdateProduct,Partial<UpdateProduct>>({
             query: ({category_id,...product}) => ({
                 url: `products/${category_id}`,
                 method: 'PUT',
+                headers: {
+                    'Content-type':'application/json: charset=UTF-8'
+                },
                 body:JSON.stringify(product)
             })
         }),

@@ -20,6 +20,9 @@ export const actionsCountrie = createApi({
             query: (countrie) => ({
                 url: `countries`,
                 method: 'POST',
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
                 body:JSON.stringify(countrie)
             })
         }),

@@ -59,3 +59,12 @@ export interface UpdateProduct {
   discount: number
   category_id: number
 }
+
+// fake product
+export interface ProductFake{
+  title: string,
+  price: number,
+  description: string,
+  image: string,
+  category:string
+}

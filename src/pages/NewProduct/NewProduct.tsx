@@ -1,5 +1,5 @@
 import { useForm,SubmitHandler } from "react-hook-form"
-import {  NewProduct } from "../../store/models/products"
+import {  NewProduct,ProductFake } from "../../store/models/products"
 import { TextField } from "@mui/material"
 import { useAddNewProductMutation } from "../../store/api/product"
 
@@ -8,19 +8,19 @@ export function NewAddProduct() {
     const { register, handleSubmit } = useForm<NewProduct>({
         defaultValues: {
             product: {
-                name: 'Redmi K10',
-                price: 3000,
-                description: 'Xiaomi Redmi K10 8Gb/128Gb',
-                quantity: 2,
+                name: '',
+                description: '',
+                price: 0,
+                quantity: 0,
                 discount: 0,
                 category_id:1
             },
             product_images: [
                 {
-                    image_path:'https://www.ixbt.com/img/n1/news/2021/9/3/image%20(1)_large.png'
+                    image_path:''
                 },
                 {
-                    image_path:'https://www.ixbt.com/img/n1/news/2021/9/3/image%20(1)_large.png'
+                    image_path:''
                 }
             ]
         }
@@ -34,6 +34,27 @@ export function NewAddProduct() {
             <TextField
                 {...register('product.name')}
                 label="Name"
+                type="text"
+            />
+            <TextField
+                {...register('product.description')}
+                label="Description"
+                type="text"
+            />
+            <TextField
+                {...register('product.price')}
+                label="Price"
+                type="number"
+            />
+            <TextField
+                {...register('product.quantity')}
+                label="Quantity"
+                type="number"
+            />
+            <TextField
+                {...register('product.discount')}
+                label="Discount"
+                type="number"
             />
             <button>
                 Add
