@@ -36,6 +36,7 @@ export function SignUp({display,setDisplay}:Props) {
                                 return 'Логин не может содержать русские буквы'
                             }
                             return true;
+                            
                         }
                     }}
                     render={({field:{onChange,value}}) => {

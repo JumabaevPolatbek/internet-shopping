@@ -16,7 +16,7 @@ export function SideBarAdmin(){
             <div className='flex flex-col items-center bg-[#3c4b64] h-full border-[#757ce8]'>
                 <Link to={'/'} className="py-4 text-[24px] text-[#fff] font-semibold">Logo</Link>
                 <Menu className='flex flex-col items-center bg-[#636f83]'>
-                    <MenuItem routerLink={<Link to={'admin'} />}>
+                    <MenuItem routerLink={<Link to={'/admin'} />}>
                         <div className='flex justify-between'>
                             <span >Dashboard</span>
                             {/* <DashboardIcon className={`block ${collapsed?'self-end':'self-end'}`} /> */}

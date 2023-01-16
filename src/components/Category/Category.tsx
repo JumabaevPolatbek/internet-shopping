@@ -6,12 +6,14 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useGetCategoriesQuery } from '../../store/api/category';
 
-export  function CategorySelect() {
+export function CategorySelect(props: any) {
+  console.log(props)
     const {data}=useGetCategoriesQuery()
   const [category, setCategory] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
-    setCategory(event.target.value as string);
+    setCategory(event.target.value);
+    props.onChange()
   };
 
   return (
@@ -24,9 +26,14 @@ export  function CategorySelect() {
           value={category}
           label="category"
           onChange={handleChange}
+        
         >
           {data?.map(category=>{
-            return <MenuItem key={category.id} value={category.name}>{category.name}</MenuItem>
+            return <MenuItem
+              key={category.name}
+              value={category.id}
+              ref={props.ref}
+            >{category.name}</MenuItem>
           })}
         </Select>
       </FormControl>

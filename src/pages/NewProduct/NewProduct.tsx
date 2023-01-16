@@ -1,33 +1,15 @@
-import { useForm,SubmitHandler, Controller } from "react-hook-form"
+import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import { useGetCategoriesQuery } from "../../store/api/category"
 import {  NewProduct } from "../../store/models/products"
 import { Button, TextField } from "@mui/material"
 import { useAddNewProductMutation } from "../../store/api/product"
-import CategorySelect from "../../components/Category"
+// import CategorySelect from "../../components/Category"
 
 export function NewAddProduct() {
+    const {data}=useGetCategoriesQuery()
     const [addProduct,result]=useAddNewProductMutation()
-    const { register, handleSubmit ,control,formState} = useForm<NewProduct>({
-        defaultValues: {
-            product: {
-                name: '',
-                description: '',
-                price: 0,
-                quantity: 0,
-                discount: 0,
-                category_id:1
-            },
-            product_images: [
-                {
-                    image_path:''
-                },
-                {
-                    image_path:''
-                }
-            ]
-        }
-    })
-    const {errors,isValid}=formState
-    const formSubmit: SubmitHandler<NewProduct> = (data) => addProduct(data)
+    const { register, handleSubmit ,control,formState} = useForm<NewProduct>()
+    const formSubmit: SubmitHandler<NewProduct> = (data) => console.log(data)
     return(
         <div className="w-full h-[500px] flex justify-center items-center">
             <form
@@ -67,11 +49,17 @@ export function NewAddProduct() {
                 <Controller
                     {...register('product.category_id')}
                     control={control}
-                    render={()=>{
-                        return <CategorySelect/>
+                    render={() => {
+                        return (<select {...register('product.category_id')}>
+                            {data?.map(category => {
+                                return <option key={category.name} value={category.id}>
+                                        {category.name}
+                                    </option>
+                                })}
+                        </select>)
                     }}
                 />
-                <Button variant="contained" color="success" disabled={!isValid}>
+                <Button variant="contained" color="success" type="submit" >
                     Добавить
                 </Button>
             </form>

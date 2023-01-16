@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { pathApi } from '..';
-import { User } from '../../models/userModels';
+import { User,NewUserRoot } from '../../models/userModels';
 
 export const actionsUser = createApi({
     reducerPath: 'actionsUser',
@@ -9,11 +9,14 @@ export const actionsUser = createApi({
         getAllUsers: builder.query<User, void>({
             query:()=>`users`
         }),
-        addNewUser: builder.mutation<User,Partial<User>>({
+        addNewUser: builder.mutation<NewUserRoot,Partial<NewUserRoot>>({
             query(user) {
                 return {
                     url: 'users',
                     method: 'POST',
+                    headers: {
+                        'Content-type':'application/json: charset=UTF-8'
+                    },
                     body:JSON.stringify(user)
                 }
             }
