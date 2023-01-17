@@ -5,15 +5,20 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useGetCategoriesQuery } from '../../store/api/category';
+import { UseFormSetValue } from 'react-hook-form';
+import { NewProduct } from '../../store/models/products';
 
-export function CategorySelect(props: any) {
-  console.log(props)
-    const {data}=useGetCategoriesQuery()
+type Props={
+  setValue:UseFormSetValue<NewProduct>
+}
+
+export function CategorySelect({setValue}:Props) {
+  const {data}=useGetCategoriesQuery()
   const [category, setCategory] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value);
-    props.onChange()
+    setValue('product.category_id',+event.target.value)
   };
 
   return (
@@ -32,7 +37,6 @@ export function CategorySelect(props: any) {
             return <MenuItem
               key={category.name}
               value={category.id}
-              ref={props.ref}
             >{category.name}</MenuItem>
           })}
         </Select>

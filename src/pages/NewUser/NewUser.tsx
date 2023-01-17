@@ -1,6 +1,5 @@
 import React from "react";
 import { useAddNewUserMutation } from "../../store/api/user";
-import { useGetAllCountriesQuery } from "../../store/api/countrie";
 import { FormControlLabel, FormGroup, Switch, TextField } from "@mui/material"
 import Button from "@mui/material/Button"
 import { useForm,SubmitHandler, Controller } from "react-hook-form"
@@ -10,15 +9,14 @@ import { NewUserTypePhone } from "./NewUserTypePhone";
 
 export function NewUser() {
 
-    const {data}=useGetAllCountriesQuery()
-    const [addUser, result] = useAddNewUserMutation()
+    const [addUser] = useAddNewUserMutation()
     
     const [admin,setAdmin]=React.useState(false)
     const handlerAdmin=()=>{
         setAdmin(admin=>!admin)
     }
 
-    const {register,handleSubmit,control,formState,setValue}=useForm<NewUserRoot>({
+    const {register,handleSubmit,control,setValue}=useForm<NewUserRoot>({
         defaultValues:{
             user:{
                 username:'',

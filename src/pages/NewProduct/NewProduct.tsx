@@ -3,13 +3,13 @@ import { useGetCategoriesQuery } from "../../store/api/category"
 import {  NewProduct } from "../../store/models/products"
 import { Button, TextField } from "@mui/material"
 import { useAddNewProductMutation } from "../../store/api/product"
-// import CategorySelect from "../../components/Category"
+import CategorySelect from "../../components/Category"
 
 export function NewAddProduct() {
     const {data}=useGetCategoriesQuery()
-    const [addProduct,result]=useAddNewProductMutation()
-    const { register, handleSubmit ,control,formState} = useForm<NewProduct>()
-    const formSubmit: SubmitHandler<NewProduct> = (data) => console.log(data)
+    const [addProduct]=useAddNewProductMutation()
+    const { register, handleSubmit ,control,setValue} = useForm<NewProduct>()
+    const formSubmit: SubmitHandler<NewProduct> = (data) => addProduct(data)
     return(
         <div className="w-full h-[500px] flex justify-center items-center">
             <form
@@ -50,13 +50,7 @@ export function NewAddProduct() {
                     {...register('product.category_id')}
                     control={control}
                     render={() => {
-                        return (<select {...register('product.category_id')}>
-                            {data?.map(category => {
-                                return <option key={category.name} value={category.id}>
-                                        {category.name}
-                                    </option>
-                                })}
-                        </select>)
+                        return <CategorySelect setValue={setValue}/>
                     }}
                 />
                 <Button variant="contained" color="success" type="submit" >

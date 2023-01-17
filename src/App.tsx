@@ -11,6 +11,7 @@ import NewAddProduct from './pages/NewProduct';
 import NewCategory from './pages/NewCategory';
 import NewCountrie from './pages/NewCountrie';
 import NewUser from './pages/NewUser';
+import Users from './pages/Users';
 function App() {
   return (
     <Routes>
@@ -21,7 +22,7 @@ function App() {
         </Route>
       <Route path='admin' element={<Admin />}>
           <Route index element={<Dashboard/>}/>
-          <Route path='users' element={<NewUser/>}/>
+          <Route path='users' element={<Users/>}/>
           <Route path='orders' element={<Orders/>}/>
           <Route path='newproduct' element={<NewAddProduct/>}/>
           <Route path='newcategory' element={<NewCategory/>}/>
