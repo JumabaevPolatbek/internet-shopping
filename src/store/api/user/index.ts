@@ -12,7 +12,7 @@ export const actionsUser = createApi({
         addNewUser: builder.mutation<NewUserRoot,Partial<NewUserRoot>>({
             query(user) {
                 return {
-                    url: 'users',
+                    url: `users`,
                     method: 'POST',
                     headers: {
                         'Content-type':'application/json: charset=UTF-8'
