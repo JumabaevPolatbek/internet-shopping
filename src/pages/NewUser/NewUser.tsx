@@ -6,45 +6,49 @@ import { useForm,SubmitHandler, Controller } from "react-hook-form"
 import { NewUserRoot } from "../../store/models/userModels"
 import { NewUserSelect } from "./NewUserSelect";
 import { NewUserTypePhone } from "./NewUserTypePhone";
+import { useAppSlector } from "../../utils/hook";
 
 export function NewUser() {
-
-    const [addUser] = useAddNewUserMutation()
-    
+    const editUser = useAppSlector((state) => state.editUser)
+    console.log(editUser)
+    const [addUser,result] = useAddNewUserMutation()
+    const initValue = {
+        user:{
+            username:'',
+            is_admin:false,
+            password:''
+        },
+        user_detail:{
+            first_name:'',
+            last_name:'',
+            user_image:''
+        },
+        user_phones:[{
+            phone_number:'+998',
+            type:'mobile'
+        }],
+        user_address:{
+            street_address:'',
+            postal_code:'',
+            city: '',
+            country_id:1
+        }
+    }
     const [admin,setAdmin]=React.useState(false)
     const handlerAdmin=()=>{
         setAdmin(admin=>!admin)
     }
 
     const {register,handleSubmit,control,setValue}=useForm<NewUserRoot>({
-        defaultValues:{
-            user:{
-                username:'',
-                is_admin:false,
-                password:''
-            },
-            user_detail:{
-                first_name:'',
-                last_name:'',
-                user_image:''
-            },
-            user_phones:[{
-                phone_number:'+998',
-                type:'mobile'
-            }],
-            user_address:{
-                street_address:'',
-                postal_code:'',
-                city: '',
-                country_id:1
-            }
-        },
+        defaultValues:editUser || initValue,
         mode:'onChange'
     });
 
     // Добавление пользовтеля
-    const formSubmit: SubmitHandler<NewUserRoot> = (data) => addUser(data)
-    
+    const formSubmit: SubmitHandler<NewUserRoot> = (data) => {
+        addUser(data);
+        // result.reset();
+    }
     return(
         <>
         <div className="w-full h-[400px] flex justify-center items-center">
@@ -76,7 +80,7 @@ export function NewUser() {
                             sx={{
                                 color:`${admin?'#333':'#ccc'}`
                             }}
-                            control={<Switch defaultChecked={false} onClick={handlerAdmin}/>} 
+                            control={<Switch defaultChecked />} 
                             label="Администратор" />
                         </FormGroup>
                         </div>

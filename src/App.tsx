@@ -12,6 +12,7 @@ import NewCategory from './pages/NewCategory';
 import NewCountrie from './pages/NewCountrie';
 import NewUser from './pages/NewUser';
 import Users from './pages/Users';
+import { User } from './pages/Users/User';
 function App() {
   return (
     <Routes>
@@ -19,16 +20,20 @@ function App() {
         <Route index element={<Home />} />
         <Route path='/login' element={<Auth/>}/>
         <Route path='*' element={<NotFound/>}/>
-        </Route>
+      </Route>
       <Route path='admin' element={<Admin />}>
           <Route index element={<Dashboard/>}/>
-          <Route path='users' element={<Users/>}/>
+        <Route path='users' element={<User />}>
+            <Route index element={<Users/>}/>
+            <Route path='edit/:id' element={<NewUser/>}/>
+            <Route path='add' element={<NewUser />} />
+          </Route>
           <Route path='orders' element={<Orders/>}/>
           <Route path='newproduct' element={<NewAddProduct/>}/>
           <Route path='newcategory' element={<NewCategory/>}/>
           <Route path='newcountrie' element={<NewCountrie/>}/>
-          <Route path='newuser' element={<NewUser/>}/>
-        </Route>
+          <Route path='*' element={<NotFound />} />
+      </Route>
     </Routes>
   );
 }

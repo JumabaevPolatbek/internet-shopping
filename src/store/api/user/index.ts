@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { pathApi } from '..';
-import { User,NewUserRoot } from '../../models/userModels';
+import { UserServer,NewUserRoot } from '../../models/userModels';
 
 export const actionsUser = createApi({
     reducerPath: 'actionsUser',
     baseQuery: fetchBaseQuery({ baseUrl: pathApi}),
     endpoints: (builder) => ({
-        getAllUsers: builder.query<User, void>({
+        getAllUsers: builder.query<UserServer, void>({
             query:()=>`users`
         }),
         addNewUser: builder.mutation<NewUserRoot,Partial<NewUserRoot>>({

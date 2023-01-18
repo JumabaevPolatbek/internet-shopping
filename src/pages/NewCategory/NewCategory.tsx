@@ -2,7 +2,7 @@ import { useForm,SubmitHandler, Controller } from "react-hook-form"
 import { TextField,Button } from "@mui/material"
 import { NewCategories } from "../../store/models/categories"
 import { useAddNewCategoryMutation } from "../../store/api/category"
-import SelectLabels from "../../components/SelectLabels"
+import  SelectCategory  from "../../components/SelectCategory"
 
 export function NewCategory() {
     const [addCategory,result]=useAddNewCategoryMutation()
@@ -28,10 +28,11 @@ export function NewCategory() {
                     {...register('parent_category_id')}
                     control={control}
                     render={()=>{
-                        return <SelectLabels type={'category'} setNewCategory={setValue}/>
+                        return <SelectCategory
+                            setName={setValue}
+                        />
                     }}
                 />
-                
                 <Button variant="contained" color="success" disabled={!isValid}>Добавить</Button>
             </form>
          </div>

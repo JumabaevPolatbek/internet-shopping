@@ -8,7 +8,11 @@ import CategorySelect from "../../components/Category"
 export function NewAddProduct() {
     const {data}=useGetCategoriesQuery()
     const [addProduct]=useAddNewProductMutation()
-    const { register, handleSubmit ,control,setValue} = useForm<NewProduct>()
+    const { register, handleSubmit, control, setValue } = useForm<NewProduct>({
+        defaultValues: {
+            
+        }
+    })
     const formSubmit: SubmitHandler<NewProduct> = (data) => addProduct(data)
     return(
         <div className="w-full h-[500px] flex justify-center items-center">

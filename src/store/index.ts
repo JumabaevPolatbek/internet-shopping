@@ -5,6 +5,8 @@ import { actionsCountrie } from "./api/countrie";
 import { actionsCategories } from "./api/category";
 import { actionsProduct } from "./api/product";
 import { actionsUser } from "./api/user";
+import { getAll } from "./api/all";
+// import { editSlice } from "./reducer/edit";
 // import logger from 'redux-logger'
 
 export const store = configureStore({
@@ -13,7 +15,9 @@ export const store = configureStore({
         actionsCountrie.middleware,
         actionsCategories.middleware,
         actionsProduct.middleware,
-        actionsUser.middleware)
+        actionsUser.middleware,
+        getAll.middleware,
+    )
 });
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
