@@ -7,13 +7,18 @@ import { Link } from 'react-router-dom';
 import { useAppSlector } from '../../utils/hook';
 import {store} from '../../store'
 import { editSlice } from '../../store/reducer/edit';
+import { useDelUserMutation } from '../../store/api/user';
 
 export function Detail(props: User) {
     
+    const [deleteUser,result]=useDelUserMutation()
    
     const { username, user_detail, is_admin, addresses, phone_numbers, id } = props
     const handleUser = () => {
-        store.dispatch(editSlice.actions.getUser(props))
+        // store.dispatch(editSlice.actions.getUser(props))
+    }
+    const handleDelete=()=>{
+        deleteUser(id)
     }
     return (
         <TableRow>
@@ -44,7 +49,7 @@ export function Detail(props: User) {
                         <ManageAccountsIcon/>
                     </Link>
                 </button>
-                <button>
+                <button onClick={handleDelete}>
                     <DeleteIcon/>
                 </button>
             </TableCell>

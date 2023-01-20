@@ -6,11 +6,9 @@ import { useForm,SubmitHandler, Controller } from "react-hook-form"
 import { NewUserRoot } from "../../store/models/userModels"
 import { NewUserSelect } from "./NewUserSelect";
 import { NewUserTypePhone } from "./NewUserTypePhone";
-import { useAppSlector } from "../../utils/hook";
+import Notification from "./../../components/Notification"
 
 export function NewUser() {
-    const editUser = useAppSlector((state) => state.editUser)
-    console.log(editUser)
     const [addUser,result] = useAddNewUserMutation()
     const initValue = {
         user:{
@@ -34,19 +32,18 @@ export function NewUser() {
             country_id:1
         }
     }
-    const [admin,setAdmin]=React.useState(false)
-    const handlerAdmin=()=>{
-        setAdmin(admin=>!admin)
-    }
-
+    const [open,setOpen]=React.useState(false)
+   
+    console.log(result.isError)
     const {register,handleSubmit,control,setValue}=useForm<NewUserRoot>({
-        defaultValues:editUser || initValue,
+        defaultValues: initValue,
         mode:'onChange'
     });
 
     // Добавление пользовтеля
     const formSubmit: SubmitHandler<NewUserRoot> = (data) => {
         addUser(data);
+        console.log(data)
         // result.reset();
     }
     return(
@@ -78,7 +75,7 @@ export function NewUser() {
                         <FormGroup>
                             <FormControlLabel 
                             sx={{
-                                color:`${admin?'#333':'#ccc'}`
+                                color:`${initValue.user.is_admin?'#333':'#ccc'}`
                             }}
                             control={<Switch defaultChecked />} 
                             label="Администратор" />
@@ -176,6 +173,8 @@ export function NewUser() {
                 <Button variant="contained" color="success" type="submit">Добавить</Button>
             </form>
         </div>
+        {result.isSuccess && <Notification value="Пользовател добавлен!" open={open} setOpen={setOpen}/>}
+        {!result.isError && <Notification value="Ошибка" open={open} setOpen={setOpen}/>}
         </>
     )
 }

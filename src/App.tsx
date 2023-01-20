@@ -13,6 +13,7 @@ import NewCountrie from './pages/NewCountrie';
 import NewUser from './pages/NewUser';
 import Users from './pages/Users';
 import { User } from './pages/Users/User';
+import EditUser from './pages/Edituser';
 function App() {
   return (
     <Routes>
@@ -25,7 +26,7 @@ function App() {
           <Route index element={<Dashboard/>}/>
         <Route path='users' element={<User />}>
             <Route index element={<Users/>}/>
-            <Route path='edit/:id' element={<NewUser/>}/>
+            <Route path='edit/:id' element={<EditUser/>}/>
             <Route path='add' element={<NewUser />} />
           </Route>
           <Route path='orders' element={<Orders/>}/>
