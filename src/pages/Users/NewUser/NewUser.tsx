@@ -40,7 +40,7 @@ export function NewUser() {
     });
 
     // Добавление пользовтеля
-    const formSubmit: SubmitHandler<NewUserRoot> = (data) => console.log(data)
+    const formSubmit: SubmitHandler<NewUserRoot> = (data) => addUser(data)
     const handleOpenAlert = ()=>{
         setOpen(open=>!open)
         if(result.isSuccess){
