@@ -4,13 +4,14 @@ import Detail from "../../components/Detail";
 import { useGetAllUsersQuery } from "../../store/api/user"
 import CircularProgress from '@mui/material/CircularProgress';
 import { Link } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
 
 
 export function Users() {
     const { data } = useGetAllUsersQuery()
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const location = useLocation()
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
       };
@@ -20,14 +21,15 @@ export function Users() {
     };
     return(
         <div className="container mx-auto flex flex-col py-2">
-            <div className='self-end'>
-                <Link to={'add'}>
-                    <Button variant='contained' color='success'>
-                        Add User
-                    </Button>
-                </Link>
-                
-            </div>
+            {location.pathname.includes('admin/users') && 
+                <div className='self-start px-[15px]'>
+                    <Link to={'add'}>
+                        <Button variant='contained' color='success'>
+                            Add User
+                        </Button>
+                    </Link>
+                </div>
+            }
             <div>
                 <TableContainer sx={{maxHeight:'500px',minHeight:'300px'}}>
                     <Table stickyHeader aria-label="sticky table">

@@ -32,7 +32,7 @@ export function NewUserSelect({setCountry}:Props) {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={countryName}
-          label="Age"
+          label="Страна"
                   onChange={handleChange}
               >
                   {data?.map(country => {

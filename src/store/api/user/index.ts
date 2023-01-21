@@ -18,7 +18,7 @@ export const actionsUser = createApi({
                     url: `users`,
                     method: 'POST',
                     headers: {
-                        'Content-type':'application/json: charset=UTF-8'
+                        'Content-type':'application/json'
                     },
                     body:(user)
                 }

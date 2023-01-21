@@ -26,7 +26,6 @@ export  function Notification({value,open,setOpen}:Props) {
 
     setOpen(false);
   };
-  console.log(value)
 
   return (
     <Stack spacing={2} sx={{ width: '100%' }}>

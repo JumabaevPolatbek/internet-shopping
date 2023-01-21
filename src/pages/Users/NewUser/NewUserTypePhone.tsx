@@ -27,12 +27,12 @@ export  function NewUserTypePhone({setType}:Props) {
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={phone}
-          label="Age"
+          label="Тип номер тел."
           onChange={handleChange}
         >
-          <MenuItem value={'mobile'}>Мобильный номер</MenuItem>
-          <MenuItem value={'work'}>Номер рабочего места</MenuItem>
-          <MenuItem value={'home'}>Номер домашний</MenuItem>
+          <MenuItem value={'mobile'}>Мобильный </MenuItem>
+          <MenuItem value={'work'}>Рабочего места</MenuItem>
+          <MenuItem value={'home'}>Домашний</MenuItem>
         </Select>
       </FormControl>
     </Box>

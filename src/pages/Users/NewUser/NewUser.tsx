@@ -1,5 +1,5 @@
 import React from "react";
-import { useAddNewUserMutation } from "../../../store/api/user";
+import { useAddNewUserMutation, useGetAllUsersQuery } from "../../../store/api/user";
 import { FormControlLabel, FormGroup, Switch, TextField } from "@mui/material"
 import Button from "@mui/material/Button"
 import { useForm,SubmitHandler, Controller } from "react-hook-form"
@@ -10,7 +10,7 @@ import Notification from "../../../components/Notification"
 
 export function NewUser() {
     const [addUser,result] = useAddNewUserMutation()
-    const initValue = {
+    const initValue:NewUserRoot = {
         user:{
             username:'',
             is_admin:false,
@@ -33,18 +33,19 @@ export function NewUser() {
         }
     }
     const [open,setOpen]=React.useState(false)
-   
-    console.log(result.isError)
-    const {register,handleSubmit,control,setValue}=useForm<NewUserRoot>({
+    const {data}=useGetAllUsersQuery()
+    const {register,handleSubmit,control,setValue,reset,formState}=useForm<NewUserRoot>({
         defaultValues: initValue,
         mode:'onChange'
     });
 
     // Добавление пользовтеля
-    const formSubmit: SubmitHandler<NewUserRoot> = (data) => {
-        addUser(data);
-        console.log(data)
-        // result.reset();
+    const formSubmit: SubmitHandler<NewUserRoot> = (data) => console.log(data)
+    const handleOpenAlert = ()=>{
+        setOpen(open=>!open)
+        if(result.isSuccess){
+            reset(initValue)
+        }
     }
     return(
         <>
@@ -65,7 +66,10 @@ export function NewUser() {
                                         },
                                         validate: (value:string) => {
                                             if (value.match(/[а-яА-я]/)) {
-                                                return 'Пароль не можеть содержать русский буквы'
+                                                return 'Имя не можеть содержать русский буквы'
+                                            }
+                                            if(data?.find(user=>user.username===value)){
+                                                return 'Это имя пользователя уже занято'
                                             }
                                             return true
                                         }
@@ -74,16 +78,17 @@ export function NewUser() {
                                     label="Имя пользователя" />
                         <FormGroup>
                             <FormControlLabel 
+                            {...register('user.is_admin')}
                             sx={{
                                 color:`${initValue.user.is_admin?'#333':'#ccc'}`
                             }}
-                            control={<Switch defaultChecked />} 
+                            control={<Switch />} 
                             label="Администратор" />
                         </FormGroup>
                         </div>
                         <TextField
                                 {...register('user.password', {
-                                    required: true,
+                                    required: 'Объязательное поле!',
                                     minLength: {
                                         value: 8,
                                         message:'пароль должен содержать не менее 8 символов '
@@ -170,10 +175,16 @@ export function NewUser() {
                             
                     </div>
                 </div>
-                <Button variant="contained" color="success" type="submit">Добавить</Button>
+                <Button 
+                onClick={handleOpenAlert}
+                variant="contained" 
+                color="success" 
+                type="submit"
+                disabled={!formState.isValid}
+                >Добавить</Button>
             </form>
         </div>
-        {result.isSuccess && <Notification value="Пользовател добавлен!" open={open} setOpen={setOpen}/>}
+        {result.isSuccess && <Notification value="Пользовател добавлен" open={open} setOpen={setOpen}/>}
         {!result.isError && <Notification value="Ошибка" open={open} setOpen={setOpen}/>}
         </>
     )
