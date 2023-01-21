@@ -7,13 +7,14 @@ import Auth from './pages/Auth';
 import Admin from './pages/Admin';
 import Dashboard from './pages/Dashboard';
 import  Orders  from './pages/Orders';
-import NewAddProduct from './pages/NewProduct';
-import NewCategory from './pages/NewCategory';
-import NewCountrie from './pages/NewCountrie';
+import NewAddProduct from './pages/Product';
 import NewUser from './pages/NewUser';
 import Users from './pages/Users';
 import { User } from './pages/Users/User';
 import EditUser from './pages/Edituser';
+import  {CategorieLayout,DetailCategory,NewCategory}  from './pages/Categorie/';
+import PageProduct from './pages/Product';
+import { DetailProducts } from './pages/Product/DetailProducts';
 function App() {
   return (
     <Routes>
@@ -29,11 +30,20 @@ function App() {
             <Route path='edit/:id' element={<EditUser/>}/>
             <Route path='add' element={<NewUser />} />
           </Route>
-          <Route path='orders' element={<Orders/>}/>
-          <Route path='newproduct' element={<NewAddProduct/>}/>
-          <Route path='newcategory' element={<NewCategory/>}/>
-          <Route path='newcountrie' element={<NewCountrie/>}/>
-          <Route path='*' element={<NotFound />} />
+          <Route path='category' element={<CategorieLayout/>}>
+            <Route index element={<DetailCategory/>}/>
+            <Route path='add' element={<NewCategory/>}/>
+          </Route>
+          <Route path='products' element={<PageProduct/>}>
+            <Route index element={<DetailProducts/>}/>
+            <Route path='add' element={<NewAddProduct/>}/>
+            <Route path='edit/:id' element={<p>Edit</p>}/>
+          </Route>
+          {/* // <Route path='orders' element={<Orders/>}/>
+          // <Route path='newproduct' element={<NewAddProduct/>}/>
+          // <Route path='newcategory' element={<NewCategory/>}/>
+          // <Route path='newcountrie' element={<NewCountrie/>}/>
+          <Route path='*' element={<NotFound />} /> */}
       </Route>
     </Routes>
   );

@@ -39,9 +39,8 @@ export const actionsProduct = createApi({
                 body:JSON.stringify(product)
             })
         }),
-        deleteProduct: builder.mutation<Product, Partial<Product>>({
-            query(product) {
-                const { id } = product;
+        deleteProduct: builder.mutation<Product,number>({
+            query(id) {
                 return {
                     url: `products/${id}`,
                     method:'DELETE'

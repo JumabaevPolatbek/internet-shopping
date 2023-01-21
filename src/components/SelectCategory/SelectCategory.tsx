@@ -6,6 +6,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { UseFormSetValue } from 'react-hook-form';
 import {  NewCategories } from '../../store/models/categories';
 import { useGetCategoriesQuery } from '../../store/api/category';
+import { ListSubheader } from '@mui/material';
 
 type Props = {
   setName:UseFormSetValue<NewCategories>
@@ -33,13 +34,32 @@ export function SelectCategory({ setName }: Props) {
           onChange={handleChange}
         >
           {data?.map(category => {
-            if (category.parent_category !== null) {
-              return <MenuItem
-                value={category.parent_category?.id}
-                key={category.parent_category?.id}
-              >{category.parent_category?.name}
-              </MenuItem>
-           }
+            // if (category.parent_category !== null) {
+            //   return <ListSubheader key={category.id}>
+            //     {category.name}
+            //       {category.children_category.map(child=>{
+            //         return <MenuItem key={child.id} value={child.id}>{child.name}</MenuItem>
+            //       })}
+            //     </ListSubheader>
+              // <MenuItem
+              //   value={category.parent_category?.id}
+              //   key={category.parent_category?.id}
+              // >{category.parent_category?.name}
+              // </MenuItem>
+          //  }
+          // return (
+          //   <ListSubheader key={category.id}>
+          //     {category.name}
+          //       {category.children_category.map(child=>{
+          //         return <MenuItem key={child.id} value={child.id}>{child.name}</MenuItem>
+          //       })}
+          //     </ListSubheader>
+          // )
+          return (
+            <MenuItem key={category.id} value={category.id}>
+                {category.name}
+            </MenuItem>
+          )
          })}
         </Select>
       </FormControl>

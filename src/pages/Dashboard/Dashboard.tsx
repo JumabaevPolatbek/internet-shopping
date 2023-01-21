@@ -1,5 +1,5 @@
-import { DetailCategory } from "./DetailCategory";
-import { DetailProducts } from "./DetailProducts";
+import { DetailCategory } from "../Categorie/DetailCategory";
+import { DetailProducts } from "../Product/DetailProducts";
 // import { DetailUsers } from "./DetailUsers";
 
 

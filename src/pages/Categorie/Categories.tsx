@@ -1,7 +1,7 @@
 
 
-export function PageProduct(){
-    return(
+export function Categories(){
+    return (
         <div>
             
         </div>

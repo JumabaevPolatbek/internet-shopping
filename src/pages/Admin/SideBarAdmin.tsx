@@ -1,4 +1,4 @@
-import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, useProSidebar, SubMenu } from 'react-pro-sidebar';
 import { Link} from 'react-router-dom';
 import Switch from '@mui/material/Switch';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -17,10 +17,18 @@ export function SideBarAdmin(){
                 <Sidebar className='h-[100vh] border-r-[0px]' defaultCollapsed={true}>
             <div className='flex flex-col items-center bg-[#3c4b64] h-full border-[#757ce8]'>
                 <div className='w-full px-5 flex justify-between items-center'>
-                        <Link to={'/'} className="py-4 text-[24px] text-[#fff] font-semibold">Logo</Link>
-                        {!collapsed && <button onClick={() => collapseSidebar()}>
+                        {!collapsed && <Link to={'/'} className="py-4 text-[24px] text-[#fff] font-semibold">Logo</Link>}
+                        {/* {!collapsed && <button onClick={() => collapseSidebar()}>
                             <ClearAllIcon/>
                         </button>}
+                        {collapsed &&  */}
+                        <button
+                                className=' rounded py-4'
+                                onClick={()=>collapseSidebar()}
+                            >
+                                    <DehazeIcon/>
+                                </button>
+                                {/* } */}
                 </div>
                 <Menu className='flex flex-col items-center bg-[#636f83]'>
                     <MenuItem routerLink={<Link to={'/admin'} />}>
@@ -29,30 +37,39 @@ export function SideBarAdmin(){
                             <DashboardIcon  />
                         </div>
                     </MenuItem>
+                    <MenuItem routerLink={<Link to={'orders'} />}>
+                        <div className='flex justify-between items-center w-full'>
+                        {!collapsed && <span>Orders</span>}
+                        <ProductionQuantityLimitsIcon/>
+                        </div>
+                    </MenuItem>
+                    <MenuItem routerLink={<Link to={'products'} />}>
+                        <div className='flex justify-between items-center w-full'>
+                        {!collapsed && <span>Products</span>}
+                        <ShoppingCartIcon/>
+                        </div>
+                    </MenuItem>
                     <MenuItem routerLink={<Link to={'users'} />}>
                         <div className='flex justify-between items-center w-full'>
                             {!collapsed && <span>Users</span>}
                             <PeopleIcon/>
                         </div>
                     </MenuItem>
-                    <MenuItem routerLink={<Link to={'orders'} />}>
+                    <MenuItem routerLink={<Link to={'category'}/>}>
                         <div className='flex justify-between items-center w-full'>
-                        {!collapsed && <span>Orders</span>}
-                        <ShoppingCartIcon/>
+                            {!collapsed && <span>Category</span>}
+                            <CategoryIcon/>
+                        </div>
+                    </MenuItem>
+                    <MenuItem routerLink={<Link to={'country'}/>}>
+                        <div className='flex justify-between items-center w-full'>
+                            {!collapsed && <span>Countrie</span>}
+                            <PublicIcon/>
                         </div>
                     </MenuItem>
                 </Menu>
                     </div>
             </Sidebar>
-                {
-                collapsed && <button
-                    className='absolute top-0 right-[-20px] bg-[#636f83] rounded'
-                    onClick={()=>collapseSidebar()}
-                >
-                                    <DehazeIcon/>
-                                </button>
-                }
-               
             </div>
     )
 }

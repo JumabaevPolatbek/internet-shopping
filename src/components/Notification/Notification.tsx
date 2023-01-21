@@ -10,6 +10,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 ) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
+
 type Props={
     value:string,
     open:boolean,
@@ -25,12 +26,13 @@ export  function Notification({value,open,setOpen}:Props) {
 
     setOpen(false);
   };
+  console.log(value)
 
   return (
     <Stack spacing={2} sx={{ width: '100%' }}>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={value==='Ошибка'?'error':'success'} sx={{ width: '100%' }}>
-          This is a {value}!
+         {value}!
         </Alert>
       </Snackbar>
       {/* <Alert severity="error">This is an error message!</Alert>

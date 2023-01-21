@@ -5,6 +5,7 @@ import { Categories, Category, NewCategories } from '../../models/categories';
 export const actionsCategories = createApi({
     reducerPath: 'actionsCategory',
     baseQuery: fetchBaseQuery({ baseUrl: pathApi }),
+    tagTypes:['categories'],
     endpoints: (builder) => ({
         getCategories:builder.query<Categories,void>({
             query: () => `categories/`,
@@ -19,7 +20,10 @@ export const actionsCategories = createApi({
             query: (category) => ({
                 url: `categories`,
                 method: 'POST',
-                body:JSON.stringify(category)
+                headers: {
+                        'Content-type':'application/json'
+                    },
+                body:(category)
             })
         }),
         updateCategory: builder.mutation<NewCategories, Partial<NewCategories>>({
