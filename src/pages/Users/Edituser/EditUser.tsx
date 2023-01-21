@@ -1,10 +1,10 @@
 import React from "react";
-import { useAddNewUserMutation } from "../../store/api/user";
+import { useAddNewUserMutation } from "../../../store/api/user";
 import { FormControlLabel, FormGroup, Switch, TextField } from "@mui/material"
 import Button from "@mui/material/Button"
 import { useForm,SubmitHandler, Controller } from "react-hook-form"
-import { UpdateUserRoot, User } from "../../store/models/userModels";
-import { useAppSlector } from "../../utils/hook";
+import { UpdateUserRoot, User } from "../../../store/models/userModels";
+import { useAppSlector } from "../../../utils/hook";
 
 
 export function EditUser() {

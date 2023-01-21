@@ -1,12 +1,12 @@
 import React from "react";
-import { useAddNewUserMutation } from "../../store/api/user";
+import { useAddNewUserMutation } from "../../../store/api/user";
 import { FormControlLabel, FormGroup, Switch, TextField } from "@mui/material"
 import Button from "@mui/material/Button"
 import { useForm,SubmitHandler, Controller } from "react-hook-form"
-import { NewUserRoot } from "../../store/models/userModels"
+import { NewUserRoot } from "../../../store/models/userModels"
 import { NewUserSelect } from "./NewUserSelect";
 import { NewUserTypePhone } from "./NewUserTypePhone";
-import Notification from "./../../components/Notification"
+import Notification from "../../../components/Notification"
 
 export function NewUser() {
     const [addUser,result] = useAddNewUserMutation()

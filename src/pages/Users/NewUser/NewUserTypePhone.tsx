@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { UseFormSetValue } from 'react-hook-form';
-import { NewUserRoot } from '../../store/models/userModels';
+import { NewUserRoot } from '../../../store/models/userModels';
 
 type Props = {
     setType:UseFormSetValue<NewUserRoot>
