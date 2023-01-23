@@ -55,11 +55,11 @@ export function NewUser() {
                 className="flex flex-col justify-between h-full w-[845px]"
             >
                 <div className="flex justify-between flex-1 py-2">
-                    <div className="flex flex-col justify-between h-full">
-                        <div className="flex items-center">
+                    <div className="flex flex-col justify-between h-full pr-5">
+                        <div className="flex items-center ">
                                 <TextField
                                     {...register('user.username',{
-                                        required: 'Поле обязательно для заполнения',
+                                        required: true,
                                         minLength: {
                                             value: 3,
                                             message:'Имя должен содержать не менее 3 символов '
@@ -82,7 +82,7 @@ export function NewUser() {
                             sx={{
                                 color:`${initValue.user.is_admin?'#333':'#ccc'}`
                             }}
-                            control={<Switch inputRef={register('user.is_admin').ref}/>} 
+                            control={<Switch />} 
                             label="Администратор" />
                         </FormGroup>
                         </div>
@@ -119,7 +119,7 @@ export function NewUser() {
                             label="Ссылька на фото"
                         />
                     </div>
-                    <div className="flex-1 flex flex-col addresses justify-between h-full px-2">
+                    <div className="flex-1 flex flex-col addresses justify-between h-full pl-5">
                         <TextField
                             {...register('user_address.street_address')}
                             type="text"
@@ -146,7 +146,7 @@ export function NewUser() {
                                 name="user_address.country_id"
                                 control={control}
                                 render={() => {
-                                    return <NewUserSelect setCountry={ setValue} ref={ register('user_address.country_id').ref} />
+                                    return <NewUserSelect setCountry={ setValue} />
                                 }}
                             />
                             
@@ -168,10 +168,7 @@ export function NewUser() {
                                     {...register('user_phones.0.type')}
                                     control={control}
                                     render={() => {
-                                        return <NewUserTypePhone
-                                            setType={setValue}
-                                            ref={register('user_phones.0.type').ref}
-                                        />
+                                        return <NewUserTypePhone setType={setValue}/>
                                     }}
                                 />
                             </div>

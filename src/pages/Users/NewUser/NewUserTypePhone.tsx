@@ -10,9 +10,8 @@ import { NewUserRoot } from '../../../store/models/userModels';
 type Props = {
     setType:UseFormSetValue<NewUserRoot>
 }
-type SelectRef=HTMLSelectElement
 
-export  const  NewUserTypePhone= React.forwardRef<SelectRef,Props>(({setType},ref) => {
+export  function NewUserTypePhone({setType}:Props) {
   const [phone, setPhone] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -21,11 +20,10 @@ export  const  NewUserTypePhone= React.forwardRef<SelectRef,Props>(({setType},re
   };
 
   return (
-    <Box sx={{ minWidth: 150 }} className='flex-1'>
+    <Box sx={{ minWidth: 150 }} className='flex-1 pl-3'>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-helper-label">Тип номер тел.</InputLabel>
         <Select
-          inputRef={ref}
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={phone}
@@ -39,4 +37,4 @@ export  const  NewUserTypePhone= React.forwardRef<SelectRef,Props>(({setType},re
       </FormControl>
     </Box>
   );
-})
+}

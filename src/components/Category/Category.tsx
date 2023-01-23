@@ -9,12 +9,10 @@ import { UseFormSetValue } from 'react-hook-form';
 import { NewProduct } from '../../store/models/products';
 
 type Props={
-  setValue: UseFormSetValue<NewProduct>,
-  result:boolean
+  setValue:UseFormSetValue<NewProduct>
 }
-type Ref = HTMLSelectElement
 
-export const CategorySelect= React.forwardRef<Ref,Props>(({setValue,result},ref)=> {
+export function CategorySelect({setValue}:Props) {
   const {data}=useGetCategoriesQuery()
   const [category, setCategory] = React.useState('');
 
@@ -25,7 +23,7 @@ export const CategorySelect= React.forwardRef<Ref,Props>(({setValue,result},ref)
 
   return (
     <Box sx={{ minWidth: 120 ,marginTop:2}}>
-      <FormControl fullWidth disabled={result}>
+      <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Категория</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -33,8 +31,7 @@ export const CategorySelect= React.forwardRef<Ref,Props>(({setValue,result},ref)
           value={category}
           label="category"
           onChange={handleChange}
-          // inputRef={ref}
-          ref={ref}
+        
         >
           {data?.map(category=>{
             return <MenuItem
@@ -46,4 +43,4 @@ export const CategorySelect= React.forwardRef<Ref,Props>(({setValue,result},ref)
       </FormControl>
     </Box>
   );
-})
+}

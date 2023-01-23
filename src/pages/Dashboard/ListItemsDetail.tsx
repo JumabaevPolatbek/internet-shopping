@@ -6,8 +6,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import { ExpandLess, ExpandMore} from '@mui/icons-material';
 import { Category } from '../../store/models/categories';
-import AppsIcon from '@mui/icons-material/Apps';
-import HdrStrongIcon from '@mui/icons-material/HdrStrong';
+import EastIcon from '@mui/icons-material/East';
+
 
 
 type Props={
@@ -24,21 +24,19 @@ export function ListItemDetail({category}:Props){
         <>
         <ListItemButton onClick={handleClick}>
             <ListItemIcon>
-                <AppsIcon/>
+                <EastIcon/>
                 </ListItemIcon>
-                <ListItemText primary={category.parent_category==null && category.name} />
+                <ListItemText primary={category.name} />
                 {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                 <ListItemButton sx={{ pl: 4 }}>
                     <ListItemIcon>
-                    <HdrStrongIcon/>
+                    <EastIcon/>
                     </ListItemIcon>
                     {category.children_category.map(children=>{
-                        return <ListItemText primary={children.name} key={children.id}>
-                            {}
-                        </ListItemText>
+                        return <ListItemText primary={children.name} key={children.id}/>
                     })}
                 </ListItemButton>
                 </List>

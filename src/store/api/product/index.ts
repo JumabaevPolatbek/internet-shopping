@@ -5,8 +5,8 @@ import { pathApi } from '..';
 
 export const actionsProduct = createApi({
     reducerPath: 'actionsProduct',
-    tagTypes:['products'],
     baseQuery: fetchBaseQuery({ baseUrl: pathApi}),
+    tagTypes:['products'],
     endpoints: (builder) => ({
         getProducts: builder.query<Products,void>({
             query: () => 'products/',
@@ -17,11 +17,11 @@ export const actionsProduct = createApi({
             providesTags:['products']
         }),
         getLimitProducts: builder.query<Product, number>({
-            query: (id) => `products?limit=${id}`,
+            query:(id)=>`products?limit=${id}`,
             providesTags:['products']
         }),
         getCategoryProducts: builder.query<Product, number>({
-            query: (id_category) => `categories/${id_category}/products`,
+            query:(id_category)=>`categories/${id_category}/products`,
             providesTags:['products']
         }),
         addNewProduct: builder.mutation<NewProduct,Partial<NewProduct>>({
@@ -40,7 +40,7 @@ export const actionsProduct = createApi({
                 url: `products/${category_id}`,
                 method: 'PUT',
                 headers: {
-                    'Content-type':'application/json: charset=UTF-8'
+                    'Content-type':'application/json'
                 },
                 body:JSON.stringify(product)
             }),

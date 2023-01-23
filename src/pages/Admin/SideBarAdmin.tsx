@@ -32,53 +32,55 @@ export function SideBarAdmin(){
                                 {/* } */}
                 </div>
                 <Menu className='flex flex-col items-center bg-[#636f83]'>
-                        <MenuItem routerLink={<Link to={'/admin'} />}>
-                            <Tooltip title={collapsed?'Dashboard':''} placement='right'>
-                                <div className='flex justify-between items-center w-full'>
-                                    {!collapsed && <span>Dashboard</span>}
-                                    <DashboardIcon  />
-                                </div>
-                            </Tooltip>
+                    <MenuItem routerLink={<Link to={'/admin'} />}>
+                        <Tooltip title={collapsed && 'Dashboard'} placement="right">
+                        <div className='flex justify-between items-center w-full'>
+                            {!collapsed && <span>Dashboard</span>}
+                            <DashboardIcon  />
+                        </div>
+                        </Tooltip>
+                        
                     </MenuItem>
-                        <MenuItem routerLink={<Link to={'orders'} />}>
-                        <Tooltip title={collapsed?'Orders':''} placement='right'>
+                    <MenuItem routerLink={<Link to={'orders'} />}>
+                        <Tooltip title={collapsed && 'Orders'} placement="right">
                         <div className='flex justify-between items-center w-full'>
                         {!collapsed && <span>Orders</span>}
                         <ProductionQuantityLimitsIcon/>
-                                </div>
+                        </div>
                         </Tooltip>
+                        
                     </MenuItem>
-                        <MenuItem routerLink={<Link to={'products'} />}>
-                        <Tooltip title={collapsed?'Products':''} placement='right'>
+                    <MenuItem routerLink={<Link to={'products'} />}>
+                        <Tooltip title={collapsed && 'Products'} placement="right">
                         <div className='flex justify-between items-center w-full'>
                         {!collapsed && <span>Products</span>}
                         <ShoppingCartIcon/>
-                                </div>
-                                </Tooltip>
+                        </div>
+                        </Tooltip>
                     </MenuItem>
-                        <MenuItem routerLink={<Link to={'users'} />}>
-                        <Tooltip title={collapsed?'Users':''} placement='right'>
+                    <MenuItem routerLink={<Link to={'users'} />}>
+                        <Tooltip title={collapsed && 'Users'} placement="right">
                         <div className='flex justify-between items-center w-full'>
                             {!collapsed && <span>Users</span>}
                             <PeopleIcon/>
-                                </div>
-                                </Tooltip>
+                        </div>
+                        </Tooltip>
                     </MenuItem>
-                        <MenuItem routerLink={<Link to={'category'} />}>
-                            <Tooltip title={collapsed?'Category':''} placement='right'>
-                            <div className='flex justify-between items-center w-full'>
-                                {!collapsed && <span>Category</span>}
-                                <CategoryIcon/>
-                                </div>
-                            </Tooltip>
+                    <MenuItem routerLink={<Link to={'category'}/>}>
+                        <Tooltip title={collapsed && 'Category'} placement="right">
+                        <div className='flex justify-between items-center w-full'>
+                            {!collapsed && <span>Category</span>}
+                            <CategoryIcon/>
+                        </div>
+                        </Tooltip>
                     </MenuItem>
-                        <MenuItem routerLink={<Link to={'country'} />}>
-                        <Tooltip title={collapsed?'Countrie':''} placement='right'>
+                    <MenuItem routerLink={<Link to={'country'}/>}>
+                        <Tooltip title={collapsed && 'Countrie'} placement="right">
                         <div className='flex justify-between items-center w-full'>
                             {!collapsed && <span>Countrie</span>}
                             <PublicIcon/>
-                                </div>
-                                </Tooltip>
+                        </div>
+                        </Tooltip>
                     </MenuItem>
                 </Menu>
                     </div>

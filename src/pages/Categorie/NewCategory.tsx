@@ -23,8 +23,12 @@ export function NewCategory() {
     const formSubmit:SubmitHandler<NewCategories>=(data)=>addCategory(data)
     const handleOpenAlert=()=>{
         setOpen(open=>!open)
-        reset(initValue)
+        if(result.isSuccess){
+            reset(initValue)
+        }
     }
+    console.log({...result.error})
+    console.log(result.data)
     return(
         <div className="w-full h-[400px] flex justify-center items-center">
             <form

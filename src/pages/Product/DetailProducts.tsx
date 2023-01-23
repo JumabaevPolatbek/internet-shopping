@@ -13,6 +13,7 @@ import { Avatar, Button, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Notification from '../../components/Notification';
 
 const arrColumn=['Фото','Имя устройства','Описание','Категория','Цена','Количество','Дисконт','Действия']
 
@@ -31,19 +32,19 @@ export  function DetailProducts() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  const [open,setOpen]=React.useState(false)
+  
   return (
     <div className='flex flex-col items-center p-[15px]'>
       {
         location.pathname.includes('admin/products') && 
-        <Link to={'add'}>
           <Button
             variant='contained'
             color='success'
             className='self-start'
           >
-            Create Product
+            <Link to={'add'}>Create Product</Link>
           </Button>
-        </Link>
       }
       
       <Paper sx={{ width: '100%',margin:'10px 0 0 0' }}>
@@ -68,25 +69,29 @@ export  function DetailProducts() {
             </TableHead>
             <TableBody>
               {data?.map(product=>{
-                  return <TableRow key={product.id} sx={{height:'80px'}}>
+                  return <TableRow key={product.id}>
                       <TableCell>
-                      <img src={ product.images[0].image_path} />
+                        <Avatar 
+                        sx={{width:'56px',height:'56px'}}
+                        src={product.images[0].image_path}/>
                       </TableCell>
                       <TableCell>{product.name}</TableCell>
-                      <TableCell sx={{overflowY:'scroll',height:'100%'}}>{product.description}</TableCell>
+                      <TableCell>{product.description}</TableCell>
                       <TableCell>{product.category.name}</TableCell>
                       <TableCell>{product.price}</TableCell>
                       <TableCell>{product.quantity}</TableCell>
                       <TableCell>{product.discount}</TableCell>
                       <TableCell>
                         <div className='flex items-center'>
-                          <Link to={`edit/${product.id}`}>
+                          <Link to={location.pathname.includes('/admin/products')?`edit/${product.id}`:`products/edit/${product.id}`}>
                               <IconButton color='secondary'>
                                 <SettingsIcon/>
                               </IconButton>
                           </Link>
                               <IconButton 
-                              onClick={()=>delProduct(product.id)}
+                              onClick={()=>{
+                                delProduct(product.id) 
+                                setOpen(open=>!open)}}
                               color='primary'
                               >
                                 <DeleteIcon/>
@@ -108,6 +113,8 @@ export  function DetailProducts() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
+      {result.isSuccess && <Notification value='Продукт удалено' open={open} setOpen={setOpen}/>}
+      {result.isError && <Notification value='Ошибка' open={open} setOpen={setOpen}/>}
     </div>
   );
 }
