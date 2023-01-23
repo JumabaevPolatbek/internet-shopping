@@ -22,7 +22,6 @@ export  function DetailCategory() {
           <Link to={'add'}>Create Category</Link>
           </Button>
       }
-       
         <List
           sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
           component="nav"
@@ -34,12 +33,14 @@ export  function DetailCategory() {
           }
         >
           {data?.map(category=>{
-            if(category.parent_category===null){
-              return (
-                <ListItemDetail category={category} key={category.id}/>
-              )
-            }
-            
+            // if(category.parent_category===null){
+            //   return (
+            //     <ListItemDetail category={category} key={category.id}/>
+            //   )
+            // }
+            return (
+              <ListItemDetail category={category} key={category.id}/>
+            )
           })}
         </List>
     </div>

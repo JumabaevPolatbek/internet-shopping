@@ -41,6 +41,7 @@ export function NewCategory() {
                     render={()=>{
                         return <SelectCategory
                             setName={setValue}
+                            ref={register('parent_category_id').ref}
                         />
                     }}
                 />

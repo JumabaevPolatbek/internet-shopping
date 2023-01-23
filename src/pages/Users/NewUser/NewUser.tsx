@@ -59,7 +59,7 @@ export function NewUser() {
                         <div className="flex items-center">
                                 <TextField
                                     {...register('user.username',{
-                                        required: true,
+                                        required: 'Поле обязательно для заполнения',
                                         minLength: {
                                             value: 3,
                                             message:'Имя должен содержать не менее 3 символов '
@@ -82,7 +82,7 @@ export function NewUser() {
                             sx={{
                                 color:`${initValue.user.is_admin?'#333':'#ccc'}`
                             }}
-                            control={<Switch />} 
+                            control={<Switch inputRef={register('user.is_admin').ref}/>} 
                             label="Администратор" />
                         </FormGroup>
                         </div>
@@ -119,7 +119,7 @@ export function NewUser() {
                             label="Ссылька на фото"
                         />
                     </div>
-                    <div className="flex-1 flex flex-col addresses justify-between h-full">
+                    <div className="flex-1 flex flex-col addresses justify-between h-full px-2">
                         <TextField
                             {...register('user_address.street_address')}
                             type="text"
@@ -146,7 +146,7 @@ export function NewUser() {
                                 name="user_address.country_id"
                                 control={control}
                                 render={() => {
-                                    return <NewUserSelect setCountry={ setValue} />
+                                    return <NewUserSelect setCountry={ setValue} ref={ register('user_address.country_id').ref} />
                                 }}
                             />
                             
@@ -168,7 +168,10 @@ export function NewUser() {
                                     {...register('user_phones.0.type')}
                                     control={control}
                                     render={() => {
-                                        return <NewUserTypePhone setType={setValue}/>
+                                        return <NewUserTypePhone
+                                            setType={setValue}
+                                            ref={register('user_phones.0.type').ref}
+                                        />
                                     }}
                                 />
                             </div>

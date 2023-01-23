@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {  UseFormSetValue } from 'react-hook-form';
+import {  RefCallBack, UseFormSetValue } from 'react-hook-form';
 import { useGetAllCountriesQuery } from '../../../store/api/countrie';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -10,10 +10,11 @@ import { NewUserRoot, User } from '../../../store/models/userModels';
 
 
 type Props = {
-   setCountry:UseFormSetValue<NewUserRoot>
+  setCountry: UseFormSetValue<NewUserRoot>
 }
+type SelectRef=HTMLSelectElement
 
-export function NewUserSelect({setCountry}:Props) {
+export const NewUserSelect=React.forwardRef<SelectRef,Props>(({setCountry},ref)=> {
     // console.log(onChange)
     const {data} = useGetAllCountriesQuery()
   const [countryName, setCountryName] = React.useState('');
@@ -30,6 +31,7 @@ export function NewUserSelect({setCountry}:Props) {
         <InputLabel id="demo-simple-select-label">Страна</InputLabel>
         <Select
           labelId="demo-simple-select-label"
+          inputRef={ref}
           id="demo-simple-select"
           value={countryName}
           label="Страна"
@@ -42,4 +44,4 @@ export function NewUserSelect({setCountry}:Props) {
       </FormControl>
     </Box>
   );
-}
+})

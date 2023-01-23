@@ -11,8 +11,9 @@ import { ListSubheader } from '@mui/material';
 type Props = {
   setName:UseFormSetValue<NewCategories>
 }
+type Ref=HTMLSelectElement
 
-export function SelectCategory({ setName }: Props) {
+export const SelectCategory=React.forwardRef<Ref,Props>(({ setName },ref)=> {
   
   const {data}=useGetCategoriesQuery()
   const [age, setAge] = React.useState('');
@@ -32,6 +33,7 @@ export function SelectCategory({ setName }: Props) {
           value={age}
           label="Родительские катогероии"
           onChange={handleChange}
+          inputRef={ref}
         >
           {data?.map(category => {
             // if (category.parent_category !== null) {
@@ -65,4 +67,4 @@ export function SelectCategory({ setName }: Props) {
       </FormControl>
     </div>
   );
-}
+})

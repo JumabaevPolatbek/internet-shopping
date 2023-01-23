@@ -5,10 +5,10 @@ import { DetailProducts } from "../Product/DetailProducts";
 
 export function Dashboard(){
     return(
-        <div className="flex flex-wrap justify-between">
-            <div>
+        <div className="flex flex-wrap justify-center">
+            {/* <div>
                 <DetailCategory/>
-            </div>
+            </div> */}
             {/* <div>
                 <DetailCountry/>
             </div> */}

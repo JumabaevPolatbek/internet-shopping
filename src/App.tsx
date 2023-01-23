@@ -7,7 +7,7 @@ import Auth from './pages/Auth';
 import Admin from './pages/Admin';
 import Dashboard from './pages/Dashboard';
 import  Orders  from './pages/Orders';
-import NewAddProduct from './pages/Product';
+import {NewAddProduct} from './pages/Product/NewProduct';
 import NewUser from './pages/Users/NewUser';
 import Users from './pages/Users';
 import { User } from './pages/Users/User';
@@ -37,7 +37,9 @@ function App() {
           <Route path='products' element={<PageProduct/>}>
             <Route index element={<DetailProducts/>}/>
             <Route path='add' element={<NewAddProduct/>}/>
-            <Route path='edit/:id' element={<p>Edit</p>}/>
+            
+          {/* <Route path='add' element={<p>Product</p>} /> */}
+          <Route path='edit/:id' element={<p>Edit</p>} />
           </Route>
           {/* // <Route path='orders' element={<Orders/>}/>
           // <Route path='newproduct' element={<NewAddProduct/>}/>

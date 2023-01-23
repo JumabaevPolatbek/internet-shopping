@@ -5,19 +5,24 @@ import { pathApi } from '..';
 
 export const actionsProduct = createApi({
     reducerPath: 'actionsProduct',
+    tagTypes:['products'],
     baseQuery: fetchBaseQuery({ baseUrl: pathApi}),
     endpoints: (builder) => ({
         getProducts: builder.query<Products,void>({
             query: () => 'products/',
+            providesTags:['products']
         }),
         getSingleProduct: builder.query<Product,number>({
             query: (id) => `products/${id}`,
+            providesTags:['products']
         }),
         getLimitProducts: builder.query<Product, number>({
-            query:(id)=>`products?limit=${id}`
+            query: (id) => `products?limit=${id}`,
+            providesTags:['products']
         }),
         getCategoryProducts: builder.query<Product, number>({
-            query:(id_category)=>`categories/${id_category}/products`
+            query: (id_category) => `categories/${id_category}/products`,
+            providesTags:['products']
         }),
         addNewProduct: builder.mutation<NewProduct,Partial<NewProduct>>({
             query: (product) => ({
@@ -25,9 +30,10 @@ export const actionsProduct = createApi({
                 method: `POST`,
                 body: (product),
                 headers: {
-                    'Content-type':'application/json: charset=UTF-8'
+                    'Content-type':'application/json'
                 }
-            })
+            }),
+            invalidatesTags:['products']
         }),
         updateProduct: builder.mutation<UpdateProduct,Partial<UpdateProduct>>({
             query: ({category_id,...product}) => ({
@@ -37,7 +43,8 @@ export const actionsProduct = createApi({
                     'Content-type':'application/json: charset=UTF-8'
                 },
                 body:JSON.stringify(product)
-            })
+            }),
+            invalidatesTags:['products']
         }),
         deleteProduct: builder.mutation<Product,number>({
             query(id) {
@@ -45,7 +52,8 @@ export const actionsProduct = createApi({
                     url: `products/${id}`,
                     method:'DELETE'
                 }
-            }
+            },
+            invalidatesTags:['products']
         })
     })
 })

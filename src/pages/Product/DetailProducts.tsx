@@ -35,13 +35,15 @@ export  function DetailProducts() {
     <div className='flex flex-col items-center p-[15px]'>
       {
         location.pathname.includes('admin/products') && 
+        <Link to={'add'}>
           <Button
             variant='contained'
             color='success'
             className='self-start'
           >
-            <Link to={'add'}>Create Product</Link>
+            Create Product
           </Button>
+        </Link>
       }
       
       <Paper sx={{ width: '100%',margin:'10px 0 0 0' }}>
@@ -66,15 +68,13 @@ export  function DetailProducts() {
             </TableHead>
             <TableBody>
               {data?.map(product=>{
-                  return <TableRow key={product.id}>
+                  return <TableRow key={product.id} sx={{height:'80px'}}>
                       <TableCell>
-                        <Avatar 
-                        sx={{width:'56px',height:'56px'}}
-                        src={product.images[0].image_path}/>
+                      <img src={ product.images[0].image_path} />
                       </TableCell>
                       <TableCell>{product.name}</TableCell>
-                      <TableCell>{product.description}</TableCell>
-                      <TableCell>{product.category.children_category[0].name}</TableCell>
+                      <TableCell sx={{overflowY:'scroll',height:'100%'}}>{product.description}</TableCell>
+                      <TableCell>{product.category.name}</TableCell>
                       <TableCell>{product.price}</TableCell>
                       <TableCell>{product.quantity}</TableCell>
                       <TableCell>{product.discount}</TableCell>
