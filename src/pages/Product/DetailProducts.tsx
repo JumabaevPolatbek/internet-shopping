@@ -18,9 +18,9 @@ import Notification from '../../components/Notification';
 const arrColumn=['Фото','Имя устройства','Описание','Категория','Цена','Количество','Дисконт','Действия']
 
 export  function DetailProducts() {
-    const {data}=useGetProductsQuery()
-    const [delProduct,result]=useDeleteProductMutation()
-    const location = useLocation()
+  const {data}=useGetProductsQuery()
+  const [delProduct,result]=useDeleteProductMutation()
+  const location = useLocation()
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -85,7 +85,8 @@ export  function DetailProducts() {
                         <div className='flex items-center'>
                           <Link to={location.pathname.includes('/admin/products')
                           ?`edit/${product.id}`:
-                          `products/edit/${product.id}`}>
+                          `products/edit/${product.id}`}
+                        >
                               <IconButton color='secondary'>
                                 <SettingsIcon/>
                               </IconButton>

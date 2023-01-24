@@ -29,7 +29,7 @@ export  function Notification({value,open,setOpen}:Props) {
 
   return (
     <Stack spacing={2} sx={{ width: '100%' }}>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={value==='Ошибка'?'error':'success'} sx={{ width: '100%' }}>
          {value}!
         </Alert>

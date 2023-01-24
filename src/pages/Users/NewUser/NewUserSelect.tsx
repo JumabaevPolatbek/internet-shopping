@@ -6,14 +6,14 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { NewUserRoot, User } from '../../../store/models/userModels';
+import { NewUserRoot } from '../../../store/models/userModels';
 
 
 type Props = {
    setCountry:UseFormSetValue<NewUserRoot>
 }
 
-export function NewUserSelect({setCountry}:Props) {
+export const NewUserSelect=React.forwardRef<HTMLSelectElement,Props>(({setCountry},ref)=> {
     // console.log(onChange)
     const {data} = useGetAllCountriesQuery()
   const [countryName, setCountryName] = React.useState('');
@@ -33,7 +33,8 @@ export function NewUserSelect({setCountry}:Props) {
           id="demo-simple-select"
           value={countryName}
           label="Страна"
-                  onChange={handleChange}
+          onChange={handleChange}
+          inputRef={ref}
               >
                   {data?.map(country => {
                       return <MenuItem key={country.country_name} value={country.id}>{country.country_name }</MenuItem>
@@ -42,4 +43,4 @@ export function NewUserSelect({setCountry}:Props) {
       </FormControl>
     </Box>
   );
-}
+})

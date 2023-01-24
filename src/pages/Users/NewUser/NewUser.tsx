@@ -78,7 +78,7 @@ export function NewUser() {
                                     label="Имя пользователя" />
                         <FormGroup>
                             <FormControlLabel 
-                            {...register('user.is_admin')}
+                                        {...register('user.is_admin')}
                             sx={{
                                 color:`${initValue.user.is_admin?'#333':'#ccc'}`
                             }}
@@ -146,7 +146,7 @@ export function NewUser() {
                                 name="user_address.country_id"
                                 control={control}
                                 render={() => {
-                                    return <NewUserSelect setCountry={ setValue} />
+                                    return <NewUserSelect setCountry={ setValue} ref={register('user_address.country_id').ref}/>
                                 }}
                             />
                             
@@ -168,7 +168,7 @@ export function NewUser() {
                                     {...register('user_phones.0.type')}
                                     control={control}
                                     render={() => {
-                                        return <NewUserTypePhone setType={setValue}/>
+                                        return <NewUserTypePhone setType={setValue} ref={register('user_phones.0.type').ref}/>
                                     }}
                                 />
                             </div>

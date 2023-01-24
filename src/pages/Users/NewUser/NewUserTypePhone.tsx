@@ -11,7 +11,7 @@ type Props = {
     setType:UseFormSetValue<NewUserRoot>
 }
 
-export  function NewUserTypePhone({setType}:Props) {
+export  const NewUserTypePhone=React.forwardRef<HTMLSelectElement,Props>(({setType},ref) => {
   const [phone, setPhone] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -29,6 +29,7 @@ export  function NewUserTypePhone({setType}:Props) {
           value={phone}
           label="Тип номер тел."
           onChange={handleChange}
+          inputRef={ref}
         >
           <MenuItem value={'mobile'}>Мобильный </MenuItem>
           <MenuItem value={'work'}>Рабочего места</MenuItem>
@@ -37,4 +38,4 @@ export  function NewUserTypePhone({setType}:Props) {
       </FormControl>
     </Box>
   );
-}
+})

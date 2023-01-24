@@ -1,16 +1,38 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
-import { useGetCategoriesQuery } from "../../store/api/category"
-import {  NewProduct } from "../../store/models/products"
+import {  NewProduct, Product } from "../../store/models/products"
 import { Button, TextField } from "@mui/material"
 import { useAddNewProductMutation } from "../../store/api/product"
 import CategorySelect from "../../components/Category"
 import Notification from "../../components/Notification"
 import React from "react"
+import { useLocation } from "react-router-dom"
+import { useAppSlector } from "../../utils/hook"
 
 export function NewAddProduct() {
-    const {data}=useGetCategoriesQuery()
-    const [addProduct,result]=useAddNewProductMutation()
-    const { register, handleSubmit, control, setValue ,reset} = useForm<NewProduct>()
+    const [addProduct, result] = useAddNewProductMutation()
+    const getIdProduct=useAppSlector(state=>state.editProduct)
+    const location = useLocation()
+    const initialState: Product = {
+        name: '',
+        price: 0,
+        description: '',
+        id: 0,
+        quantity: 0,
+        discount: 0,
+        images: [{
+            image_path: '',
+            product_id: 0,
+            product_variants_id: 0,
+            id:0
+        }],
+        category: {
+            name: '',
+            id: 0,
+            parent_category: null,
+            children_category:[]
+        }
+    }
+    const { register, handleSubmit, control, setValue, reset } = useForm<NewProduct>()
     const formSubmit: SubmitHandler<NewProduct> = (data) => addProduct(data)
     const [open,setOpen]=React.useState(false)
     const handleOpen=()=>{
@@ -58,7 +80,7 @@ export function NewAddProduct() {
                     {...register('product.category_id')}
                     control={control}
                     render={() => {
-                        return <CategorySelect setValue={setValue}/>
+                        return <CategorySelect setValue={setValue} ref={register('product.category_id').ref}/>
                     }}
                 />
                 <TextField

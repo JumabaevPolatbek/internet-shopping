@@ -11,8 +11,8 @@ import { NewProduct } from '../../store/models/products';
 type Props={
   setValue:UseFormSetValue<NewProduct>
 }
-
-export function CategorySelect({setValue}:Props) {
+type Ref=HTMLSelectElement
+export const  CategorySelect=React.forwardRef<Ref,Props>(({setValue},ref)=> {
   const {data}=useGetCategoriesQuery()
   const [category, setCategory] = React.useState('');
 
@@ -43,4 +43,4 @@ export function CategorySelect({setValue}:Props) {
       </FormControl>
     </Box>
   );
-}
+})

@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from './../index';
-import { UpdateUserRoot, User } from "../models/userModels";
-import { Product } from "../models/products";
+import { UpdateUserRoot } from "../models/userModels";
 
 const initialState:UpdateUserRoot={
    user:{
