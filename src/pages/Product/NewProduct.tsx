@@ -4,17 +4,21 @@ import {  NewProduct } from "../../store/models/products"
 import { Button, TextField } from "@mui/material"
 import { useAddNewProductMutation } from "../../store/api/product"
 import CategorySelect from "../../components/Category"
+import Notification from "../../components/Notification"
+import React from "react"
 
 export function NewAddProduct() {
     const {data}=useGetCategoriesQuery()
-    const [addProduct]=useAddNewProductMutation()
-    const { register, handleSubmit, control, setValue } = useForm<NewProduct>({
-        defaultValues: {
-            
-        }
-    })
+    const [addProduct,result]=useAddNewProductMutation()
+    const { register, handleSubmit, control, setValue ,reset} = useForm<NewProduct>()
     const formSubmit: SubmitHandler<NewProduct> = (data) => addProduct(data)
+    const [open,setOpen]=React.useState(false)
+    const handleOpen=()=>{
+        setOpen(open=>!open)
+        // result.isSuccess && reset()
+    }
     return(
+        <>
         <div className="w-full h-[500px] flex justify-center items-center">
             <form
                 onSubmit={handleSubmit(formSubmit)}
@@ -57,10 +61,23 @@ export function NewAddProduct() {
                         return <CategorySelect setValue={setValue}/>
                     }}
                 />
-                <Button variant="contained" color="success" type="submit" >
+                <TextField
+                    {...register('product_images.0.image_path')}
+                    label="Ссылька на фото"
+                    type="text"
+                    required
+                />
+                <Button 
+                onClick={handleOpen}
+                variant="contained" 
+                color="success" 
+                type="submit" >
                     Добавить
                 </Button>
             </form>
         </div>
+        {result.isSuccess && <Notification value="Продукт успешьно добавлень" open={open} setOpen={setOpen}/>}
+        {result.isError && <Notification value="Ошибка" open={open} setOpen={setOpen}/>}
+        </>
     )
 }

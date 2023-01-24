@@ -1,2 +1,9 @@
 import { PageProduct } from "./PageProduct";
-export default PageProduct
+import { NewAddProduct } from "./NewProduct";
+import { DetailProducts } from "./DetailProducts";
+import { EditProduct } from "./EditProduct";
+export  
+    {PageProduct,
+    EditProduct,
+    NewAddProduct,
+    DetailProducts}

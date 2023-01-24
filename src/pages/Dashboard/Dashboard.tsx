@@ -1,4 +1,4 @@
-import { DetailCategory } from "../Categorie/DetailCategory";
+// import { DetailCategory } from "../Category/DetailCategory";
 import { DetailProducts } from "../Product/DetailProducts";
 // import { DetailUsers } from "./DetailUsers";
 

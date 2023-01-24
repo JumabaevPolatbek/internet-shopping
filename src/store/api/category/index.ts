@@ -9,12 +9,15 @@ export const actionsCategories = createApi({
     endpoints: (builder) => ({
         getCategories:builder.query<Categories,void>({
             query: () => `categories/`,
+            providesTags:['categories']
         }),
         getCategory:builder.query<Category,number>({
             query: (id) => `categories/${id}`,
+            providesTags:['categories']
         }),
         getLimitCategory: builder.query<Category, number>({
-            query:(limit)=>`categories?limit=${limit}&offset=${limit}`
+            query:(limit)=>`categories?limit=${limit}&offset=${limit}`,
+            providesTags:['categories']
         }),
         addNewCategory: builder.mutation<NewCategories, Partial<NewCategories>>({
             query: (category) => ({
@@ -25,7 +28,8 @@ export const actionsCategories = createApi({
                         'Content-type':'application/json'
                     },
                 body:(category)
-            })
+            }),
+            invalidatesTags:['categories']
         }),
         updateCategory: builder.mutation<NewCategories, Partial<NewCategories>>({
             query(category) {
@@ -35,18 +39,24 @@ export const actionsCategories = createApi({
                     method: 'PUT',
                     body:JSON.stringify(category)
                 }
-            }
+            },
+            invalidatesTags:['categories']
         }),
-        deleteCategory: builder.mutation<Category, Category>({
-            query(category) {
-                const { id } = category
+        deleteCategory: builder.mutation<Category, number>({
+            query(id) {
                 return {
                     url: `categories/${id}`,
                     method:'DELETE'
                 }
-            }
+            },
+            invalidatesTags:['categories']
         })
     })
 })
 
-export const { useGetCategoriesQuery, useGetCategoryQuery, useGetLimitCategoryQuery, useAddNewCategoryMutation, useUpdateCategoryMutation } = actionsCategories;
+export const { useGetCategoriesQuery,
+    useGetCategoryQuery,
+    useGetLimitCategoryQuery, 
+    useAddNewCategoryMutation, 
+    useUpdateCategoryMutation,
+    useDeleteCategoryMutation } = actionsCategories;

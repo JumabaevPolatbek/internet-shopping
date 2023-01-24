@@ -83,7 +83,9 @@ export  function DetailProducts() {
                       <TableCell>{product.discount}</TableCell>
                       <TableCell>
                         <div className='flex items-center'>
-                          <Link to={location.pathname.includes('/admin/products')?`edit/${product.id}`:`products/edit/${product.id}`}>
+                          <Link to={location.pathname.includes('/admin/products')
+                          ?`edit/${product.id}`:
+                          `products/edit/${product.id}`}>
                               <IconButton color='secondary'>
                                 <SettingsIcon/>
                               </IconButton>

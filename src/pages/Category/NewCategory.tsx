@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm,SubmitHandler, Controller } from "react-hook-form"
+import { Navigate ,useNavigate} from 'react-router-dom'
 import { TextField,Button } from "@mui/material"
 import { NewCategories } from "../../store/models/categories"
 import { useAddNewCategoryMutation } from "../../store/api/category"
@@ -19,16 +20,12 @@ export function NewCategory() {
         }
     })
     const [open,setOpen]=React.useState(false)
-    const {errors,isValid}=formState
+    const {isValid}=formState
     const formSubmit:SubmitHandler<NewCategories>=(data)=>addCategory(data)
     const handleOpenAlert=()=>{
         setOpen(open=>!open)
-        if(result.isSuccess){
-            reset(initValue)
-        }
     }
-    console.log({...result.error})
-    console.log(result.data)
+    const nav= useNavigate()
     return(
         <div className="w-full h-[400px] flex justify-center items-center">
             <form
@@ -55,9 +52,10 @@ export function NewCategory() {
                 disabled={!isValid} 
                 onClick={handleOpenAlert}
                 type="submit">Добавить</Button>
-            {result.isSuccess && <Notification value={'Category has been added'} open={open} setOpen={setOpen}/>}
-            {result.isError && <Notification value='Ошибка' open={open} setOpen={setOpen}/>}
             </form>
+            {result.isSuccess && <Notification value={'Category has been added'} open={open} setOpen={setOpen}/>}
+            {result.isSuccess && <Navigate to={'/admin/category'} replace={true}/>}
+            {result.isError && <Notification value='Ошибка' open={open} setOpen={setOpen}/>}
          </div>
     )
 }

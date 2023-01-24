@@ -4,17 +4,18 @@ import Home from './pages/Home';
 import Layout from './pages/Layout';
 import NotFound from './pages/NotFound';
 import Auth from './pages/Auth';
+//admin
 import Admin from './pages/Admin';
 import Dashboard from './pages/Dashboard';
+//orders
 import  Orders  from './pages/Orders';
-import NewAddProduct from './pages/Product';
-import NewUser from './pages/Users/NewUser';
-import Users from './pages/Users';
-import { User } from './pages/Users/User';
-import EditUser from './pages/Users/Edituser';
-import  {CategorieLayout,DetailCategory,NewCategory}  from './pages/Categorie/';
-import PageProduct from './pages/Product';
-import { DetailProducts } from './pages/Product/DetailProducts';
+//products
+import  {NewAddProduct, PageProduct, DetailProducts, EditProduct} from './pages/Product/';
+//users
+import {Users,NewUser,EditUser,User} from './pages/Users';
+//category
+import  {CategorieLayout,DetailCategory,NewCategory}  from './pages/Category';
+//country
 function App() {
   return (
     <Routes>
@@ -37,13 +38,10 @@ function App() {
           <Route path='products' element={<PageProduct/>}>
             <Route index element={<DetailProducts/>}/>
             <Route path='add' element={<NewAddProduct/>}/>
-            <Route path='edit/:id' element={<p>Edit</p>}/>
+            <Route path='edit/:id' element={<EditProduct/>}/>
           </Route>
-          {/* // <Route path='orders' element={<Orders/>}/>
-          // <Route path='newproduct' element={<NewAddProduct/>}/>
-          // <Route path='newcategory' element={<NewCategory/>}/>
-          // <Route path='newcountrie' element={<NewCountrie/>}/>
-          <Route path='*' element={<NotFound />} /> */}
+          <Route path='orders' element={<Orders/>}/>
+          <Route path='*' element={<NotFound />} />
       </Route>
     </Routes>
   );
