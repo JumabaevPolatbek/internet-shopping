@@ -23,7 +23,7 @@ export function EditCategory(){
     })
     console.log(data)
     const {errors}=formState
-    const formSubmit:SubmitHandler<NewCategories>=data=>console.log(data)
+    const formSubmit:SubmitHandler<NewCategories>=data=>update(data)
     const handleOpen=()=>{
         setOpen(open=>!open)
     }
