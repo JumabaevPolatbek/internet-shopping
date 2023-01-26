@@ -11,7 +11,7 @@ export const actionsCategories = createApi({
             query: () => `categories/`,
             providesTags:['categories']
         }),
-        getCategory:builder.query<Category,number>({
+        getCategory:builder.query<Category,string|undefined>({
             query: (id) => `categories/${id}`,
             providesTags:['categories']
         }),
@@ -32,11 +32,13 @@ export const actionsCategories = createApi({
             invalidatesTags:['categories']
         }),
         updateCategory: builder.mutation<NewCategories, Partial<NewCategories>>({
-            query(category) {
-                const { parent_category_id} = category;
+            query({parent_category_id,...category}) {
                 return {
                     url: `categories/${parent_category_id}`,
                     method: 'PUT',
+                     headers: {
+                        'Content-type':'application/json'
+                    },
                     body:JSON.stringify(category)
                 }
             },

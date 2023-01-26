@@ -15,6 +15,7 @@ import  {NewAddProduct, PageProduct, DetailProducts, EditProduct} from './pages/
 import {Users,NewUser,EditUser,User} from './pages/Users';
 //category
 import  {CategorieLayout,DetailCategory,NewCategory}  from './pages/Category';
+import { EditCategory } from './pages/Category/Edit/EditCategories';
 //country
 function App() {
   return (
@@ -34,11 +35,12 @@ function App() {
           <Route path='category' element={<CategorieLayout/>}>
             <Route index element={<DetailCategory/>}/>
             <Route path='add' element={<NewCategory/>}/>
+            <Route path='edit/:id'element={<EditCategory/>}/>
           </Route>
           <Route path='products' element={<PageProduct/>}>
             <Route index element={<DetailProducts/>}/>
             <Route path='add' element={<NewAddProduct/>}/>
-            <Route path='edit/:id' element={<EditProduct/>}/>
+            <Route path='edit/:id' element={<NewAddProduct/>}/>
           </Route>
           <Route path='orders' element={<Orders/>}/>
           <Route path='*' element={<NotFound />} />

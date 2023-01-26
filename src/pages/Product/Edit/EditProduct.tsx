@@ -1,39 +1,21 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
-import {  NewProduct, Product } from "../../store/models/products"
+import { UpdateProduct } from "../../../store/models/products"
 import { Button, TextField } from "@mui/material"
-import { useAddNewProductMutation } from "../../store/api/product"
-import CategorySelect from "../../components/Category"
-import Notification from "../../components/Notification"
+import {  useGetSingleProductQuery, useUpdateProductMutation } from "../../../store/api/product"
+import Notification from "../../../components/Notification"
 import React from "react"
-import { useLocation } from "react-router-dom"
-import { useAppSlector } from "../../utils/hook"
+import { useLocation, useParams } from "react-router-dom"
+import { SelectUpdate } from "./SelectUpdate"
 
-export function NewAddProduct() {
-    const [addProduct, result] = useAddNewProductMutation()
-    const getIdProduct=useAppSlector(state=>state.editProduct)
+export function EditProduct() {
     const location = useLocation()
-    const initialState: Product = {
-        name: '',
-        price: 0,
-        description: '',
-        id: 0,
-        quantity: 0,
-        discount: 0,
-        images: [{
-            image_path: '',
-            product_id: 0,
-            product_variants_id: 0,
-            id:0
-        }],
-        category: {
-            name: '',
-            id: 0,
-            parent_category: null,
-            children_category:[]
-        }
-    }
-    const { register, handleSubmit, control, setValue, reset } = useForm<NewProduct>()
-    const formSubmit: SubmitHandler<NewProduct> = (data) => addProduct(data)
+    const {id} = useParams()
+    const {data}=useGetSingleProductQuery(id)
+    const [update,result]=useUpdateProductMutation()
+    const { register, handleSubmit, control, setValue, reset } = useForm<UpdateProduct>({
+        defaultValues: data
+    })
+    const formSubmit: SubmitHandler<UpdateProduct> = (data) => update(data)
     const [open,setOpen]=React.useState(false)
     const handleOpen=()=>{
         setOpen(open=>!open)
@@ -47,48 +29,48 @@ export function NewAddProduct() {
                 className='h-full flex flex-col items-center justify-between py-2'
             >
                 <TextField
-                    {...register('product.name')}
+                    {...register('name')}
                     label="Названия устройства"
                     type="text"
                     required
                 />
                 <TextField
-                    {...register('product.description')}
+                    {...register('description')}
                     label="Описание"
                     type="text"
                     required
                 />
                 <TextField
-                    {...register('product.price')}
+                    {...register('price')}
                     label="Цена"
                     type="number"
                     required
                 />
                 <TextField
-                    {...register('product.quantity')}
+                    {...register('quantity')}
                     label="Количество"
                     type="number"
                     required
                 />
                 <TextField
-                    {...register('product.discount')}
+                    {...register('discount')}
                     label="Дисконт"
                     type="number"
                     required
                 />
                 <Controller
-                    {...register('product.category_id')}
+                    {...register('category_id')}
                     control={control}
                     render={() => {
-                        return <CategorySelect setValue={setValue} ref={register('product.category_id').ref}/>
+                        return <SelectUpdate setValue={setValue} ref={register('category_id').ref}/>
                     }}
                 />
-                <TextField
+                {/* <TextField
                     {...register('product_images.0.image_path')}
                     label="Ссылька на фото"
                     type="text"
                     required
-                />
+                /> */}
                 <Button 
                 onClick={handleOpen}
                 variant="contained" 
@@ -98,7 +80,7 @@ export function NewAddProduct() {
                 </Button>
             </form>
         </div>
-        {result.isSuccess && <Notification value="Продукт успешьно добавлень" open={open} setOpen={setOpen}/>}
+        {result.isSuccess && <Notification value="Продукт успешьно изменен" open={open} setOpen={setOpen}/>}
         {result.isError && <Notification value="Ошибка" open={open} setOpen={setOpen}/>}
         </>
     )

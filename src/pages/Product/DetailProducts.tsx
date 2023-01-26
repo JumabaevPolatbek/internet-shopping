@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useDeleteProductMutation, useGetProductsQuery } from '../../store/api/product';
 import { useLocation } from 'react-router-dom';
+// import {}
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';

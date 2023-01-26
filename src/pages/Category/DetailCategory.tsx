@@ -47,7 +47,12 @@ export  function DetailCategory() {
                           <TableCell>{category.parent_category?.name}</TableCell>
                           <TableCell>
                             <div className='flex items-center'>
-                          <Link to={location.pathname.includes('/admin/category')?`category/${category.id}`:`category/edit/${category.id}`}>
+                          <Link to={
+                          //   location.pathname.includes('/admin/category')?
+                          // `category/${category.id}`:
+                          // `edit/${category.id}`
+                          `edit/${category.id}`
+                          }>
                               <IconButton color='secondary'>
                                 <SettingsIcon/>
                               </IconButton>

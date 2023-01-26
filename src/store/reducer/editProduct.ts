@@ -38,14 +38,15 @@ export const editProduct = createSlice({
     initialState,
     reducers: {
         getProduct: (state, action: PayloadAction<Product>) => {
-            state.category = action.payload.category
-            state.name = action.payload.name
-            state.description = action.payload.description
-            state.discount=action.payload.discount
-            state.id=action.payload.id
-            state.price=action.payload.price
-            state.images=action.payload.images
-            state.quantity=action.payload.quantity
+            // state.category = action.payload.category
+            // state.name = action.payload.name
+            // state.description = action.payload.description
+            // state.discount=action.payload.discount
+            // state.id=action.payload.id
+            // state.price=action.payload.price
+            // state.images=action.payload.images
+            // state.quantity=action.payload.quantity
+            state=action.payload
         }
     }
 })

@@ -15,7 +15,9 @@ export function Detail(props: User) {
    
     const { username, user_detail, is_admin, addresses, phone_numbers, id } = props
     const handleUser = () => {
-        // store.dispatch(editSlice.actions.getUser(props))
+        // store.dispatch(editSlice.actions.getUser({
+            
+        // }))
     }
     const handleDelete=()=>{
         deleteUser(id)

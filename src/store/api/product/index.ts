@@ -12,7 +12,7 @@ export const actionsProduct = createApi({
             query: () => 'products/',
             providesTags:['products']
         }),
-        getSingleProduct: builder.query<Product,number>({
+        getSingleProduct: builder.query<Product,string|undefined>({
             query: (id) => `products/${id}`,
             providesTags:['products']
         }),
@@ -58,5 +58,11 @@ export const actionsProduct = createApi({
     })
 })
 
-export const { useGetProductsQuery, useGetCategoryProductsQuery, useAddNewProductMutation, useUpdateProductMutation, useDeleteProductMutation } = actionsProduct;
+export const { useGetProductsQuery, 
+    useGetCategoryProductsQuery, 
+    useAddNewProductMutation, 
+    useUpdateProductMutation, 
+    useDeleteProductMutation ,
+    useGetSingleProductQuery
+} = actionsProduct;
 
