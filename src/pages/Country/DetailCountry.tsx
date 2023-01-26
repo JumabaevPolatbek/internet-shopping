@@ -1,27 +1,27 @@
 import * as React from 'react';
-import { useDeleteCategoryMutation, useGetCategoriesQuery } from '../../store/api/category';
 import { Button, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Notification from '../../components/Notification';
+import { useDeleteCountrieMutation, useGetAllCountriesQuery } from '../../store/api/country';
 
 
-export  function DetailCategory() {
-  const {data} = useGetCategoriesQuery()
-  const [delCategory,result]=useDeleteCategoryMutation()
+export  function DetailCountry() {
+    const { data } = useGetAllCountriesQuery()
+    const [delCountry,result]=useDeleteCountrieMutation()
   const location = useLocation()
   const [open,setOpen]=React.useState(false)
   return (
     <div className='flex flex-col items-center p-[15px]'>
       {
-        location.pathname.includes('admin/category') &&  <Button
+        location.pathname.includes('admin/country') &&  <Button
           variant='contained'
           color='success'
           className='self-start'
         >
-          <Link to={'add'}>Create Category</Link>
+          <Link to={'add'}>Create Country</Link>
           </Button>
       }
       <Paper sx={{width:'100%'}}>
@@ -32,26 +32,22 @@ export  function DetailCategory() {
                     <TableCell colSpan={1}>
                       Name
                     </TableCell>
-                    <TableCell colSpan={1}>
-                      Parent Category
-                    </TableCell>
                     <TableCell>
                       Actions
                     </TableCell>
                   </TableRow>
                   </TableHead>
                   <TableBody>
-                    {data?.map(category=>{
-                      return <TableRow key={category.id}>
-                          <TableCell>{category.name}</TableCell>
-                          <TableCell>{category.parent_category?.name}</TableCell>
+                    {data?.map(country=>{
+                      return <TableRow key={country.id}>
+                          <TableCell>{country.country_name}</TableCell>
                           <TableCell>
                             <div className='flex items-center'>
                           <Link to={
                           //   location.pathname.includes('/admin/category')?
                           // `category/${category.id}`:
                           // `edit/${category.id}`
-                          `edit/${category.id}`
+                          `edit/${country.id}`
                           }>
                               <IconButton color='secondary'>
                                 <SettingsIcon/>
@@ -59,7 +55,7 @@ export  function DetailCategory() {
                           </Link>
                               <IconButton 
                               onClick={()=>{
-                                delCategory(category.id) 
+                                delCountry(country.id) 
                                 setOpen(open=>!open)}}
                               color='primary'
                               >

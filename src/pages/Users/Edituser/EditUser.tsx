@@ -1,31 +1,46 @@
 import React from "react";
-import { useAddNewUserMutation } from "../../../store/api/user";
+import { useUpdateUserMutation, useGetSingleUserQuery } from "../../../store/api/user";
 import { FormControlLabel, FormGroup, Switch, TextField } from "@mui/material"
 import Button from "@mui/material/Button"
 import { useForm,SubmitHandler, Controller } from "react-hook-form"
 import { UpdateUserRoot, User } from "../../../store/models/userModels";
-import { useAppSlector } from "../../../utils/hook";
+import { useParams } from "react-router-dom";
+import Notification from "../../../components/Notification";
 
 
 export function EditUser() {
-    const useDetail=useAppSlector(state=>state.editUser);
-
-    const {register,handleSubmit,control,setValue}=useForm<UpdateUserRoot>({
-        defaultValues: useDetail,
+    const {id}=useParams()
+    const { data } = useGetSingleUserQuery(id)
+    const [update,result]=useUpdateUserMutation()
+    const {register,handleSubmit,formState}=useForm<UpdateUserRoot>({
+        defaultValues: {
+            user: {
+                username: data?.username,
+                is_admin:data?.is_admin
+            },
+            user_detail: {
+                first_name: data?.user_detail.first_name,
+                last_name: data?.user_detail.last_name,
+                user_image:data?.user_detail.user_image
+            }
+        },
         mode:'onChange'
     });
-
-    // Изменение пользовтеля
-    const formSubmit: SubmitHandler<UpdateUserRoot> = (data) => {
-        // edit(data);
-        // result.reset();
+    const [open, setOpen] = React.useState(false);
+    const btnSubmit = () => {
+        setOpen(open=>!open)
     }
+    // Изменение пользовтеля
+    const formSubmit: SubmitHandler<UpdateUserRoot> = (data) => update({
+        idUser: id,
+        dataUser:data
+    })
     return(
         <>
-        <div className="w-full h-[400px] flex justify-center items-center">
+        <div className="w-full h-[400px] flex flex-col items-center">
             <form
                 onSubmit={handleSubmit(formSubmit)}
-                className="flex flex-col justify-between h-full w-[845px]"
+                className="flex flex-col justify-between h-full w-[845px] mx-auto"
             >
                 <div className="flex justify-between flex-1 py-2">
                     <div className="flex flex-col justify-between h-full">
@@ -45,14 +60,16 @@ export function EditUser() {
                                         }
                                     }) }
                                     type="text"
-                                    label="Имя пользователя" />
+                                    label="Login" />
                         <FormGroup>
                             <FormControlLabel 
                             {...register('user.is_admin')}
                             sx={{
-                                color:`${useDetail.user.is_admin?'#333':'#ccc'}`
+                                color:`${data?.is_admin?'#333':'#ccc'}`
                             }}
-                            control={<Switch defaultChecked />} 
+                                        control={<Switch
+                                            defaultChecked={data?.is_admin||false}
+                                        />} 
                             label="Администратор" />
                         </FormGroup>
                         </div>
@@ -73,8 +90,14 @@ export function EditUser() {
                         />
                     </div>
                 </div>
-                <Button variant="contained" color="success" type="submit">Изменит</Button>
-            </form>
+                    <Button
+                        onClick={btnSubmit}
+                        variant="contained"
+                        color="success"
+                        disabled={!formState.isValid}
+                        type="submit">Изменит</Button>
+                </form>
+                {result.isSuccess && <Notification value="Пользователь успешно изменен" open={ open} setOpen={setOpen} />}
         </div>
         </>
     )

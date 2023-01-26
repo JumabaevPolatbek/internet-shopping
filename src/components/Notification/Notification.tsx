@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -18,7 +18,7 @@ type Props={
     setOpen:React.Dispatch<React.SetStateAction<boolean>>
 }
 export  function Notification({value,open,setOpen}:Props) {
-  
+  const {id}=useParams()
   const navigate = useNavigate()
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -26,7 +26,9 @@ export  function Notification({value,open,setOpen}:Props) {
     }
 
     setOpen(false);
-    navigate(-1)
+    if (value !== 'Ошибка' && id) {
+      navigate(-1)
+    }
   };
 
   return (

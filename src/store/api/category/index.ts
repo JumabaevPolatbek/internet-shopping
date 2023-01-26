@@ -31,20 +31,24 @@ export const actionsCategories = createApi({
             }),
             invalidatesTags:['categories']
         }),
-        updateCategory: builder.mutation<NewCategories, Partial<NewCategories>>({
-            query({parent_category_id,...category}) {
+        updateCategory: builder.mutation<Category, { idCategory:string|undefined,updateCategory:Partial<NewCategories>}>({
+            query({idCategory,updateCategory}) {
                 return {
-                    url: `categories/${parent_category_id}`,
+                    url: `categories/${idCategory}`,
                     method: 'PUT',
                      headers: {
                         'Content-type':'application/json'
                     },
-                    body:JSON.stringify(category)
+                    body: (updateCategory)
                 }
             },
+            // transformResponse: (response: Category) => {
+            //     console.log(response)
+            //     return response
+            // },
             invalidatesTags:['categories']
         }),
-        deleteCategory: builder.mutation<Category, number>({
+        deleteCategory: builder.mutation<Category, number|undefined>({
             query(id) {
                 return {
                     url: `categories/${id}`,

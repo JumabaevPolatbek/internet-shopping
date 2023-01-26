@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit'
 import { actionsProduct } from '../api/product';
-import { actionsCountrie } from '../api/countrie';
+import { actionsCountrie } from '../api/country';
 import { actionsCategories } from '../api/category';
 import { actionsUser } from '../api/user';
 import { getAll } from '../api/all';

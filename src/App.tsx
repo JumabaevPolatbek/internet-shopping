@@ -17,6 +17,9 @@ import {Users,NewUser,EditUser,User} from './pages/Users';
 import  {CategorieLayout,DetailCategory,NewCategory}  from './pages/Category';
 import { EditCategory } from './pages/Category/Edit/EditCategories';
 //country
+import { CountryLayout, DetailCountry, NewCountrie } from './pages/Country';
+
+
 function App() {
   return (
     <Routes>
@@ -40,8 +43,13 @@ function App() {
           <Route path='products' element={<PageProduct/>}>
             <Route index element={<DetailProducts/>}/>
             <Route path='add' element={<NewAddProduct/>}/>
-            <Route path='edit/:id' element={<NewAddProduct/>}/>
-          </Route>
+            <Route path='edit/:id' element={<EditProduct/>}/>
+        </Route>
+        <Route path='country' element={<CountryLayout/>}>
+          <Route index element={<DetailCountry />} />
+          <Route path='add' element={<NewCountrie />} />
+          <Route path='edit/:id' element={<NewCountrie />} />
+        </Route>
           <Route path='orders' element={<Orders/>}/>
           <Route path='*' element={<NotFound />} />
       </Route>

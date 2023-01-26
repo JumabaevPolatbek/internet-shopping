@@ -9,13 +9,11 @@ import { UseFormSetValue } from 'react-hook-form';
 import { NewCategories } from '../../../store/models/categories';
 
 type Props={
-  setValue:UseFormSetValue<NewCategories>,
-  value?:number
+  setValue:UseFormSetValue<NewCategories>
 }
-export const  SelectEditCategory=React.forwardRef<HTMLSelectElement,Props>(({setValue,value},ref)=> {
+export const  SelectEditCategory=React.forwardRef<HTMLSelectElement,Props>(({setValue},ref)=> {
   const {data}=useGetCategoriesQuery()
-  const [category, setCategory] = React.useState(data?.find(category=>category.id===value)?.name);
-  console.log(data?.find(category=>category.id===value)?.name)
+  const [category, setCategory] = React.useState('');
   const handleChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value);
     setValue('parent_category_id',+event.target.value)
@@ -26,12 +24,13 @@ export const  SelectEditCategory=React.forwardRef<HTMLSelectElement,Props>(({set
       {/* <FormControlLabel inputRef={ref}> */}
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label" >Категория</InputLabel>
-        {data && <Select
+        <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={category}
             label="category"
-            onChange={handleChange}
+          onChange={handleChange}
+          inputRef={ref}
           >
             {data?.map(category=>{
               return <MenuItem
@@ -39,7 +38,7 @@ export const  SelectEditCategory=React.forwardRef<HTMLSelectElement,Props>(({set
                 value={category.id}
               >{category.name}</MenuItem>
             })}
-          </Select>}
+          </Select>
       </FormControl>
       {/* </FormControlLabel> */}
     </Box>

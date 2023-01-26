@@ -4,13 +4,16 @@ import { UserServer,NewUserRoot, User, UpdateUserRoot } from '../../models/userM
 
 export const actionsUser = createApi({
     reducerPath: 'actionsUser',
-    baseQuery: fetchBaseQuery({ baseUrl: pathApi}),
+    baseQuery: fetchBaseQuery({ baseUrl: pathApi }),
+    tagTypes:['users'],
     endpoints: (builder) => ({
         getAllUsers: builder.query<UserServer, void>({
-            query:()=>`users`
+            query: () => `users`,
+            providesTags:['users']
         }),
-        getSingleUser:builder.query<User,string>({
-            query :(id:string)=>`users/${id}`
+        getSingleUser:builder.query<User,string|undefined>({
+            query: (id: string) => `users/${id}`,
+            providesTags:['users']
         }),
         addNewUser: builder.mutation<NewUserRoot,Partial<NewUserRoot>>({
             query(user) {
@@ -22,7 +25,8 @@ export const actionsUser = createApi({
                     },
                     body:(user)
                 }
-            }
+            },
+            invalidatesTags:['users']
         }),
         delUser:builder.mutation<User,number>({
             query:(id)=>{
@@ -30,21 +34,23 @@ export const actionsUser = createApi({
                     url:`users/${id}`,
                     method:'DELETE'
                 }
-            }
+            },
+            invalidatesTags:['users']
+        }),
+        updateUser: builder.mutation < User,{idUser:string|undefined,dataUser:Partial<UpdateUserRoot>}>({
+            query: ({idUser,dataUser}) => {
+                return {
+                    url: `users/${idUser}`,
+                    method: 'PUT',
+                    headers: {
+                        'Content-type':'application/json'
+                    },
+                    body:(dataUser)
+                }
+            },
+            invalidatesTags:['users']
         })
-        // updateUser:builder.mutation<UpdateUserRoot,Partial<UpdateUserRoot>({
-        //     query:(user:UpdateUserRoot,id:string)=>{
-        //         return {
-        //             url:`users/${id}`,
-        //             method:'PUT',
-        //             headers:{
-        //                 'Content-type':'application/json: charset=UTF-8'
-        //             },
-        //             body:JSON.stringify(user)
-        //         }
-        //     }
-        // })
     })
 })
 
-export const {useGetAllUsersQuery,useAddNewUserMutation,useGetSingleUserQuery,useDelUserMutation}=actionsUser
+export const {useGetAllUsersQuery,useAddNewUserMutation,useGetSingleUserQuery,useDelUserMutation,useUpdateUserMutation}=actionsUser

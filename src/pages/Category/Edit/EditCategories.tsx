@@ -15,38 +15,44 @@ export function EditCategory(){
     const [update,result]=useUpdateCategoryMutation()
     const initValue:NewCategories={
         name:data?.name || '',
-        parent_category_id:data?.parent_category?.id || null
+        parent_category_id: null
     }
     const {handleSubmit,control,reset,setValue,register,formState}=useForm<NewCategories>({
         defaultValues:initValue,
         mode:'onChange'
     })
-    console.log(data)
     const {errors}=formState
-    const formSubmit:SubmitHandler<NewCategories>=data=>update(data)
+    const formSubmit: SubmitHandler<NewCategories> = data => update({
+        idCategory: id,
+        updateCategory: {
+            name: data.name,
+            parent_category_id:data.parent_category_id
+        }
+    })
     const handleOpen=()=>{
         setOpen(open=>!open)
     }
     return(
-        <div className="flex justify-center items-center pt-[15px]">
+        <div className="flex flex-col justify-center items-center pt-[15px]">
             <form
                 onSubmit={handleSubmit(formSubmit)}
-
+                className="flex flex-col items-center"
             >
                     <TextField
                         {...register('name')}
                         type="text"
                         label={data?.name}
-                    />
+                />
+                {errors && <p>{ errors.name?.message}</p>}
                     <Controller
-                        {...register('parent_category_id')}
+                        name={register('name').name}
                         control={control}
                         render={()=>{
-                            return <SelectEditCategory 
+                            return (
+                                <SelectEditCategory 
                             setValue={setValue} 
                             ref={register('parent_category_id').ref}
-                            value={data?.parent_category?.id}
-                            />
+                            />)
                         }}
                     />
                     <Button 

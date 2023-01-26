@@ -35,9 +35,9 @@ export const actionsProduct = createApi({
             }),
             invalidatesTags:['products']
         }),
-        updateProduct: builder.mutation<UpdateProduct,Partial<UpdateProduct>>({
-            query: ({category_id,...product}) => ({
-                url: `products/${category_id}`,
+        updateProduct: builder.mutation<Product,{idProduct:string|undefined,product:Partial<UpdateProduct>}>({
+            query: ({idProduct,product}) => ({
+                url: `products/${idProduct}`,
                 method: 'PUT',
                 headers: {
                     'Content-type':'application/json'

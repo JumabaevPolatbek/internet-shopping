@@ -34,7 +34,6 @@ export function NewAddProduct() {
             children_category:[]
         }
     }
-    console.log(data)
     const { register, handleSubmit, control, setValue, reset } = useForm<NewProduct>({
         // defaultValues: 
     })

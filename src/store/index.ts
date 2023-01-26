@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { rootReducer } from "./reducer";
-import { actionsCountrie } from "./api/countrie";
+import { actionsCountrie } from "./api/country";
 import { actionsCategories } from "./api/category";
 import { actionsProduct } from "./api/product";
 import { actionsUser } from "./api/user";

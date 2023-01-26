@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {  UseFormSetValue } from 'react-hook-form';
-import { useGetAllCountriesQuery } from '../../../store/api/countrie';
+import { useGetAllCountriesQuery } from '../../../store/api/country';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';

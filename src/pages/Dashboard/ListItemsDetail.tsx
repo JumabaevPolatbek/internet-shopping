@@ -35,7 +35,7 @@ export function ListItemDetail({category}:Props){
                     <ListItemIcon>
                     <EastIcon/>
                     </ListItemIcon>
-                    {category.children_category.map(children=>{
+                    {category.children_category?.map(children=>{
                         return <ListItemText primary={children.name} key={children.id}/>
                     })}
                 </ListItemButton>

@@ -1,21 +1,32 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { UpdateProduct } from "../../../store/models/products"
-import { Button, TextField } from "@mui/material"
+import { Box, Button, LinearProgress, TextField } from "@mui/material"
 import {  useGetSingleProductQuery, useUpdateProductMutation } from "../../../store/api/product"
 import Notification from "../../../components/Notification"
 import React from "react"
 import { useLocation, useParams } from "react-router-dom"
-import { SelectUpdate } from "./SelectUpdate"
+import { SelectUpdateProduct } from "./SelectUpdateProduct"
 
 export function EditProduct() {
     const location = useLocation()
     const {id} = useParams()
-    const {data}=useGetSingleProductQuery(id)
+    const {data,isSuccess,isLoading}=useGetSingleProductQuery(id)
     const [update,result]=useUpdateProductMutation()
     const { register, handleSubmit, control, setValue, reset } = useForm<UpdateProduct>({
-        defaultValues: data
+        defaultValues: {
+            name: isSuccess ? data.name : '',
+            quantity: isSuccess ? data.quantity : 0,
+            description: isSuccess ? data.description : '',
+            discount: isSuccess ? data.discount : 0,
+            category_id: isSuccess ? data.category.id : 0,
+            price: isSuccess ? data.price:0
+        }
     })
-    const formSubmit: SubmitHandler<UpdateProduct> = (data) => update(data)
+    console.log(data)
+    const formSubmit: SubmitHandler<UpdateProduct> = (data) => update({
+        idProduct: id,
+        product:data
+    })
     const [open,setOpen]=React.useState(false)
     const handleOpen=()=>{
         setOpen(open=>!open)
@@ -23,10 +34,11 @@ export function EditProduct() {
     }
     return(
         <>
-        <div className="w-full h-[500px] flex justify-center items-center">
-            <form
+            <div className="w-full h-[500px]">
+                {isLoading && <Box sx={{width:'100%'}}><LinearProgress/></Box>}
+                {isSuccess && <form
                 onSubmit={handleSubmit(formSubmit)}
-                className='h-full flex flex-col items-center justify-between py-2'
+                className='h-full flex flex-col items-center justify-between py-2 mx-auto'
             >
                 <TextField
                     {...register('name')}
@@ -59,10 +71,10 @@ export function EditProduct() {
                     required
                 />
                 <Controller
-                    {...register('category_id')}
+                    name={register('category_id').name}
                     control={control}
                     render={() => {
-                        return <SelectUpdate setValue={setValue} ref={register('category_id').ref}/>
+                        return <SelectUpdateProduct setValue={setValue} ref={register('category_id').ref}/>
                     }}
                 />
                 {/* <TextField
@@ -78,7 +90,8 @@ export function EditProduct() {
                 type="submit" >
                     Добавить
                 </Button>
-            </form>
+            </form>}
+            
         </div>
         {result.isSuccess && <Notification value="Продукт успешьно изменен" open={open} setOpen={setOpen}/>}
         {result.isError && <Notification value="Ошибка" open={open} setOpen={setOpen}/>}

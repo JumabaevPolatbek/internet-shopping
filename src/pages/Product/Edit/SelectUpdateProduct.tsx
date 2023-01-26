@@ -9,12 +9,13 @@ import { UseFormSetValue } from 'react-hook-form';
 import {  UpdateProduct } from '../../../store/models/products';
 
 type Props={
-  setValue:UseFormSetValue<UpdateProduct>,
+  setValue: UseFormSetValue<UpdateProduct>,
+  categoryProduct?:string
 }
 type Ref=HTMLSelectElement
-export const  SelectUpdate=React.forwardRef<Ref,Props>(({setValue},ref)=> {
+export const  SelectUpdateProduct=React.forwardRef<Ref,Props>(({setValue,categoryProduct},ref)=> {
   const {data}=useGetCategoriesQuery()
-  const [category, setCategory] = React.useState('');
+  const [category, setCategory] = React.useState(categoryProduct||'');
 
   const handleChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value);
@@ -29,7 +30,7 @@ export const  SelectUpdate=React.forwardRef<Ref,Props>(({setValue},ref)=> {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={category}
-          label="category"
+          label="Категория"
           onChange={handleChange}
         
         >
