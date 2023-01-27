@@ -6,6 +6,7 @@ import { actionsCategories } from "./api/category";
 import { actionsProduct } from "./api/product";
 import { actionsUser } from "./api/user";
 import { getAll } from "./api/all";
+import { searchValue } from "./api/search";
 // import { editSlice } from "./reducer/edit";
 // import logger from 'redux-logger'
 
@@ -17,6 +18,7 @@ export const store = configureStore({
         actionsProduct.middleware,
         actionsUser.middleware,
         getAll.middleware,
+        searchValue.middleware
     )
 });
 export type RootState = ReturnType<typeof store.getState>

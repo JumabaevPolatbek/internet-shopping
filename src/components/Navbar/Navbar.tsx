@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import MenuCategory from "../Menu";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import Search from "../Search";
+import { SearchProduct } from "../Search";
 import MenuActions from "../MenuActions";
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
@@ -30,7 +30,7 @@ export function Navbar() {
                             Каталог
                             <MenuCategory display={ displayMenu} />
                     </button>
-                    <Search />
+                    <SearchProduct/>
                     <MenuActions/>
                 </div>
             </div>
