@@ -33,7 +33,7 @@ export function NewUser() {
         }
     }
     const [open,setOpen]=React.useState(false)
-    const {data}=useGetAllUsersQuery()
+    // const {data}=useGetAllUsersQuery()
     const {register,handleSubmit,control,setValue,reset,formState}=useForm<NewUserRoot>({
         defaultValues: initValue,
         mode:'onChange'
@@ -68,9 +68,9 @@ export function NewUser() {
                                             if (value.match(/[а-яА-я]/)) {
                                                 return 'Имя не можеть содержать русский буквы'
                                             }
-                                            if(data?.find(user=>user.username===value)){
-                                                return 'Это имя пользователя уже занято'
-                                            }
+                                            // if(data?.find(user=>user.username===value)){
+                                            //     return 'Это имя пользователя уже занято'
+                                            // }
                                             return true
                                         }
                                     }) }
@@ -101,7 +101,8 @@ export function NewUser() {
                                     }
                             })}
                             type="password"
-                            label="Пароль"
+                                label="Пароль"
+                                helperText={formState.errors.user?.password && formState.errors.user?.password.message}
                         />
                         <TextField
                             {...register('user_detail.first_name')}
@@ -165,7 +166,7 @@ export function NewUser() {
                                     })}
                                 </select> */}
                                 <Controller
-                                    {...register('user_phones.0.type')}
+                                    name={register('user_phones.0.type').name}
                                     control={control}
                                     render={() => {
                                         return <NewUserTypePhone setType={setValue} ref={register('user_phones.0.type').ref}/>
@@ -185,7 +186,7 @@ export function NewUser() {
             </form>
         </div>
         {result.isSuccess && <Notification value="Пользовател добавлен" open={open} setOpen={setOpen}/>}
-        {!result.isError && <Notification value="Ошибка" open={open} setOpen={setOpen}/>}
+        {result.isError && <Notification value="Ошибка" open={open} setOpen={setOpen}/>}
         </>
     )
 }

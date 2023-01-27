@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Notification from '../../components/Notification';
+import { SearchCategory } from '../../components/Search';
 
 
 export  function DetailCategory() {
@@ -16,13 +17,17 @@ export  function DetailCategory() {
   return (
     <div className='flex flex-col items-center p-[15px]'>
       {
-        location.pathname.includes('admin/category') &&  <Button
-          variant='contained'
-          color='success'
-          className='self-start'
-        >
-          <Link to={'add'}>Create Category</Link>
-          </Button>
+        location.pathname.includes('admin/category') &&
+        <div className='flex w-full justify-between py-3'>
+          <Button
+            variant='contained'
+            color='success'
+            className='self-start'
+          >
+            <Link to={'add'}>Create Category</Link>
+            </Button>
+            <SearchCategory/>
+            </div>
       }
       <Paper sx={{width:'100%'}}>
           <TableContainer sx={{maxHeight:'600px',minHeight:'400px'}}>

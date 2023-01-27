@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Notification from '../../components/Notification';
+import { SearchProduct } from '../../components/Search';
 
 const arrColumn=['Фото','Имя устройства','Описание','Категория','Цена','Количество','Дисконт','Действия']
 
@@ -39,13 +40,16 @@ export  function DetailProducts() {
     <div className='flex flex-col items-center p-[15px]'>
       {
         location.pathname.includes('admin/products') && 
+        <div className='flex justify-between w-full'>
           <Button
-            variant='contained'
-            color='success'
-            className='self-start'
-          >
-            <Link to={'add'}>Create Product</Link>
-          </Button>
+              variant='contained'
+              color='success'
+              className='self-start'
+            >
+              <Link to={'add'}>Create Product</Link>
+            </Button>
+            <SearchProduct/>
+        </div>
       }
       
       <Paper sx={{ width: '100%',margin:'10px 0 0 0' }}>

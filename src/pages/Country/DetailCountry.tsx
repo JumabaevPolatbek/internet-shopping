@@ -6,6 +6,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Notification from '../../components/Notification';
 import { useDeleteCountrieMutation, useGetAllCountriesQuery } from '../../store/api/country';
+import { SearchCountry } from '../../components/Search';
 
 
 export  function DetailCountry() {
@@ -16,13 +17,17 @@ export  function DetailCountry() {
   return (
     <div className='flex flex-col items-center p-[15px]'>
       {
-        location.pathname.includes('admin/country') &&  <Button
-          variant='contained'
-          color='success'
-          className='self-start'
-        >
-          <Link to={'add'}>Create Country</Link>
-          </Button>
+        location.pathname.includes('admin/country') &&
+        <div className='w-full flex justify-between px-3'>
+          <Button
+            variant='contained'
+            color='success'
+            className='self-start'
+          >
+            <Link to={'add'}>Create Country</Link>
+              </Button>
+              <SearchCountry/>
+            </div>
       }
       <Paper sx={{width:'100%'}}>
           <TableContainer sx={{maxHeight:'600px',minHeight:'400px'}}>

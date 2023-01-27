@@ -5,6 +5,7 @@ import { useGetAllUsersQuery } from "../../store/api/user"
 import CircularProgress from '@mui/material/CircularProgress';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { SearchUser } from '../../components/Search';
 
 
 export function Users() {
@@ -22,12 +23,13 @@ export function Users() {
     return(
         <div className="container mx-auto flex flex-col py-2">
             {location.pathname.includes('admin/users') && 
-                <div className='self-start px-[15px]'>
+                <div className='w-full flex items-center justify-between px-[15px] py-3'>
                     <Link to={'add'}>
                         <Button variant='contained' color='success'>
                             Add User
                         </Button>
                     </Link>
+                    <SearchUser/>
                 </div>
             }
             <div>

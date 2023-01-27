@@ -19,9 +19,9 @@ export const actionsUser = createApi({
             query(user) {
                 return {
                     url: `users`,
-                    method: 'POST',
+                    method: `POST`,
                     headers: {
-                        'Content-type':'application/json'
+                        'Content-type': 'application/json'
                     },
                     body:(user)
                 }
