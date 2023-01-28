@@ -1,6 +1,6 @@
 import React from "react";
 import { useUpdateUserMutation, useGetSingleUserQuery } from "../../../store/api/user";
-import { FormControlLabel, FormGroup, Switch, TextField } from "@mui/material"
+import { FormControlLabel, FormGroup, LinearProgress, Switch, TextField } from "@mui/material"
 import Button from "@mui/material/Button"
 import { useForm,SubmitHandler, Controller } from "react-hook-form"
 import { UpdateUserRoot, User } from "../../../store/models/userModels";
@@ -10,7 +10,7 @@ import Notification from "../../../components/Notification";
 
 export function EditUser() {
     const {id}=useParams()
-    const { data } = useGetSingleUserQuery(id)
+    const { data ,isSuccess,isLoading} = useGetSingleUserQuery(id)
     const [update,result]=useUpdateUserMutation()
     const {register,handleSubmit,formState}=useForm<UpdateUserRoot>({
         defaultValues: {
@@ -37,8 +37,10 @@ export function EditUser() {
     })
     return(
         <>
-        <div className="w-full h-[400px] flex flex-col items-center">
-            <form
+            
+            <div className="w-full h-[400px] flex flex-col items-center">
+                {isLoading && <LinearProgress />}
+                {isSuccess && <form
                 onSubmit={handleSubmit(formSubmit)}
                 className="flex flex-col justify-between h-full w-[845px] mx-auto"
             >
@@ -96,7 +98,8 @@ export function EditUser() {
                         color="success"
                         disabled={!formState.isValid}
                         type="submit">Изменит</Button>
-                </form>
+                </form>}
+            
                 {result.isSuccess && <Notification value="Пользователь успешно изменен" open={ open} setOpen={setOpen} />}
         </div>
         </>
