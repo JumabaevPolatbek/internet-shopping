@@ -22,3 +22,8 @@ export interface NewCategories{
     name: string,
     parent_category_id:number|null
 }
+
+export interface ResponseTransformCategory{
+  parent: Category[],
+  child:Category[]
+}

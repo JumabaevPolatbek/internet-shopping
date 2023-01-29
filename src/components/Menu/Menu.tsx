@@ -6,22 +6,35 @@ type Props = {
 }
 export function MenuCategory({ display }: Props) {
 
-    const {data}=useGetCategoriesQuery()
-
+    const { data } = useGetCategoriesQuery()
+    const parent = data?.filter(category => category.children_category?.length);
+    // console.log(data?.find(category => category.children_category?.map(child => {
+    //     if(child.name)
+    // })))
     return (
         <ul className={`absolute left-0 w-[max-content] ${display?'hidden':'flex'} flex-col items-start top-[100%] z-[1000] mt-2`
-} >
-            {data?.map((categor,index) => {
+} >             
+            {parent?.map(category => {
                 return (
-                    <li  className="capitalize text-[18px] py-[8px]" key={index}>
+                    <li
+                        className="bg-red-500"
+                        key={category.id}
+                    >
                         <Link
-                            to={`/${categor.name}`}
+                            className="block"
+                            to={`${category.name}`}
                         >
-                            {categor.name}
+                            {category.name}
+                            <ul>
+                                {category.children_category?.map(child => {
+                                    return <li key={child.id} className="bg-yellow-500">{ child.name}</li>
+                                })}
+                            </ul>
                         </Link>
                     </li>
-                )
-            })}
+                    
+               )
+           })}
         </ul>
     )
 }

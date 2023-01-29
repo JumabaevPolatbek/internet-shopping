@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { pathApi } from '..';
-import { Categories, Category, NewCategories } from '../../models/categories';
+import { Categories, Category, NewCategories, ResponseTransformCategory } from '../../models/categories';
 
 export const actionsCategories = createApi({
     reducerPath: 'actionsCategory',
@@ -9,6 +9,10 @@ export const actionsCategories = createApi({
     endpoints: (builder) => ({
         getCategories:builder.query<Categories,void>({
             query: () => `categories/`,
+            // transformResponse: (response: Categories): any => ({
+            //     parent: response.filter(category => category.children_category?.length),
+            //     child:response.filter(category=>category.children_category?.length===0)
+            // }),
             providesTags:['categories']
         }),
         getCategory:builder.query<Category,string|undefined>({

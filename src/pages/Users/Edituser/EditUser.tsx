@@ -13,17 +13,17 @@ export function EditUser() {
     const { data ,isSuccess,isLoading} = useGetSingleUserQuery(id)
     const [update,result]=useUpdateUserMutation()
     const {register,handleSubmit,formState}=useForm<UpdateUserRoot>({
-        defaultValues: {
-            user: {
-                username: data?.username,
-                is_admin:data?.is_admin
-            },
-            user_detail: {
-                first_name: data?.user_detail.first_name,
-                last_name: data?.user_detail.last_name,
-                user_image:data?.user_detail.user_image
-            }
-        },
+        // defaultValues: {
+        //     user: {
+        //         username: data?.username,
+        //         is_admin:data?.is_admin
+        //     },
+        //     user_detail: {
+        //         first_name: data?.user_detail.first_name,
+        //         last_name: data?.user_detail.last_name,
+        //         user_image:data?.user_detail.user_image
+        //     }
+        // },
         mode:'onChange'
     });
     const [open, setOpen] = React.useState(false);
@@ -62,7 +62,9 @@ export function EditUser() {
                                         }
                                     }) }
                                     type="text"
-                                    label="Login" />
+                                    label="Login"
+                                    value={data?.username}
+                                />
                         <FormGroup>
                             <FormControlLabel 
                             {...register('user.is_admin')}
@@ -78,17 +80,20 @@ export function EditUser() {
                         <TextField
                             {...register('user_detail.first_name')}
                             type="text"
-                            label="Имя"
+                                label="Имя"
+                                value={data?.user_detail.first_name}
                         />
                         <TextField
                             {...register('user_detail.last_name')}
                             type="text"
-                            label="Фамилия"
+                                label="Фамилия"
+                                value={data?.user_detail.last_name}
                         />
                         <TextField
                             {...register('user_detail.user_image')}
                             type="text"
-                            label="Ссылька на фото"
+                                label="Ссылька на фото"
+                                value={data?.user_detail.user_image}
                         />
                     </div>
                 </div>
