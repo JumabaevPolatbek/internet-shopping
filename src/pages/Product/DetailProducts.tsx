@@ -10,12 +10,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { Avatar, Button, IconButton } from '@mui/material';
+import { Avatar, Button, IconButton, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Notification from '../../components/Notification';
 import { SearchProduct } from '../../components/Search';
+import TextIncreaseIcon from '@mui/icons-material/TextIncrease';
+import { Attributes } from './Attributes/Attributes';
 
 const arrColumn=['Фото','Имя устройства','Описание','Категория','Цена','Количество','Дисконт','Действия']
 
@@ -35,7 +37,7 @@ export  function DetailProducts() {
     setPage(0);
   };
   const [open,setOpen]=React.useState(false)
-  
+  const [attr,setAttr]=React.useState(false)
   return (
     <div className='flex flex-col items-center p-[15px]'>
       {
@@ -88,6 +90,15 @@ export  function DetailProducts() {
                       <TableCell>{product.discount}</TableCell>
                       <TableCell>
                         <div className='flex items-center'>
+                            {/* <Tooltip title="Add Attribute" arrow>
+                              <IconButton 
+                              onClick={()=>setAttr(true)}
+                              color='error'> */}
+                                {/* <TextIncreaseIcon/> */}
+                                <Attributes open={attr} setAttr={setAttr}/>
+                              {/* </IconButton> */}
+                            {/* </Tooltip> */}
+                            <Tooltip title="Edit Product" arrow>
                           <Link to={location.pathname.includes('/admin/products')
                           ?`edit/${product.id}`:
                           `products/edit/${product.id}`}
@@ -96,6 +107,8 @@ export  function DetailProducts() {
                                 <SettingsIcon/>
                               </IconButton>
                           </Link>
+                            </Tooltip>
+                            <Tooltip title="Delete Product" arrow>
                               <IconButton 
                               onClick={()=>{
                                 delProduct(product.id) 
@@ -104,6 +117,7 @@ export  function DetailProducts() {
                               >
                                 <DeleteIcon/>
                               </IconButton>
+                            </Tooltip>
                         </div>
                       </TableCell>
                   </TableRow>

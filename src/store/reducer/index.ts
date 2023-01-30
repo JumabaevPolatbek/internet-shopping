@@ -7,6 +7,7 @@ import { getAll } from '../api/all';
 import { editSlice } from './edit';
 import { editProduct } from './editProduct';
 import { searchValue } from '../api/search';
+import { attributes } from './addAtrribute';
 
 
 export const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ export const rootReducer = combineReducers({
     [getAll.reducerPath]: getAll.reducer,
     editUser: editSlice.reducer,
     editProduct:editProduct.reducer,
-    [searchValue.reducerPath]:searchValue.reducer
+    [searchValue.reducerPath]:searchValue.reducer,
+    stateAttribute:attributes.reducer
 });
 export type RootState = ReturnType<typeof rootReducer>
