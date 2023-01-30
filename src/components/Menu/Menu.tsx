@@ -1,40 +1,46 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { useGetCategoriesQuery } from "../../store/api/category"
-type Props = {
-    display:boolean
-}
-export function MenuCategory({ display }: Props) {
+import * as React from 'react';
+import ListSubheader from '@mui/material/ListSubheader';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Collapse from '@mui/material/Collapse';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import SendIcon from '@mui/icons-material/Send';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import StarBorder from '@mui/icons-material/StarBorder';
+import { useParentCategoryQuery } from '../../store/api/category';
+import { ArrowBtn } from './ArrowBtn';
+import { ChildList } from './Child';
 
-    const { data } = useGetCategoriesQuery()
-    const parent = data?.filter(category => category.children_category?.length);
-    // console.log(data?.find(category => category.children_category?.map(child => {
-    //     if(child.name)
-    // })))
+export function MenuCategory({ display }: { display: boolean }) {
+    const {data}=useParentCategoryQuery()
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
     return (
-        <ul className={`absolute left-0 w-[max-content] ${display?'hidden':'flex'} flex-col items-start top-[100%] z-[1000] mt-2`
-} >             
-            {parent?.map(category => {
-                return (
-                    <li
-                        className="bg-red-500"
+        <>
+            {data?.map(category => {
+                if (category.children_category?.length) {
+                    return <List
+                        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
                         key={category.id}
                     >
-                        <Link
-                            className="block"
-                            to={`${category.name}`}
+                        <ListItemButton
+                            onClick={handleClick}
                         >
-                            {category.name}
-                            <ul>
-                                {category.children_category?.map(child => {
-                                    return <li key={child.id} className="bg-yellow-500">{ child.name}</li>
-                                })}
-                            </ul>
-                        </Link>
-                    </li>
-                    
-               )
-           })}
-        </ul>
-    )
+                            <ListItemText primary={category.name} />
+                            {open ? <ExpandLess/>:<ExpandMore/>}
+                        </ListItemButton>
+                        <ChildList display={ open} parent_id={category.id} />
+                    </List>
+                }
+            })}
+        </>
+        );
 }

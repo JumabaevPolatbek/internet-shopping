@@ -15,6 +15,19 @@ export const actionsCategories = createApi({
             // }),
             providesTags:['categories']
         }),
+        parentCategory: builder.query<Categories,void>({
+            query: () => 'categories',
+            transformResponse: (response: Categories) => response.filter(categor=> categor.parent_category===null),
+            providesTags:['categories']
+        }),
+        childCategory: builder.query<Categories, void>({
+            query: () => 'categories',
+            transformResponse: (response:Categories) => response.filter(categor=>categor.parent_category!==null )
+        }),
+        nestChildCategory: builder.query<Categories, void>({
+            query: () => 'categories',
+            transformResponse: (response:Categories)=>response.filter(categor=>categor.children_category?.length===0)
+        }),
         getCategory:builder.query<Category,string|undefined>({
             query: (id) => `categories/${id}`,
             providesTags:['categories']
@@ -69,4 +82,8 @@ export const { useGetCategoriesQuery,
     useGetLimitCategoryQuery, 
     useAddNewCategoryMutation, 
     useUpdateCategoryMutation,
-    useDeleteCategoryMutation } = actionsCategories;
+    useDeleteCategoryMutation,
+    useParentCategoryQuery,
+    useNestChildCategoryQuery,
+    useChildCategoryQuery
+} = actionsCategories;
