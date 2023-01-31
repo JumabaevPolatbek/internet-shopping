@@ -1,37 +1,39 @@
-import { Link } from "react-router-dom"
-import { useChildCategoryQuery } from "../../store/api/category"
-import { NestedList } from "./NestedList"
-import { ListItemButton, ListItemText,List, Collapse } from "@mui/material"
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import React from 'react';
+import { useNestChildCategoryQuery } from '../../store/api/category';
+import { Collapse, Divider } from "@mui/material";
+import { NestedList } from './NestedList';
 
-
-
-export function ChildList({ parent_id,display }: { parent_id?: number,display?:boolean }) {
-    const { data } = useChildCategoryQuery()
-    console.log('OK')
+export function ChildList({ name,parent }: { name: string,parent?:number }) {
+    const {data}=useNestChildCategoryQuery()
+    const [open, setOpen] = React.useState(false)
     return (
-        <>
-            {data?.filter(category => category.parent_category?.id === parent_id).
-                map(child => {
-                    console.log('NO')
-                    return (
-                        <Collapse
-                            key={child.id}
-                            in={display}
-                            timeout='auto'
-                        >
-                            <List
-                            component="div"
-                            
-                            disablePadding
-                        >
-                            <ListItemButton sx={{pl:4}}>
-                                <ListItemText primary={child.name } />
-                            </ListItemButton>
-                    </List>
-                        </Collapse>
-                        
-                )
-            })}
-        </>
+        <div className='relative'>
+            <div
+                className="flex justify-between items-center py-2 px-4 hover:bg-slate-400 hover:text-white transition-colors cursor-pointer"
+                onClick={()=>setOpen(open=>!open)}
+            >
+                {name}
+                {open ? 
+                    <KeyboardArrowUpIcon/>:
+                    <KeyboardArrowDownIcon /> 
+                }
+                </div>
+            {open && 
+                <Collapse
+                    in={open}
+                    orientation="horizontal"
+                    collapsedSize={40}
+                    sx={{ position: 'absolute', right: -110, top: 0 }}>
+                        {
+                        data?.filter(nest => nest.parent_category?.id === parent).map(category => {
+                            return <NestedList key={category.id} name={ category.name} />
+                            })
+                        }
+                    </Collapse>
+                }
+                <Divider/>
+        </div>
     )
 }

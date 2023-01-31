@@ -31,9 +31,9 @@ export function Navbar() {
                             {!displayMenu?<MenuIcon className="mr-2 duration-300"/>:<CloseIcon className="mr-2 duration-300"/>}
                             Каталог
                         </button>
-                        <Collapse in={displayMenu} timeout='auto' unmountOnExit>
+                        <div className="absolute top-[100%] left-0 right-0 pl-[15px] z-[999]">
                             <MenuCategory display={ displayMenu} />
-                        </Collapse>
+                        </div>
                     </div>
                     <SearchProduct/>
                     <MenuActions/>
