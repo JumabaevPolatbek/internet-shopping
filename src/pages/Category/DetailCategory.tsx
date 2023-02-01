@@ -7,6 +7,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Notification from '../../components/Notification';
 import { SearchCategory } from '../../components/Search';
+import { Attributes } from './Attributes/Attributes';
 
 
 export  function DetailCategory() {
@@ -14,6 +15,7 @@ export  function DetailCategory() {
   const [delCategory,result]=useDeleteCategoryMutation()
   const location = useLocation()
   const [open,setOpen]=React.useState(false)
+  const [attr,setAttr]=React.useState(false)
   return (
     <div className='flex flex-col items-center p-[15px]'>
       {
@@ -52,6 +54,7 @@ export  function DetailCategory() {
                           <TableCell>{category.parent_category?.name}</TableCell>
                           <TableCell>
                             <div className='flex items-center'>
+                              <Attributes open={attr} setAttr={setAttr} idCategory={category.id}/>
                           <Link to={
                           //   location.pathname.includes('/admin/category')?
                           // `category/${category.id}`:

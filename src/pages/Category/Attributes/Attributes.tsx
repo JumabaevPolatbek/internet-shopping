@@ -25,7 +25,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export  function Attributes({open,setAttr}:{open:boolean,setAttr:React.Dispatch<React.SetStateAction<boolean>>}) {
+export  function Attributes({open,setAttr,idCategory}:{open:boolean,setAttr:React.Dispatch<React.SetStateAction<boolean>>,idCategory?:number}) {
 
   const handleClickOpen = () => {
     setAttr(true);
@@ -44,9 +44,6 @@ export  function Attributes({open,setAttr}:{open:boolean,setAttr:React.Dispatch<
             <TextIncreaseIcon/>
         </IconButton>
         </Tooltip>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open full-screen dialog
-      </Button> */}
       <Dialog
         fullScreen
         open={open}
@@ -71,7 +68,7 @@ export  function Attributes({open,setAttr}:{open:boolean,setAttr:React.Dispatch<
             </Button> */}
           </Toolbar>
         </AppBar>
-        <FormAttr/>
+        <FormAttr modal={setAttr} id={idCategory} open={open}/>
       </Dialog>
     </div>
   );

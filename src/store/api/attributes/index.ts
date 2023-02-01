@@ -13,12 +13,12 @@ export const attributeActions=createApi({
             query:()=>'attributes',
             providesTags:['attributes']
         }),
-        addAttribute:builder.mutation<RootAttr,Partial<RootAttr>>({
+        addAttribute:builder.mutation<RootAttr,RootAttr>({
             query:(attr)=>({
                 url:`attributes`,
                 method:'POST',
                 headers:{
-                    'Content-Type':'application/JSON'
+                    'Content-type':'application/json'
                 },
                 body:(attr)
             }),
@@ -61,3 +61,6 @@ export const attributeActions=createApi({
         })
     })
 })
+
+export const {useAddAttributeMutation}=attributeActions
+export default attributeActions.middleware

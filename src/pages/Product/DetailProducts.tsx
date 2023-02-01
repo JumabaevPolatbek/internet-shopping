@@ -17,7 +17,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Notification from '../../components/Notification';
 import { SearchProduct } from '../../components/Search';
 import TextIncreaseIcon from '@mui/icons-material/TextIncrease';
-import { Attributes } from './Attributes/Attributes';
 
 const arrColumn=['Фото','Имя устройства','Описание','Категория','Цена','Количество','Дисконт','Действия']
 
@@ -95,7 +94,7 @@ export  function DetailProducts() {
                               onClick={()=>setAttr(true)}
                               color='error'> */}
                                 {/* <TextIncreaseIcon/> */}
-                                <Attributes open={attr} setAttr={setAttr}/>
+                                {/* <Attributes open={attr} setAttr={setAttr}/> */}
                               {/* </IconButton> */}
                             {/* </Tooltip> */}
                             <Tooltip title="Edit Product" arrow>
