@@ -11,3 +11,14 @@ export interface Attribute {
 export interface Variant {
   value: string
 }
+export interface RootAttrCategory {
+  attribute_name: string
+  category_id: number
+  id: number
+  variants: VariantCategory[]
+}
+
+export interface VariantCategory {
+  value: string
+  id: number
+}

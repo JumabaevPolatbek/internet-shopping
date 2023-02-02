@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { Variant } from "@testing-library/react";
 import { pathApi } from "..";
-import { Attribute, RootAttr } from "../../models/attributes";
+import { Attribute, RootAttr, RootAttrCategory } from "../../models/attributes";
 
 
 export const attributeActions=createApi({
@@ -11,6 +11,10 @@ export const attributeActions=createApi({
     endpoints:builder=>({
         getAttributes:builder.query({
             query:()=>'attributes',
+            providesTags:['attributes']
+        }),
+        getCategoryAttr:builder.query<RootAttrCategory[],number|undefined>({
+            query:(id)=>`categories/${id}/attributes`,
             providesTags:['attributes']
         }),
         addAttribute:builder.mutation<RootAttr,RootAttr>({
@@ -62,5 +66,5 @@ export const attributeActions=createApi({
     })
 })
 
-export const {useAddAttributeMutation}=attributeActions
+export const {useAddAttributeMutation,useGetCategoryAttrQuery}=attributeActions
 export default attributeActions.middleware
