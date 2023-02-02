@@ -26,9 +26,13 @@ export  function Notification({value,open,setOpen}:Props) {
     }
 
     setOpen(false);
-    if (value !== 'Ошибка' && id) {
+    if (
+      (value !== 'Ошибка' && id) 
+    || value!=='Attribute has added'
+    ) {
       navigate(-1)
     }
+    
   };
 
   return (

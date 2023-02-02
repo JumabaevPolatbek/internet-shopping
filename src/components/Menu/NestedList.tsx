@@ -1,23 +1,16 @@
-import { Link } from "react-router-dom"
-import { useNestChildCategoryQuery } from "../../store/api/category"
+import { Divider } from '@mui/material';
+import React from 'react';
 
-
-export function NestedList({parent_id}:{parent_id?:number}) {
-    const { data } = useNestChildCategoryQuery()
+export function NestedList({name}:{name:string}) {
     return (
-        <ul className="flex flex-wrap justify-around">
-            {data?.find(category => category.parent_category?.id === parent_id) && 
-                data?.map(category => (
-                    <li
-                        key={category.id}
-                        className="py-2 px-4"
-                    >
-                        <Link to={`category/${category.id}`}>
-                            {category.name}
-                        </Link>
-                    </li>
-                ))
-            }
-        </ul>
+        <>
+        <div
+            className="text-center py-2 px-4 hover:bg-slate-400 hover:text-white transition-colors "
+        >
+            {name}
+           
+            </div>
+            <Divider/>
+            </>
     )
 }

@@ -16,7 +16,7 @@ export function ArrowBtn({parent_id}:{parent_id?:number}) {
                                     <KeyboardArrowUpIcon /> :
                                     <KeyboardArrowDownIcon/>}
             </IconButton>
-            {parent_id && <ChildList parent_id={parent_id} display={ open} />}
+            {/* {parent_id && <ChildList parent_id={parent_id} display={ open} />} */}
             </>
             )
 }

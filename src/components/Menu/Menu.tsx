@@ -1,19 +1,7 @@
 import * as React from 'react';
-import ListSubheader from '@mui/material/ListSubheader';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import SendIcon from '@mui/icons-material/Send';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
 import { useParentCategoryQuery } from '../../store/api/category';
-import { ArrowBtn } from './ArrowBtn';
-import { ChildList } from './Child';
+import { ItemParent } from './ItemParent';
 
 export function MenuCategory({ display }: { display: boolean }) {
     const {data}=useParentCategoryQuery()
@@ -24,23 +12,12 @@ export function MenuCategory({ display }: { display: boolean }) {
   };
 
     return (
-        <>
+        <Collapse in={display}>
+            <div className='flex flex-col py-2'>
             {data?.map(category => {
-                if (category.children_category?.length) {
-                    return <List
-                        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                        key={category.id}
-                    >
-                        <ListItemButton
-                            onClick={handleClick}
-                        >
-                            <ListItemText primary={category.name} />
-                            {open ? <ExpandLess/>:<ExpandMore/>}
-                        </ListItemButton>
-                        <ChildList display={ open} parent_id={category.id} />
-                    </List>
-                }
-            })}
-        </>
+                return <ItemParent key={category.id} name={category.name} parent_id={category.id}/>
+                })}
+            </div>
+            </Collapse>
         );
 }

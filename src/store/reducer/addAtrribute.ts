@@ -19,7 +19,6 @@ export const attributes=createSlice({
         increase:(state,action:PayloadAction<RootAttr>)=>{
             state.count=state.count+1;
             state.arrAttribute.push(action.payload)
-            console.log('OK')
         },
         decrease:(state,action:PayloadAction<RootAttr>)=>{
             if(state.count<0){
