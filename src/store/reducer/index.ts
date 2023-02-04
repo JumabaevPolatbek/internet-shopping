@@ -10,7 +10,7 @@ import { searchValue } from '../api/search';
 import { attributes } from './addAtrribute';
 import { attributeActions } from '../api/attributes';
 import { authUser } from '../api/auth';
-
+import {authSlice} from "./authSlice";
 
 export const rootReducer = combineReducers({
     [actionsCountrie.reducerPath]: actionsCountrie.reducer,
@@ -23,6 +23,7 @@ export const rootReducer = combineReducers({
     [searchValue.reducerPath]:searchValue.reducer,
     stateAttribute:attributes.reducer,
     [attributeActions.reducerPath]:attributeActions.reducer,
-    [authUser.reducerPath]:authUser.reducer
+    [authUser.reducerPath]:authUser.reducer,
+    userAuth:authSlice.reducer
 });
 export type RootState = ReturnType<typeof rootReducer>
