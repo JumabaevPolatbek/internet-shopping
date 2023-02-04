@@ -8,6 +8,7 @@ import { actionsUser } from "./api/user";
 import { getAll } from "./api/all";
 import { searchValue } from "./api/search";
 import attributeActions  from "./api/attributes";
+import { authUser } from "./api/auth";
 // import { editSlice } from "./reducer/edit";
 // import logger from 'redux-logger'
 
@@ -20,7 +21,8 @@ export const store = configureStore({
         actionsUser.middleware,
         getAll.middleware,
         searchValue.middleware,
-        attributeActions
+        attributeActions,
+        authUser.middleware
     )
 });
 export type RootState = ReturnType<typeof store.getState>

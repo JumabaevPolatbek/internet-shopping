@@ -1,17 +1,24 @@
 import { Button, TextField } from "@mui/material";
 import { useForm, SubmitHandler,Controller,useFormState } from 'react-hook-form';
-interface Inputs{
-    login: string;
-    password: string;
-}
+import { User } from "../../store/models/authUser";
+import {useSigInMutation} from '../../store/api/auth'
 type Props = {
     display: boolean,
     setDisplay :React.Dispatch<React.SetStateAction<boolean>>
 }
 export function SignIn({display,setDisplay}:Props) {
-   
-    const { handleSubmit, control,formState:{errors} } = useForm<Inputs>()
-    const btnSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+    const [login,result]=useSigInMutation()
+    const { handleSubmit, control,formState:{errors},register } = useForm<User>()
+    var arr:any=[]
+    const btnSubmit: SubmitHandler<User> = (data) => {
+        var user = encodeURIComponent('username')+
+        '='+encodeURIComponent(data.username)+
+        '&'+encodeURIComponent('password')+
+        '='+encodeURIComponent(data.password)
+        console.log(user)
+        login(user)
+    }
+    console.log(result.data)
     return(
         <div
             className={` py-2 ${display?'flex':'hidden'} flex-col justify-between items-center duration-200`}
@@ -21,7 +28,7 @@ export function SignIn({display,setDisplay}:Props) {
             >
                 <Controller
                     control={control}
-                    name="login"
+                    {...register('username')}
                     rules={{
                         required:'Обьязательное поля'
                     }}
@@ -33,13 +40,13 @@ export function SignIn({display,setDisplay}:Props) {
                             type="text"
                             onChange={(e) => field.onChange(e)}
                             value={field.value}
-                            helperText={errors.login?.message}
+                            helperText={errors.username?.message}
                                 />;
                     }}
                 />
                 <Controller
                     control={control}
-                    name="password"
+                    {...register('password')}
                     render={({ field }) => {
                         return <TextField
                                 label="Password"
@@ -55,7 +62,7 @@ export function SignIn({display,setDisplay}:Props) {
                     color="error"
                     sx={{ marginTop: 2, width: '100%' }}
                     type="submit"
-                    disabled={useFormState({control}).isValid}
+                    // disabled={useFormState({control}).isValid}
                 >Sign In</Button>
             </form>
             <div>
