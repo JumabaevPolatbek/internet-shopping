@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { pathApi } from "..";
+import {signIn} from "../../reducer/authSlice";
 
 type User={
     username:string,
@@ -13,23 +14,26 @@ export const authUser=createApi({
     baseQuery:fetchBaseQuery({baseUrl:pathApi}),
     tagTypes:['login'],
     endpoints:builder=>({
-        sigIn:builder.mutation<Token,string>({
+        sigIn:builder.mutation<Token,User>({
             query(data){
-                
+                const body = encodeURIComponent('username')+'='+encodeURIComponent(data.username)
+                    +'&&'+
+                    encodeURIComponent('password')+'='+encodeURIComponent(data.password)
                 return {
                     url:'login',
                     method:'POST',
                     headers:{
                         'Content-type':'application/x-www-form-urlencoded;charset=UTF-8'
                     },
-                    body:(data)
+                    body
                 }
             },
             async onQueryStarted(data,{dispatch,queryFulfilled,getState}){
                 console.log('started')
                 const {data:accesToken,meta}=await queryFulfilled
+                console.log(typeof accesToken)
                 try{
-                    console.log(accesToken)
+                    dispatch(signIn({username:data.username,token:`${accesToken.access_token}`}))
                 }catch(e){
                     console.log(getState().authUser)
                     console.log(e)

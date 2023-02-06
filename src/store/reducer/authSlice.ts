@@ -1,8 +1,8 @@
 import { createSlice,PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from ".";
 type State={
-  username:string
-  token:string
+  username:string|null
+  token?:string|null
   isActive:boolean
 }
 const initialState:State={
@@ -15,13 +15,18 @@ export const authSlice=createSlice({
   initialState,
   reducers:{
     signIn:(state,action:PayloadAction<{username:string,token:string}>)=>{
-      if(localStorage.getItem('token')){
-
+      if(localStorage.getItem('token') && localStorage.getItem('name')){
+            state.token=localStorage.getItem('token')
       }
-      state.username=action.payload.username
-      state.token=action.payload.token
-      state.isActive=true
-      localStorage.setItem('token',state.token)
+      else {
+        state.username=action.payload.username
+        state.token=action.payload.token
+        state.isActive=true
+        localStorage.setItem('token',state.token)
+        localStorage.setItem('name',state.username)
+        localStorage.setItem('active',`${state.isActive}`)
+      }
+
     },
     logOut:(state)=>{
       state.username=''

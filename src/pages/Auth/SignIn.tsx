@@ -9,15 +9,7 @@ type Props = {
 export function SignIn({display,setDisplay}:Props) {
     const [login,result]=useSigInMutation()
     const { handleSubmit, control,formState:{errors},register } = useForm<User>()
-    var arr:any=[]
-    const btnSubmit: SubmitHandler<User> = (data) => {
-        var user = encodeURIComponent('username')+
-        '='+encodeURIComponent(data.username)+
-        '&'+encodeURIComponent('password')+
-        '='+encodeURIComponent(data.password)
-        console.log(user)
-        login(user)
-    }
+    const btnSubmit: SubmitHandler<User> = (data) => login(data)
     console.log(result.data)
     return(
         <div
