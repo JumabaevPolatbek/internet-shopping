@@ -26,37 +26,20 @@ export function SignIn({display,setDisplay}:Props) {
             <form
                 onSubmit={handleSubmit(btnSubmit)}
             >
-                <Controller
-                    control={control}
+                <TextField
                     {...register('username')}
-                    rules={{
-                        required:'Обьязательное поля'
-                    }}
-                    render={({field}) => {
-                                return <TextField
-                            label="Username"
-                            variant="outlined"
-                            className="w-full"
-                            type="text"
-                            onChange={(e) => field.onChange(e)}
-                            value={field.value}
-                            helperText={errors.username?.message}
-                                />;
-                    }}
+                    type="text"
+                    sx={{ marginTop: 2, width: '100%' }}
+                    variant="outlined"
+                    label="Username"
                 />
-                <Controller
-                    control={control}
-                    {...register('password')}
-                    render={({ field }) => {
-                        return <TextField
+                <TextField
+                {...register('password')}
                                 label="Password"
                                 variant="outlined"
                                 type="password"
-                                        sx={{ marginTop: 2, width: '100%' }}
-                                        onChange={(e) => field.onChange(e)}
-                                        value={field.value}
+                                sx={{ marginTop: 2, width: '100%' }}
                             />
-                    }}/>
                 <Button
                     variant="contained"
                     color="error"

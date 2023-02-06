@@ -25,6 +25,17 @@ export const authUser=createApi({
                     body:(data)
                 }
             },
+            async onQueryStarted(data,{dispatch,queryFulfilled,getState}){
+                console.log('started')
+                const {data:accesToken,meta}=await queryFulfilled
+                try{
+                    console.log(accesToken)
+                }catch(e){
+                    console.log(getState().authUser)
+                    console.log(e)
+                    console.log(meta)
+                }
+            },
             invalidatesTags:['login']
         })
     })
