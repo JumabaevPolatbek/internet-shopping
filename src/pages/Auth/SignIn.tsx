@@ -2,6 +2,7 @@ import { Button, TextField } from "@mui/material";
 import { useForm, SubmitHandler,Controller,useFormState } from 'react-hook-form';
 import { User } from "../../store/models/authUser";
 import {useSigInMutation} from '../../store/api/auth'
+import { useAppSlector } from "../../utils/hook";
 type Props = {
     display: boolean,
     setDisplay :React.Dispatch<React.SetStateAction<boolean>>
@@ -10,7 +11,6 @@ export function SignIn({display,setDisplay}:Props) {
     const [login,result]=useSigInMutation()
     const { handleSubmit, control,formState:{errors},register } = useForm<User>()
     const btnSubmit: SubmitHandler<User> = (data) => login(data)
-    console.log(result.data)
     return(
         <div
             className={` py-2 ${display?'flex':'hidden'} flex-col justify-between items-center duration-200`}

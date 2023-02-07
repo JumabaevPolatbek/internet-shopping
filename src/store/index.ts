@@ -9,7 +9,7 @@ import { getAll } from "./api/all";
 import { searchValue } from "./api/search";
 import attributeActions  from "./api/attributes";
 import { authUser } from "./api/auth";
-import {authSlice} from "./reducer/authSlice";
+// import {authSlice} from "./reducer/authSlice";
 // import { editSlice } from "./reducer/edit";
 // import logger from 'redux-logger'
 
