@@ -25,7 +25,8 @@ export const authUser=createApi({
                     headers:{
                         'Content-type':'application/x-www-form-urlencoded;charset=UTF-8'
                     },
-                    body
+                    body,
+                    credentials:'include'
                 }
             },
             async onQueryStarted(data,{dispatch,queryFulfilled,getState}){
