@@ -26,19 +26,14 @@ export const authUser=createApi({
                         'Content-type':'application/x-www-form-urlencoded;charset=UTF-8'
                     },
                     body,
-                    credentials:'include'
+                    // credentials:'include'
                 }
             },
             async onQueryStarted(data,{dispatch,queryFulfilled,getState}){
-                console.log('started')
                 const {data:accesToken,meta}=await queryFulfilled
-                console.log(typeof accesToken)
                 try{
                     dispatch(signIn({username:data.username,token:`${accesToken.access_token}`}))
                 }catch(e){
-                    console.log(getState().authUser)
-                    console.log(e)
-                    console.log(meta)
                 }
             },
             invalidatesTags:['login']
