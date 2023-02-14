@@ -16,9 +16,9 @@ export function Navbar() {
     }
     return (
         <div className="container mx-auto px-[5px] md:px-[15px] flex items-center justify-between mt-3">
-            <div className="flex items-center flex-col md:flex-row w-full">
-                <div className="flex justify-between w-full md:w-[fit-content]">
-                    <div className="block md:hidden">
+            <div className="flex items-center flex-col xl:flex-row w-full">
+                <div className="flex justify-between w-full xl:w-[fit-content]">
+                    <div className="block xl:hidden">
                     <LocalPhoneIcon />
                     </div>
                     <Link to={'/'} className="text-[#da002b] text-[24px] font-bold ">Logo</Link>
@@ -27,7 +27,7 @@ export function Navbar() {
                     <div className="relative flex flex-col w-[360px]">
                     <button
                         onClick={openMenu}
-                        className={`   text-[18px]  border w-[fit-content] ${!displayMenu ? 'border-[#da002b] text-[#da002b]' : 'text-[#333] border-[#333]'} rounded-md px-[15px] py-[2px] ml-0 md:ml-4`}>
+                        className={`   text-[18px]  border w-[fit-content] ${!displayMenu ? 'border-[#da002b] text-[#da002b]' : 'text-[#333] border-[#333]'} rounded-md px-[15px] py-[2px] ml-0 xl:ml-4`}>
                             {!displayMenu?<MenuIcon className="mr-2 duration-300"/>:<CloseIcon className="mr-2 duration-300"/>}
                             Каталог
                         </button>

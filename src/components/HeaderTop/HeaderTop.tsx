@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export function HeaderTop() {
     return (
-        <div className=" bg-[#da002b] hidden md:block">
+        <div className=" bg-[#da002b] hidden xl:block">
             <div className="container mx-auto  px-[5px] py-[10px] md:px-[15px] flex justify-between">
 
                 <div className="left flex items-center">

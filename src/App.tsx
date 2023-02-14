@@ -19,6 +19,9 @@ import { EditCategory } from './pages/Category/Edit/EditCategories';
 //country
 import { CountryLayout, DetailCountry, NewCountrie } from './pages/Country';
 import { RequireAdmin } from './utils/requireAdmin';
+//cabinet
+import { LayoutPerson } from './pages/Cabinet/LayoutCabinet';
+import { PersonalData } from './pages/Cabinet/PersonalData';
 
 
 function App() {
@@ -26,7 +29,10 @@ function App() {
     <Routes>
         <Route path='/' element={<Layout/>}>
         <Route index element={<Home />} />
-        <Route path='/login' element={<Auth/>}/>
+        <Route path='/login' element={<Auth />} />
+        <Route path='/cabinet' element={<LayoutPerson/>}>
+          <Route index element={ <PersonalData/>} />
+        </Route>
         <Route path='*' element={<NotFound/>}/>
       </Route>
       <Route path='admin' element={

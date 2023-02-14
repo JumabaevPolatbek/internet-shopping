@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a101907b-e942-44ed-8c79-ed3ee4d03b43" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internet-shopping" beforeDir="false" afterPath="$PROJECT_DIR$/internet-shopping" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectId" id="2JE1CvG4kb64ieRQs2ul1PGKVRe" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -57,6 +61,9 @@
       <workItem from="1671714950519" duration="389000" />
       <workItem from="1671810918899" duration="595000" />
       <workItem from="1672927218007" duration="81000" />
+      <workItem from="1673636047173" duration="2000" />
+      <workItem from="1675779988967" duration="2333000" />
+      <workItem from="1676399527900" duration="117000" />
     </task>
     <servers />
   </component>
