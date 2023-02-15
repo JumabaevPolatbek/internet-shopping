@@ -1,3 +1,3 @@
 
 
-export const pathApi= 'https://ecommerce-h6sh.onrender.com/'
+export const pathApi= 'https://ecommerce.icedev.uz/'

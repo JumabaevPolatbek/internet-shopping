@@ -3,9 +3,19 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import { Link } from 'react-router-dom';
+import {Cookies} from 'react-cookie'
+import { ButtonPerson } from '../ButtonPerson';
+
+
 const mediumWidth = ' xl:pt-0 xl:bg-[inherit] xl:static xl:w-inherit xl:justify-start xl:w-[fit-content] xl:pr-0 xl:pl-0 xl:pt-0'
-const mobileWidth= 'fixed  z-[1001] bg-[#ccc]  w-full  left-0 bottom-0 pr-[50px] pl-[30px] pt-[5px]  flex items-center justify-between'
+const mobileWidth = 'fixed  z-[1001] bg-[#ccc]  w-full  left-0 bottom-0 pr-[50px] pl-[30px] pt-[5px]  flex items-center justify-between'
+
+
+
 export function MenuActions() {
+
+    const cookie = new Cookies()
+
     return (
         <div className={mobileWidth + mediumWidth}>
             <Link
@@ -29,13 +39,16 @@ export function MenuActions() {
                 <ShoppingCartOutlinedIcon />
                 Корзина
             </Link>
-            <Link
+            {cookie.get('token') ?
+                <ButtonPerson /> :
+                <Link
                 to={'/login'}
                 className="flex flex-col items-center ml-6"
             >
                 <LoginOutlinedIcon />
                 Кабинет
-            </Link>
+            </Link>}
+            
         </div>
     )
 }

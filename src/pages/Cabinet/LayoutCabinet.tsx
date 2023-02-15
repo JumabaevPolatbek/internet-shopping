@@ -1,6 +1,7 @@
-import { Link, useLocation ,Outlet } from "react-router-dom";
+import React from 'react'
+import { Link, useLocation, Outlet } from "react-router-dom";
 
-export function LayoutPerson() {
+export const LayoutPerson:React.FC=()=> {
     // const location = useLocation();
     // console.log(location)
     return(

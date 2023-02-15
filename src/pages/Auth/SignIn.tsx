@@ -1,16 +1,34 @@
 import { Button, TextField } from "@mui/material";
-import { useForm, SubmitHandler,Controller,useFormState } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { User } from "../../store/models/authUser";
 import {useSigInMutation} from '../../store/api/auth'
-import { useAppSlector } from "../../utils/hook";
+import jwtDecode from "jwt-decode";
+import { useCookies } from "react-cookie";
+import { useLocation, useNavigate } from "react-router-dom";
 type Props = {
     display: boolean,
     setDisplay :React.Dispatch<React.SetStateAction<boolean>>
 }
 export function SignIn({display,setDisplay}:Props) {
-    const [login,result]=useSigInMutation()
-    const { handleSubmit, control,formState:{errors},register } = useForm<User>()
+    const [login, result] = useSigInMutation()
+
+    const [cookie, setCookie] = useCookies(['token'])
+
+    const navigate = useNavigate()
+    const location = useLocation()
+    const fromPage = location.state?.from?.pathname || '/'
+
+    const { handleSubmit, control, formState: { errors }, register } = useForm<User>()
+    
     const btnSubmit: SubmitHandler<User> = (data) => login(data)
+    
+    if (result.data?.access_token) {
+        console.log(jwtDecode(result.data?.access_token))
+        setCookie('token', result.data?.access_token, { path: '/' })
+        navigate(fromPage,{replace:true})
+    }
+    // console.log(Cookies())
+    // console.log(get('token',{path:'/'}))
     return(
         <div
             className={` py-2 ${display?'flex':'hidden'} flex-col justify-between items-center duration-200`}

@@ -22,6 +22,7 @@ import { RequireAdmin } from './utils/requireAdmin';
 //cabinet
 import { LayoutPerson } from './pages/Cabinet/LayoutCabinet';
 import { PersonalData } from './pages/Cabinet/PersonalData';
+import { RequireAuth } from './utils/requireAuth';
 
 
 function App() {
@@ -29,10 +30,15 @@ function App() {
     <Routes>
         <Route path='/' element={<Layout/>}>
         <Route index element={<Home />} />
-        <Route path='/login' element={<Auth />} />
-        <Route path='/cabinet' element={<LayoutPerson/>}>
+        
+        <Route path='/cabinet' element={
+          <RequireAuth>
+            <LayoutPerson />
+          </RequireAuth>
+        }>
           <Route index element={ <PersonalData/>} />
         </Route>
+        <Route path='/login' element={<Auth />} />
         <Route path='*' element={<NotFound/>}/>
       </Route>
       <Route path='admin' element={

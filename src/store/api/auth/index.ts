@@ -20,7 +20,7 @@ export const authUser=createApi({
                     +'&&'+
                     encodeURIComponent('password')+'='+encodeURIComponent(data.password)
                 return {
-                    url:'login',
+                    url:'token',
                     method:'POST',
                     headers:{
                         'Content-type':'application/x-www-form-urlencoded;charset=UTF-8'
