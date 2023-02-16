@@ -78,6 +78,7 @@ export interface NewUser {
   username: string
   is_admin: boolean
   password: string
+  confirmPass?:string
 }
 
 export interface NewUserDetail {

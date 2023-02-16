@@ -25,7 +25,7 @@ export function SignIn({display,setDisplay}:Props) {
     if (result.data?.access_token) {
         console.log(jwtDecode(result.data?.access_token))
         setCookie('token', result.data?.access_token, { path: '/' })
-        navigate(fromPage,{replace:true})
+        // navigate('/',{replace:true})
     }
     // console.log(Cookies())
     // console.log(get('token',{path:'/'}))

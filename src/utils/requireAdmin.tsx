@@ -1,19 +1,22 @@
 import React, { ReactNode } from "react";
-import { useAppSlector } from "./hook";
 import { Navigate } from "react-router-dom";
-import { useGetAllUsersQuery } from "../store/api/user";
-
+import { Cookies } from "react-cookie";
+import jwtDecode from "jwt-decode";
+import { Decode } from "../store/models/jwtDecode";
 type Props={
-    children:JSX.Element
+    children?:React.ReactNode
 }
 
 
 export const RequireAdmin:React.FC<Props>=({children})=> {
-    const userState=useAppSlector(state=>state.userAuth);
-    const {data}=useGetAllUsersQuery();
-    const user = data?.find(item=>item.username===userState.username)
-    if (user?.is_admin) {
-        return <Navigate to='/login'/>
+    const cookie = new Cookies()
+    const decode:Decode=jwtDecode(cookie.get('token'))
+    if (decode.is_admin===0) {
+        return <Navigate to='/' replace/>
     }
-    return children
+    return (
+        <>
+            {children}
+        </>
+    )
 }
