@@ -7,32 +7,34 @@ import MenuItem from "@mui/material/MenuItem";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import {Cookies} from 'react-cookie'
-import jwtDecode from "jwt-decode";
 import { useGetAllUsersQuery } from "../../store/api/user";
-import { Decode } from "../../store/models/jwtDecode";
 import { useNavigate } from "react-router-dom";
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-export function ButtonPerson() {
+import { logOut } from "../../store/reducer/authSlice";
+import { getCookie } from "../../utils/getCookie";
+import { useDispatch } from "react-redux";
 
-    const cookie = new Cookies()
-    const decode: Decode = jwtDecode(cookie.get('token'))
-    const navigate = useNavigate()
+export function ButtonPerson() {
+  const dispatch=useDispatch()
+  const cookie = new Cookies()
+  const navigate = useNavigate()
+  
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
       };
-      const handleCloseUserMenu = (e:React.MouseEvent<HTMLLIElement>) => {
+  const handleCloseUserMenu = (e: React.MouseEvent<HTMLLIElement>) => {
+          setAnchorElUser(null);
           if (e.currentTarget.textContent === 'Выйти') {
-              cookie.remove('token', { path: '/' })
-              navigate('/')
+              cookie.remove('token')
+              dispatch(logOut)
+              navigate('/',{replace:true})
             } else if(e.currentTarget.textContent === 'Профиль') {
-              setAnchorElUser(null);
               navigate('/cabinet')
           }
     };
     const { data } = useGetAllUsersQuery()
-    const findUser = data?.find(user=>user.username===decode.sub)
+    const findUser = data?.find(user=>user.username===getCookie(cookie)?.sub)
     // console.log(decode)
     // console.log(findUser)
     return (

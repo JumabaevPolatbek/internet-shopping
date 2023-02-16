@@ -12,8 +12,7 @@ export const RequireAuth:React.FC<Props>=({ children })=> {
     const location = useLocation()
     // const userState = useAppSlector(state => state.userAuth);
     if (!cookie.get('token')) {
-        console.log('OK')
-        return <Navigate to='login' state={{from:location}}/>
+        return <Navigate to='login' state={{from:location}} replace/>
     }
     return (
         <>

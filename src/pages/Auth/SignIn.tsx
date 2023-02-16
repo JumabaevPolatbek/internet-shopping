@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { User } from "../../store/models/authUser";
 import {useSigInMutation} from '../../store/api/auth'
 import jwtDecode from "jwt-decode";
-import { useCookies } from "react-cookie";
+import { Cookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
 type Props = {
     display: boolean,
@@ -12,7 +12,7 @@ type Props = {
 export function SignIn({display,setDisplay}:Props) {
     const [login, result] = useSigInMutation()
 
-    const [cookie, setCookie] = useCookies(['token'])
+    const cookie = new Cookies()
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -23,9 +23,9 @@ export function SignIn({display,setDisplay}:Props) {
     const btnSubmit: SubmitHandler<User> = (data) => login(data)
     
     if (result.data?.access_token) {
-        console.log(jwtDecode(result.data?.access_token))
-        setCookie('token', result.data?.access_token, { path: '/' })
-        // navigate('/',{replace:true})
+        // console.log(jwtDecode(result.data?.access_token))
+        cookie.set('token', result.data?.access_token, { path: '/' })
+        navigate('/',{replace:true})
     }
     // console.log(Cookies())
     // console.log(get('token',{path:'/'}))

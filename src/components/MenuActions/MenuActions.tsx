@@ -3,8 +3,11 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import { Link } from 'react-router-dom';
-import {Cookies} from 'react-cookie'
 import { ButtonPerson } from '../ButtonPerson';
+import React from 'react';
+import { useAppSlector } from '../../utils/hook';
+import { getCookie } from '../../utils/getCookie';
+import { Cookies } from 'react-cookie';
 
 
 const mediumWidth = ' xl:pt-0 xl:bg-[inherit] xl:static xl:w-inherit xl:justify-start xl:w-[fit-content] xl:pr-0 xl:pl-0 xl:pt-0'
@@ -13,9 +16,8 @@ const mobileWidth = 'fixed  z-[1001] bg-[#ccc]  w-full  left-0 bottom-0 pr-[50px
 
 
 export function MenuActions() {
-
-    const cookie = new Cookies()
-
+    const user = useAppSlector(state => state.userAuth)
+    
     return (
         <div className={mobileWidth + mediumWidth}>
             <Link
@@ -39,7 +41,7 @@ export function MenuActions() {
                 <ShoppingCartOutlinedIcon />
                 Корзина
             </Link>
-            {cookie.get('token') ?
+            {user.isActive ?
                 <ButtonPerson /> :
                 <Link
                 to={'/login'}
@@ -48,7 +50,14 @@ export function MenuActions() {
                 <LoginOutlinedIcon />
                 Кабинет
             </Link>}
-            
+            {/* {cookies.get('token') && <ButtonPerson />}
+            <Link
+                to={'/login'}
+                className="flex flex-col items-center ml-6"
+            >
+                <LoginOutlinedIcon />
+                Кабинет
+            </Link> */}
         </div>
     )
 }

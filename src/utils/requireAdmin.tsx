@@ -1,8 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
 import { Cookies } from "react-cookie";
-import jwtDecode from "jwt-decode";
-import { Decode } from "../store/models/jwtDecode";
+import { getCookie } from "./getCookie";
 type Props={
     children?:React.ReactNode
 }
@@ -10,9 +9,8 @@ type Props={
 
 export const RequireAdmin:React.FC<Props>=({children})=> {
     const cookie = new Cookies()
-    const decode:Decode=jwtDecode(cookie.get('token'))
-    if (decode.is_admin===0) {
-        return <Navigate to='/' replace/>
+    if (getCookie(cookie)?.is_admin !== 1) {
+        return <Navigate to="/" replace/>
     }
     return (
         <>

@@ -2,7 +2,7 @@ import { Card, Typography } from "@mui/material";
 import AccountBalanceWalletRoundedIcon from '@mui/icons-material/AccountBalanceWalletRounded';
 
 
-export function PersonalCash() {
+export function PersonalCash({id}:{id?:number}) {
     return (
         <div
             className="flex flex-col justify-between h-[100px] rounded-md border py-2 px-3 bg-[#da002b] text-white w-[200px] xl:w-[50%]"
@@ -15,7 +15,7 @@ export function PersonalCash() {
                         Баланс
                     </Typography>
                     <Typography>
-                        ID: 321321
+                        ID: {id}
                     </Typography>
             </Typography>
             <Typography

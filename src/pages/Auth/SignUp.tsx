@@ -2,22 +2,47 @@ import { Button, TextField } from "@mui/material";
 import React from "react";
 import { useForm, SubmitHandler,Controller } from 'react-hook-form';
 import { NewUserRoot } from "../../store/models/userModels";
-
+import {useAddNewUserMutation} from '../../store/api/user'
 type Props = {
     display: boolean,
     setDisplay :React.Dispatch<React.SetStateAction<boolean>>
 }
-export function SignUp({display,setDisplay}:Props) {
-    const confirmPass = React.useRef({})
-    const { handleSubmit, control, formState,watch ,register} = useForm<Partial<NewUserRoot>>()
+export function SignUp({ display, setDisplay }: Props) {
+	
+	const [cpass,setCpass]=React.useState('')
+	const confirmPass = React.useRef({})
+	const [signUp,result]=useAddNewUserMutation()
+	const { handleSubmit, control, formState, watch, register } = useForm<Partial<NewUserRoot>>({
+		defaultValues: {
+			user: {
+				username: '',
+				password:''
+			},
+			user_address: {
+				street_address: '',
+				postal_code: '',
+				city: '',
+				country_id:2
+			},
+			user_detail: {
+				first_name: '',
+				last_name: '',
+				user_image:''
+			},
+			user_phones: [{
+				phone_number: '',
+				type:''
+			}]
+		}
+	})
     const { errors } = formState
     confirmPass.current=watch('user.password',"")
     const btnSubmit: SubmitHandler<Partial<NewUserRoot>> = (
 		data
-	) => console.log(data);
-
-
-
+	) => signUp(data);
+	if (result.isSuccess) {
+		setDisplay(true)
+	}
 
     return (
 		<div
@@ -27,7 +52,7 @@ export function SignUp({display,setDisplay}:Props) {
 		>
 			<form
 				onSubmit={handleSubmit(btnSubmit)}
-				onChange={handleSubmit(btnSubmit)}
+				// onChange={handleSubmit(btnSubmit)}
 			>
 				<Controller
 					control={control}
@@ -87,7 +112,22 @@ export function SignUp({display,setDisplay}:Props) {
 						);
 					}}
 				/>
-				<Controller
+				<TextField
+					name="confirmpass"
+					inputRef={confirmPass}
+					label="Confirm Password"
+					type="password"
+					sx={{
+						marginTop: 2,
+						width: '100%',
+					}}
+					onChange={(e)=>setCpass(e.target.value)}
+					helperText={
+						confirmPass.current && cpass !== confirmPass.current ?
+							'Парол не совпадаеть!' :
+							''}
+				/>
+				{/* <Controller
                     control={control}
 					{...register('user.confirmPass')}
 					rules={{
@@ -107,7 +147,7 @@ export function SignUp({display,setDisplay}:Props) {
                             helperText={errors.user?.confirmPass?.message}
 						/>
 					)}
-				/>
+				/> */}
 				{/* <Controller
                     control={control}
                     name="email"

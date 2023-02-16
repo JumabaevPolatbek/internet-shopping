@@ -25,5 +25,5 @@ export const authSlice=createSlice({
 })
 
 export const {signIn,logOut}=authSlice.actions
-export const stateAuth=(state:RootState)=>state.userAuth
+export const stateAuth = (state: RootState) => state.userAuth
 export default authSlice.reducer

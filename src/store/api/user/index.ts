@@ -11,7 +11,7 @@ export const actionsUser = createApi({
             query: () => `users`,
             providesTags:['users']
         }),
-        getSingleUser:builder.query<User,string|undefined>({
+        getSingleUser:builder.query<User,string|number|undefined>({
             query: (id: string) => `users/${id}`,
             providesTags:['users']
         }),
@@ -37,7 +37,7 @@ export const actionsUser = createApi({
             },
             invalidatesTags:['users']
         }),
-        updateUser: builder.mutation < User,{idUser:string|undefined,dataUser:Partial<UpdateUserRoot>}>({
+        updateUser: builder.mutation < User,{idUser:string|number|undefined,dataUser:Partial<UpdateUserRoot>}>({
             query: ({idUser,dataUser}) => {
                 return {
                     url: `users/${idUser}`,
