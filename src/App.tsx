@@ -24,8 +24,10 @@ import { LayoutPerson } from './pages/Cabinet/LayoutCabinet';
 import { PersonalData } from './pages/Cabinet/PersonalData';
 import { RequireAuth } from './utils/requireAuth';
 
+import {CheckAuth} from "./utils/checkAuth";
 
 function App() {
+
   return (
     <Routes>
         <Route path='/' element={<Layout/>}>
@@ -38,13 +40,15 @@ function App() {
         }>
           <Route index element={ <PersonalData/>} />
         </Route>
-        <Route path='/login' element={<Auth />} />
+                <Route path='/login' element={<CheckAuth>
+                    <Auth/>
+                </CheckAuth>} />
         <Route path='*' element={<NotFound/>}/>
       </Route>
       <Route path='admin' element={
         <RequireAdmin>
           <Admin />
-         </RequireAdmin>
+          </RequireAdmin>
       }>
           <Route index element={<Dashboard/>}/>
         <Route path='users' element={<User />}>

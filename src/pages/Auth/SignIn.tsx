@@ -1,34 +1,43 @@
-import { Button, TextField } from "@mui/material";
+import {Button, TextField, Typography} from "@mui/material";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { User } from "../../store/models/authUser";
 import {useSigInMutation} from '../../store/api/auth'
-import jwtDecode from "jwt-decode";
 import { Cookies } from "react-cookie";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import {ToastContainer,toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 type Props = {
     display: boolean,
     setDisplay :React.Dispatch<React.SetStateAction<boolean>>
 }
 export function SignIn({display,setDisplay}:Props) {
     const [login, result] = useSigInMutation()
-
     const cookie = new Cookies()
 
-    const navigate = useNavigate()
-    const location = useLocation()
-    const fromPage = location.state?.from?.pathname || '/'
 
-    const { handleSubmit, control, formState: { errors }, register } = useForm<User>()
+
+    const { handleSubmit,  formState: { errors }, register } = useForm<User>()
     
     const btnSubmit: SubmitHandler<User> = (data) => login(data)
     
     if (result.data?.access_token) {
-        // console.log(jwtDecode(result.data?.access_token))
         cookie.set('token', result.data?.access_token, { path: '/' })
-        navigate('/',{replace:true})
+        return <Navigate to='/' replace/>
+
+    } else {
+        toast("Логин или парол неверный",{
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        })
     }
-    // console.log(Cookies())
-    // console.log(get('token',{path:'/'}))
+
+
     return(
         <div
             className={` py-2 ${display?'flex':'hidden'} flex-col justify-between items-center duration-200`}
@@ -57,10 +66,12 @@ export function SignIn({display,setDisplay}:Props) {
                     type="submit"
                     // disabled={useFormState({control}).isValid}
                 >Sign In</Button>
+                {result.isError && <ToastContainer/>}
             </form>
             <div>
                 <span className="mr-2">{ display?'Нет аккаунта?':''}</span>
                 <button
+
                     onClick={()=>setDisplay(display=>!display)}
                     className="text-[#da002b]"
                 >{display?'Зарегистрироваться':'' }</button>

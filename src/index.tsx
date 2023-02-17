@@ -11,15 +11,17 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <CookiesProvider>
-        <ProSidebarProvider>
-          <App />
-        </ProSidebarProvider>
-      </CookiesProvider>
-    </BrowserRouter>
-  </Provider>
+    <CookiesProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+
+            <ProSidebarProvider>
+              <App />
+            </ProSidebarProvider>
+
+        </BrowserRouter>
+      </Provider>
+    </CookiesProvider>
 );
 
 

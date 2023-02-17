@@ -12,7 +12,7 @@ export function SignUp({ display, setDisplay }: Props) {
 	const [cpass,setCpass]=React.useState('')
 	const confirmPass = React.useRef({})
 	const [signUp,result]=useAddNewUserMutation()
-	const { handleSubmit, control, formState, watch, register } = useForm<Partial<NewUserRoot>>({
+	const { handleSubmit, control, formState, watch, register } = useForm<Omit<NewUserRoot,'user.is_admin'>>({
 		defaultValues: {
 			user: {
 				username: '',
@@ -37,7 +37,7 @@ export function SignUp({ display, setDisplay }: Props) {
 	})
     const { errors } = formState
     confirmPass.current=watch('user.password',"")
-    const btnSubmit: SubmitHandler<Partial<NewUserRoot>> = (
+    const btnSubmit: SubmitHandler<Omit<NewUserRoot,"user.is_admin">> = (
 		data
 	) => signUp(data);
 	if (result.isSuccess) {

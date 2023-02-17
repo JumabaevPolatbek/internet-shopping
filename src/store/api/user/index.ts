@@ -15,10 +15,11 @@ export const actionsUser = createApi({
             query: (id: string) => `users/${id}`,
             providesTags:['users']
         }),
-        addNewUser: builder.mutation<NewUserRoot,Partial<NewUserRoot>>({
+        addNewUser: builder.mutation<NewUserRoot,Omit<NewUserRoot,"user.is_admin">>({
             query(user) {
+                const path=user.user.is_admin?'users/admin':'users'
                 return {
-                    url: `users`,
+                    url: path,
                     method: `POST`,
                     headers: {
                         'Content-type': 'application/json'
@@ -37,8 +38,10 @@ export const actionsUser = createApi({
             },
             invalidatesTags:['users']
         }),
-        updateUser: builder.mutation < User,{idUser:string|number|undefined,dataUser:Partial<UpdateUserRoot>}>({
+        updateUser: builder.mutation < User,{idUser:string|number|undefined,dataUser:Omit<UpdateUserRoot,"user.is_admin">}>({
             query: ({idUser,dataUser}) => {
+
+
                 return {
                     url: `users/${idUser}`,
                     method: 'PUT',

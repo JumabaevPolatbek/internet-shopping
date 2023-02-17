@@ -1,23 +1,12 @@
-import { Cookies } from "react-cookie";
 import ProductItem from "../../components/Product";
 import SliderItems from "../../components/Slider";
 import { useGetProductsQuery } from "../../store/api/product";
-import { useAppDispatch } from "../../utils/hook";
-import { signIn } from "../../store/reducer/authSlice";
-import jwtDecode from "jwt-decode";
-import { Decode } from "../../store/models/jwtDecode";
+import {useLocation} from "react-router-dom";
 
 export function Home() {
+    const location=useLocation()
     const { data } = useGetProductsQuery()
-    const cookie = new Cookies()
-    const dispatch = useAppDispatch()
-    if (cookie.get('token')) {
-        const decode:Decode=jwtDecode(cookie.get('token'))
-        dispatch(signIn({
-            token: cookie.get('token'),
-            username: decode.sub
-        }))
-    }
+
     return (
                 <div className="container mx-auto mt-3">
                     <div className="banner h-[350px]">

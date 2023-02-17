@@ -29,13 +29,13 @@ export const authUser=createApi({
                     // credentials:'include'
                 }
             },
-            async onQueryStarted(data,{dispatch,queryFulfilled,getState}){
-                const {data:accesToken,meta}=await queryFulfilled
-                try{
-                    dispatch(signIn({username:data.username,token:`${accesToken.access_token}`}))
-                }catch(e){
-                }
-            },
+            // async onQueryStarted(data,{dispatch,queryFulfilled,getState}){
+            //     const {data:accesToken,meta}=await queryFulfilled
+            //     try{
+            //         dispatch(signIn({username:data.username,token:`${accesToken.access_token}`}))
+            //     }catch(e){
+            //     }
+            // },
             invalidatesTags:['login']
         })
     })

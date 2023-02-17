@@ -9,7 +9,7 @@ type Props={
 
 export const RequireAdmin:React.FC<Props>=({children})=> {
     const cookie = new Cookies()
-    if (getCookie(cookie)?.is_admin !== 1) {
+    if (getCookie(cookie)?.is_admin === 0) {
         return <Navigate to="/" replace/>
     }
     return (

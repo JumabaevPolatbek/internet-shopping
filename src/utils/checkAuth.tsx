@@ -7,13 +7,12 @@ type Props = {
     children?:React.ReactNode
 }
 
-export const RequireAuth:React.FC<Props>=({ children })=> {
+export const CheckAuth:React.FC<Props>=({ children })=> {
     const cookie = new Cookies()
     const location = useLocation()
-    const navigate = useNavigate()
-    if (!cookie.get('token')) {
-        return <Navigate to='login' state={{from:location}} replace/>
-    }
+    if (cookie.get('token')) {
+        return <Navigate to='/' state={{from:location}} replace/>
+    } 
     return (
         <>
             {children}

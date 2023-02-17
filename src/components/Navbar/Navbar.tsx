@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { SearchProduct } from "../Search";
 import MenuActions from "../MenuActions";
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import { Collapse } from "@mui/material";
+import {Cookies} from "react-cookie";
 
 
 export function Navbar() {
@@ -14,6 +14,8 @@ export function Navbar() {
     const openMenu = () => {
         setDisplayMenu(displayMenu=>!displayMenu)
     }
+    const cookie = new Cookies()
+    const token:boolean=cookie.get('token')===undefined?false:true
     return (
         <div className="container mx-auto px-[5px] md:px-[15px] flex items-center justify-between mt-3">
             <div className="flex items-center flex-col xl:flex-row w-full">
@@ -36,7 +38,7 @@ export function Navbar() {
                         </div>
                     </div>
                     <SearchProduct/>
-                    <MenuActions/>
+                    <MenuActions token={token}/>
                 </div>
             </div>
         </div>

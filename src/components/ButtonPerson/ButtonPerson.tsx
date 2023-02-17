@@ -8,13 +8,13 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import {Cookies} from 'react-cookie'
 import { useGetAllUsersQuery } from "../../store/api/user";
-import { useNavigate } from "react-router-dom";
-import { logOut } from "../../store/reducer/authSlice";
+import {Link, useNavigate} from "react-router-dom";
+// import { logOut } from "../../store/reducer/authSlice";
 import { getCookie } from "../../utils/getCookie";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 export function ButtonPerson() {
-  const dispatch=useDispatch()
+  // const dispatch=useDispatch()
   const cookie = new Cookies()
   const navigate = useNavigate()
   
@@ -27,7 +27,7 @@ export function ButtonPerson() {
           setAnchorElUser(null);
           if (e.currentTarget.textContent === 'Выйти') {
               cookie.remove('token')
-              dispatch(logOut)
+              // dispatch(logOut)
               navigate('/',{replace:true})
             } else if(e.currentTarget.textContent === 'Профиль') {
               navigate('/cabinet')
@@ -68,11 +68,17 @@ export function ButtonPerson() {
                         Профиль
                   </Typography>
                 </MenuItem>
+                {getCookie(cookie) && <MenuItem>
+                    <Typography textAlign="center">
+                        <Link to='/admin'>Администратирование</Link>
+                    </Typography>
+                </MenuItem>}
                 <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">
                         Выйти
                   </Typography>
                 </MenuItem>
+
             </Menu>
           </Box>
     )
