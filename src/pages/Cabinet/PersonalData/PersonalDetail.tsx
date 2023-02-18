@@ -1,6 +1,6 @@
 import { Button, Card, CardContent, Divider, Typography } from "@mui/material";
 import { User } from "../../../store/models/userModels";
-import CustomizedDialogs from "./ChangeDetail";
+import CustomizedDialogs from "../../../components/BootstrapDialog/CustomizedDialogs";
 import React from "react";
 
 

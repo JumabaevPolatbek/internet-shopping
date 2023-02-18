@@ -58,7 +58,7 @@ function App() {
           </Route>
           <Route path='category' element={<CategorieLayout/>}>
             <Route index element={<DetailCategory/>}/>
-            <Route path='add' element={<NewCategory/>}/>
+            {/*<Route path='add' element={<NewCategory/>}/>*/}
             <Route path='edit/:id'element={<EditCategory/>}/>
           </Route>
           <Route path='products' element={<PageProduct/>}>

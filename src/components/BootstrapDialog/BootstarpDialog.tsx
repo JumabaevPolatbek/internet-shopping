@@ -10,7 +10,7 @@ export interface DialogTitleProps {
     onClose: () => void;
   }
 
-export function BootstrapDialogTitle(props: DialogTitleProps) {
+export default function BootstrapDialogTitle(props: DialogTitleProps) {
     const { children, onClose, ...other } = props;
   
     return (

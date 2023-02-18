@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { pathApi } from "..";
-import {signIn} from "../../reducer/authSlice";
+// import {signIn} from "../../reducer/authSlice";
 
 type User={
     username:string,

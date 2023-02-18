@@ -7,8 +7,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 
 import Typography from '@mui/material/Typography';
-import { BootstrapDialogTitle } from './BootstarpDialog';
-import { ChangeFormPerson } from './ChangeFormPerson';
+import  BootstrapDialogTitle  from './BootstarpDialog';
+import { ChangeFormPerson } from '../../pages/Cabinet/PersonalData/ChangeFormPerson';
+import {NewCategory} from "../../pages/Category";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -49,10 +50,16 @@ export default function CustomizedDialogs({open,setOpen,id,username}:Props) {
             //   }}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          {username}  change
+          {username !== 'category'
+              ? username + ' change'
+              : 'Add category'}
         </BootstrapDialogTitle>
         <DialogContent dividers>
-                  <ChangeFormPerson open={ open} setOpen={setOpen} id={id} />
+            {username !== 'category'
+                ?<ChangeFormPerson open={ open} setOpen={setOpen} id={id} />
+                :<NewCategory open={open} setOpen={setOpen}/>
+            }
+
         </DialogContent>
       </BootstrapDialog>
     </div>
