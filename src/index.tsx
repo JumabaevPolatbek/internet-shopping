@@ -7,12 +7,17 @@ import { store } from './store';
 import { BrowserRouter } from 'react-router-dom';
 import { ProSidebarProvider } from 'react-pro-sidebar';
 import { CookiesProvider } from 'react-cookie';
+// notification
+import {ToastContainer,toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
+  <Provider store={store}>
     <CookiesProvider>
-      <Provider store={store}>
+        <ToastContainer/>
         <BrowserRouter>
 
             <ProSidebarProvider>
@@ -20,8 +25,8 @@ root.render(
             </ProSidebarProvider>
 
         </BrowserRouter>
-      </Provider>
     </CookiesProvider>
+      </Provider>
 );
 
 

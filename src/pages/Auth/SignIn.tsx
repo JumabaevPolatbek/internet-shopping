@@ -1,31 +1,21 @@
-import {Button, TextField, Typography} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { User } from "../../store/models/authUser";
 import {useSigInMutation} from '../../store/api/auth'
-import { Cookies } from "react-cookie";
-import { Navigate } from "react-router-dom";
-import {ToastContainer,toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'
+import {Navigate, useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 type Props = {
     display: boolean,
     setDisplay :React.Dispatch<React.SetStateAction<boolean>>
 }
 export function SignIn({display,setDisplay}:Props) {
     const [login, result] = useSigInMutation()
-    const cookie = new Cookies()
-
-
-
-    const { handleSubmit,  formState: { errors }, register } = useForm<User>()
+    const navigate = useNavigate()
+    const { handleSubmit,  formState, register ,getValues} = useForm<User>()
     
     const btnSubmit: SubmitHandler<User> = (data) => login(data)
-    
-    if (result.data?.access_token) {
-        cookie.set('token', result.data?.access_token, { path: '/' })
-        return <Navigate to='/' replace/>
-
-    } else {
-        toast("Логин или парол неверный",{
+    if(result.isSuccess){
+        toast(`Welcome ${getValues('username')}`,{
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -35,9 +25,8 @@ export function SignIn({display,setDisplay}:Props) {
             progress: undefined,
             theme: "light",
         })
+        navigate('/',{replace:true})
     }
-
-
     return(
         <div
             className={` py-2 ${display?'flex':'hidden'} flex-col justify-between items-center duration-200`}
@@ -66,7 +55,6 @@ export function SignIn({display,setDisplay}:Props) {
                     type="submit"
                     // disabled={useFormState({control}).isValid}
                 >Sign In</Button>
-                {result.isError && <ToastContainer/>}
             </form>
             <div>
                 <span className="mr-2">{ display?'Нет аккаунта?':''}</span>

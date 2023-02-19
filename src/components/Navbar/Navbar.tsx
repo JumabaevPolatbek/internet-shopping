@@ -7,6 +7,7 @@ import { SearchProduct } from "../Search";
 import MenuActions from "../MenuActions";
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import {Cookies} from "react-cookie";
+// import {getCookie} from "../../utils/getCookie";
 
 
 export function Navbar() {
@@ -15,7 +16,11 @@ export function Navbar() {
         setDisplayMenu(displayMenu=>!displayMenu)
     }
     const cookie = new Cookies()
-    const token:boolean=cookie.get('token')===undefined?false:true
+    // const [token,setToken]=React.useState(false)
+    // if(getCookie(cookie)){
+    //     setToken(true)
+    // }
+    // console.log(state)
     return (
         <div className="container mx-auto px-[5px] md:px-[15px] flex items-center justify-between mt-3">
             <div className="flex items-center flex-col xl:flex-row w-full">
@@ -38,7 +43,7 @@ export function Navbar() {
                         </div>
                     </div>
                     <SearchProduct/>
-                    <MenuActions token={token}/>
+                    <MenuActions />
                 </div>
             </div>
         </div>

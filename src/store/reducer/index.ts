@@ -11,6 +11,7 @@ import { attributes } from './addAtrribute';
 import { attributeActions } from '../api/attributes';
 import { authUser } from '../api/auth';
 import {cartProduct} from "./cartProduct";
+import {tokenSlice} from "./tokenSlice";
 
 export const rootReducer = combineReducers({
     [actionsCountrie.reducerPath]: actionsCountrie.reducer,
@@ -24,6 +25,7 @@ export const rootReducer = combineReducers({
     stateAttribute:attributes.reducer,
     [attributeActions.reducerPath]:attributeActions.reducer,
     [authUser.reducerPath]:authUser.reducer,
-    cartProduct:cartProduct.reducer
+    cartProduct:cartProduct.reducer,
+    token:tokenSlice.reducer
 });
 export type RootState = ReturnType<typeof rootReducer>

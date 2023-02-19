@@ -1,13 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { pathApi } from "..";
-// import {signIn} from "../../reducer/authSlice";
+import {login} from "../../reducer/tokenSlice";
+import {useCookies} from 'react-cookie'
 
 type User={
     username:string,
     password:string
 }
 type Token={
-    access_token:string|null
+    access_token:string
 }
 export const authUser=createApi({
     reducerPath:'authUser',
@@ -26,16 +27,17 @@ export const authUser=createApi({
                         'Content-type':'application/x-www-form-urlencoded;charset=UTF-8'
                     },
                     body,
-                    // credentials:'include'
                 }
             },
-            // async onQueryStarted(data,{dispatch,queryFulfilled,getState}){
-            //     const {data:accesToken,meta}=await queryFulfilled
-            //     try{
-            //         dispatch(signIn({username:data.username,token:`${accesToken.access_token}`}))
-            //     }catch(e){
-            //     }
-            // },
+            async onQueryStarted(data,{dispatch,queryFulfilled,getState}){
+                const {data:accesToken,meta}=await queryFulfilled
+                // const [cookies,setCookie]=useCookies(['token'])
+                try{
+                    dispatch(login(accesToken.access_token))
+                    // setCookie('token',accesToken.access_token)
+                }catch(e){
+                }
+            },
             invalidatesTags:['login']
         })
     })
