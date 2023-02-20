@@ -2,19 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a101907b-e942-44ed-8c79-ed3ee4d03b43" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ButtonPerson/ButtonPerson.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ButtonPerson/ButtonPerson.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MenuActions/MenuActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MenuActions/MenuActions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Auth/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Auth/SignIn.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/api/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/api/auth/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducer/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducer/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/getCookie.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/getCookie.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/requireAdmin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/requireAdmin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BootstrapDialog/CustomizedDialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BootstrapDialog/CustomizedDialogs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Category/Add/NewCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Category/Add/NewCategory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Category/DetailCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Category/DetailCategory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Category/Edit/EditCategories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Category/Edit/EditCategories.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Category/Edit/SelectEditCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Category/Edit/SelectEditCategory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Category/ItemCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Category/ItemCategory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Product/Add/NewProduct.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Product/Add/NewProduct.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Product/DetailProducts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Product/DetailProducts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/api/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/api/category/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -47,22 +46,22 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/internet-shopping/src/utils&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/polat/internet-shopping/src/pages/Users&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\internet-shopping\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\polat\\internet-shopping\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\internet-shopping\src\utils" />
+      <recent name="D:\polat\internet-shopping\src\pages\Users" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\internet-shopping\src" />
+      <recent name="D:\polat\internet-shopping\src\components\BootstrapDialog" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -77,10 +76,11 @@
       <workItem from="1671714950519" duration="389000" />
       <workItem from="1671810918899" duration="595000" />
       <workItem from="1672927218007" duration="81000" />
-      <workItem from="1676655413774" duration="2004000" />
-      <workItem from="1676657453982" duration="4819000" />
-      <workItem from="1676801936504" duration="542000" />
-      <workItem from="1676802509945" duration="9334000" />
+      <workItem from="1676627550367" duration="2517000" />
+      <workItem from="1676693764118" duration="190000" />
+      <workItem from="1676694020496" duration="66000" />
+      <workItem from="1676694168029" duration="8219000" />
+      <workItem from="1676886758526" duration="6573000" />
     </task>
     <servers />
   </component>
@@ -103,14 +103,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/pages/Auth/Auth.tsx</url>
-          <line>19</line>
+          <line>14</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/App.tsx</url>
-          <line>5</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

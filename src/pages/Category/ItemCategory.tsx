@@ -12,6 +12,9 @@ import { Box } from "@mui/system";
 import { useGetCategoryAttrQuery } from "../../store/api/attributes";
 import { Category } from "../../store/models/categories";
 import { ItemsAttr } from "./Attributes/ItemsAttr";
+import {toast} from "react-toastify";
+import CustomizedDialogs from "../../components/BootstrapDialog/CustomizedDialogs";
+import {EditCategory} from "./Edit/EditCategories";
 
 
 const ItemCategory:React.FC=(props:Partial<Category>)=>{
@@ -19,7 +22,19 @@ const ItemCategory:React.FC=(props:Partial<Category>)=>{
     const [delCategory,result]=useDeleteCategoryMutation()
     const [open,setOpen]=React.useState(false)
     const [attr,setAttr]=React.useState(false)
-    const {data}=useGetCategoryAttrQuery(id)
+    const [modal,setModal]=React.useState(false)
+    const handleDelCategory = async ()=> await delCategory(id).then((response)=>{
+        toast.success(`${name} category have remove!`,{
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        })
+    })
     return (
         <>
         <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -41,20 +56,18 @@ const ItemCategory:React.FC=(props:Partial<Category>)=>{
             <TableCell>
                 <div className='flex items-center'>
                               <Attributes open={attr} setAttr={setAttr} idCategory={id}/>
-                          <Link to={
-                          //   location.pathname.includes('/admin/category')?
-                          // `category/${category.id}`:
-                          // `edit/${category.id}`
-                          `edit/${id}`
-                          }>
-                              <IconButton color='secondary'>
+
+                              <IconButton
+                                  color='secondary'
+                                  onClick={()=>setModal(true)}
+                              >
                                 <SettingsIcon/>
                               </IconButton>
-                          </Link>
-                              <IconButton 
-                              onClick={()=>{
-                                delCategory(id) 
-                                setOpen(open=>!open)}}
+                                  <CustomizedDialogs open={modal} setOpen={setModal}>
+                                      <EditCategory idCategory={id} setOpen={setModal}/>
+                                  </CustomizedDialogs>
+                              <IconButton
+                              onClick={handleDelCategory}
                               color='primary'
                               >
                                 <DeleteIcon/>
@@ -74,7 +87,6 @@ const ItemCategory:React.FC=(props:Partial<Category>)=>{
                     </Collapse>
             </TableCell>
         </TableRow>
-        {result.isSuccess && <Notification value='Успешно удалень!' open={open} setOpen={setOpen}/>}
         </>
     )
 }

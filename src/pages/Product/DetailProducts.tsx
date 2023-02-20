@@ -17,6 +17,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Notification from '../../components/Notification';
 import { SearchProduct } from '../../components/Search';
 import TextIncreaseIcon from '@mui/icons-material/TextIncrease';
+import CustomizedDialogs from "../../components/BootstrapDialog/CustomizedDialogs";
+import {NewAddProduct} from "./Add/NewProduct";
+import {toast} from "react-toastify";
 
 const arrColumn=['Фото','Имя устройства','Описание','Категория','Цена','Количество','Дисконт','Действия']
 
@@ -35,22 +38,55 @@ export  function DetailProducts() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const handleDelProduct = async (id:number,name:string)=> await delProduct(id)
+      .then(response=>{
+        toast.success(`${name} has added`,{
+          position: "bottom-left",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      })
+      .catch(error=>{
+        toast.error(`${error.data.detail}`,{
+          position: "bottom-left",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      })
+
   const [open,setOpen]=React.useState(false)
-  const [attr,setAttr]=React.useState(false)
+
   return (
     <div className='flex flex-col items-center p-[15px]'>
       {
-        location.pathname.includes('admin/products') && 
+        location.pathname.includes('admin/products') &&
+          <>
         <div className='flex justify-between w-full'>
           <Button
               variant='contained'
               color='success'
               className='self-start'
+              onClick={()=>setOpen(true)}
             >
-              <Link to={'add'}>Create Product</Link>
+              Create Product
             </Button>
             <SearchProduct/>
         </div>
+            <CustomizedDialogs open={open} setOpen={setOpen}>
+              <NewAddProduct setOpen={setOpen}/>
+            </CustomizedDialogs>
+          </>
       }
       
       <Paper sx={{ width: '100%',margin:'10px 0 0 0' }}>
@@ -89,14 +125,7 @@ export  function DetailProducts() {
                       <TableCell>{product.discount}</TableCell>
                       <TableCell>
                         <div className='flex items-center'>
-                            {/* <Tooltip title="Add Attribute" arrow>
-                              <IconButton 
-                              onClick={()=>setAttr(true)}
-                              color='error'> */}
-                                {/* <TextIncreaseIcon/> */}
-                                {/* <Attributes open={attr} setAttr={setAttr}/> */}
-                              {/* </IconButton> */}
-                            {/* </Tooltip> */}
+
                             <Tooltip title="Edit Product" arrow>
                           <Link to={location.pathname.includes('/admin/products')
                           ?`edit/${product.id}`:
@@ -109,10 +138,8 @@ export  function DetailProducts() {
                             </Tooltip>
                             <Tooltip title="Delete Product" arrow>
                               <IconButton 
-                              onClick={()=>{
-                                delProduct(product.id) 
-                                setOpen(open=>!open)}}
                               color='primary'
+                              onClick={()=>handleDelProduct(product.id,product.name)}
                               >
                                 <DeleteIcon/>
                               </IconButton>
@@ -134,8 +161,7 @@ export  function DetailProducts() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      {result.isSuccess && <Notification value='Продукт удалено' open={open} setOpen={setOpen}/>}
-      {result.isError && <Notification value='Ошибка' open={open} setOpen={setOpen}/>}
+
     </div>
   );
 }

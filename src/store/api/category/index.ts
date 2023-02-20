@@ -28,7 +28,7 @@ export const actionsCategories = createApi({
             query: () => 'categories',
             transformResponse: (response:Categories)=>response.filter(categor=>categor.children_category?.length===0)
         }),
-        getCategory:builder.query<Category,string|undefined>({
+        getCategory:builder.query<Category,number|undefined>({
             query: (id) => `categories/${id}`,
             providesTags:['categories']
         }),
@@ -48,7 +48,7 @@ export const actionsCategories = createApi({
             }),
             invalidatesTags:['categories']
         }),
-        updateCategory: builder.mutation<Category, { idCategory:string|undefined,updateCategory:Partial<NewCategories>}>({
+        updateCategory: builder.mutation<Category, { idCategory:number|undefined,updateCategory:Partial<NewCategories>}>({
             query({idCategory,updateCategory}) {
                 return {
                     url: `categories/${idCategory}`,

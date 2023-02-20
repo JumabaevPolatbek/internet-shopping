@@ -10,25 +10,24 @@ import { NewCategories } from '../../../store/models/categories';
 
 type Props={
   setValue:UseFormSetValue<NewCategories>
+  id?:number
 }
-export const  SelectEditCategory=React.forwardRef<HTMLSelectElement,Props>(({setValue},ref)=> {
+export const  SelectEditCategory=React.forwardRef<HTMLSelectElement,Props>(({setValue,id},ref)=> {
   const {data}=useGetCategoriesQuery()
   const [category, setCategory] = React.useState('');
   const handleChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value);
     setValue('parent_category_id',+event.target.value)
   };
-
   return (
     <Box sx={{ minWidth: 120 ,marginTop:2}}>
-      {/* <FormControlLabel inputRef={ref}> */}
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label" >Категория</InputLabel>
+        <InputLabel id="demo-simple-select-label" >Parent category</InputLabel>
         <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={category}
-            label="category"
+            label="Parent category"
           onChange={handleChange}
           inputRef={ref}
           >
@@ -40,7 +39,6 @@ export const  SelectEditCategory=React.forwardRef<HTMLSelectElement,Props>(({set
             })}
           </Select>
       </FormControl>
-      {/* </FormControlLabel> */}
     </Box>
   );
 })

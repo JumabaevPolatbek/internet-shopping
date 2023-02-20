@@ -1,48 +1,64 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import {  NewProduct, Product } from "../../../store/models/products"
 import { Button, TextField } from "@mui/material"
-import { useAddNewProductMutation, useGetSingleProductQuery } from "../../../store/api/product"
+import { useAddNewProductMutation } from "../../../store/api/product"
 import CategorySelect from "../../../components/Category"
-import Notification from "../../../components/Notification"
 import React from "react"
-import { useLocation, useParams } from "react-router-dom"
-import { useAppSlector } from "../../../utils/hook"
+import {toast} from "react-toastify";
 
-export function NewAddProduct() {
+type Props = {
+    setOpen:React.Dispatch<React.SetStateAction<boolean>>
+}
+
+
+export function NewAddProduct({setOpen}:Props) {
     const [addProduct, result] = useAddNewProductMutation()
-    // const getIdProduct=useAppSlector(state=>state.editProduct)
-    const location = useLocation()
-    const {id} = useParams()
-    const {data}=useGetSingleProductQuery(id)
-    const initialState: Product = {
-        name: '',
-        price: 0,
-        description: '',
-        id: 0,
-        quantity: 0,
-        discount: 0,
-        images: [{
-            image_path: '',
-            product_id: 0,
-            product_variants_id: 0,
-            id:0
-        }],
-        category: {
-            name: '',
-            id: 0,
-            parent_category: null,
-            children_category:[]
-        }
+    const initialState: NewProduct = {
+        product:{
+            name:'',
+            category_id:1,
+            price:0,
+            quantity:0,
+            description:'',
+            discount:0
+        },
+        product_images:[
+            {
+                image_path:''
+            }
+        ]
     }
     const { register, handleSubmit, control, setValue, reset } = useForm<NewProduct>({
-        // defaultValues: 
+        defaultValues:initialState
     })
-    const formSubmit: SubmitHandler<NewProduct> = (data) => addProduct(data)
-    const [open,setOpen]=React.useState(false)
-    const handleOpen=()=>{
-        setOpen(open=>!open)
-        // result.isSuccess && reset()
-    }
+    const formSubmit: SubmitHandler<NewProduct> = async (data) => await addProduct(data)
+        .unwrap()
+        .then((response)=>{
+            toast.success('Product added',{
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+            setTimeout(()=>setOpen(false),3000)
+        })
+        .catch(error=>{
+            toast.error(`${error.data.detail}`,{
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+        })
+
     return(
         <>
         <div className="w-full h-[500px] flex justify-center items-center">
@@ -94,16 +110,14 @@ export function NewAddProduct() {
                     required
                 />
                 <Button 
-                onClick={handleOpen}
-                variant="contained" 
+                variant="contained"
                 color="success" 
                 type="submit" >
                     Добавить
                 </Button>
             </form>
         </div>
-        {result.isSuccess && <Notification value="Продукт успешьно добавлень" open={open} setOpen={setOpen}/>}
-        {result.isError && <Notification value="Ошибка" open={open} setOpen={setOpen}/>}
+
         </>
     )
 }

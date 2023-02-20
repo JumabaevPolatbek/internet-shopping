@@ -60,11 +60,11 @@ function App() {
           <Route path='category' element={<CategorieLayout/>}>
             <Route index element={<DetailCategory/>}/>
             {/*<Route path='add' element={<NewCategory/>}/>*/}
-            <Route path='edit/:id'element={<EditCategory/>}/>
+            {/*<Route path='edit/:id'element={<EditCategory/>}/>*/}
           </Route>
           <Route path='products' element={<PageProduct/>}>
             <Route index element={<DetailProducts/>}/>
-            <Route path='add' element={<NewAddProduct/>}/>
+            {/*<Route path='add' element={<NewAddProduct/>}/>*/}
             <Route path='edit/:id' element={<EditProduct/>}/>
         </Route>
         <Route path='country' element={<CountryLayout/>}>
