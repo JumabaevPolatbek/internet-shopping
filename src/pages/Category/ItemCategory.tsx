@@ -3,13 +3,10 @@ import { Collapse, IconButton, Table, TableBody, TableCell, TableHead, TableRow,
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Attributes } from "./Attributes/Attributes";
-import { Link } from "react-router-dom";
 import SettingsIcon from '@mui/icons-material/Settings';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDeleteCategoryMutation } from "../../store/api/category";
-import Notification from '../../components/Notification';
 import { Box } from "@mui/system";
-import { useGetCategoryAttrQuery } from "../../store/api/attributes";
 import { Category } from "../../store/models/categories";
 import { ItemsAttr } from "./Attributes/ItemsAttr";
 import {toast} from "react-toastify";
@@ -23,7 +20,7 @@ const ItemCategory:React.FC=(props:Partial<Category>)=>{
     const [open,setOpen]=React.useState(false)
     const [attr,setAttr]=React.useState(false)
     const [modal,setModal]=React.useState(false)
-    const handleDelCategory = async ()=> await delCategory(id).then((response)=>{
+    const handleDelCategory = async () => await delCategory(id).then((response)=>{
         toast.success(`${name} category have remove!`,{
             position: "bottom-left",
             autoClose: 3000,

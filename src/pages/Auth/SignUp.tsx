@@ -3,6 +3,9 @@ import React from "react";
 import { useForm, SubmitHandler,Controller } from 'react-hook-form';
 import { NewUserRoot } from "../../store/models/userModels";
 import {useAddNewUserMutation} from '../../store/api/user'
+import {toast} from "react-toastify";
+import {useSigInMutation} from "../../store/api/auth";
+import {useNavigate} from "react-router-dom";
 type Props = {
     display: boolean,
     setDisplay :React.Dispatch<React.SetStateAction<boolean>>
@@ -11,8 +14,10 @@ export function SignUp({ display, setDisplay }: Props) {
 	
 	const [cpass,setCpass]=React.useState('')
 	const confirmPass = React.useRef({})
-	const [signUp,result]=useAddNewUserMutation()
-	const { handleSubmit, control, formState, watch, register } = useForm<Omit<NewUserRoot,'user.is_admin'>>({
+	const navigate = useNavigate()
+	const [signUp,resultSing]=useAddNewUserMutation()
+	const [login,resultAuth]=useSigInMutation()
+	const { handleSubmit, control,  watch, formState } = useForm<Omit<NewUserRoot,'user.is_admin'>>({
 		defaultValues: {
 			user: {
 				username: '',
@@ -35,14 +40,52 @@ export function SignUp({ display, setDisplay }: Props) {
 			}]
 		}
 	})
-    const { errors } = formState
+	const {errors}=formState
     confirmPass.current=watch('user.password',"")
-    const btnSubmit: SubmitHandler<Omit<NewUserRoot,"user.is_admin">> = (
+	const sign = async (name:string,password:string) => await login({
+		username:name,
+		password
+	})
+		.unwrap()
+		.then(response=>navigate('/',{replace:true}))
+		.catch(error=>toast.error(`${error.data.detail}`,{
+			position: "top-right",
+			autoClose: 3000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: "colored",
+		}))
+
+    const btnSubmit: SubmitHandler<Omit<NewUserRoot,"user.is_admin">> = async (
 		data
-	) => signUp(data);
-	if (result.isSuccess) {
-		setDisplay(true)
-	}
+	) => await signUp(data)
+		.unwrap()
+		.then(response=>{
+			toast.success(`Добро пожаловать ${response.user.username}`,{
+				position: "top-right",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "colored",
+			})
+			setTimeout(()=>sign(response.user.username,data.user.password),2000)
+		})
+		.catch(error=>toast.error(`${error.data.detail}`,{
+		position: "top-right",
+		autoClose: 3000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: true,
+		draggable: true,
+		progress: undefined,
+		theme: "colored",
+	}))
 
     return (
 		<div
@@ -52,7 +95,6 @@ export function SignUp({ display, setDisplay }: Props) {
 		>
 			<form
 				onSubmit={handleSubmit(btnSubmit)}
-				// onChange={handleSubmit(btnSubmit)}
 			>
 				<Controller
 					control={control}
@@ -127,49 +169,13 @@ export function SignUp({ display, setDisplay }: Props) {
 							'Парол не совпадаеть!' :
 							''}
 				/>
-				{/* <Controller
-                    control={control}
-					{...register('user.confirmPass')}
-					rules={{
-						validate: (value) =>
-							value === confirmPass.current ||
-							'Пароли не совпадает!',
-					}}
-					render={() => (
-						<TextField
-							label='Confirm Password'
-							type='password'
-							variant='outlined'
-							sx={{
-								marginTop: 2,
-								width: '100%',
-							}}
-                            helperText={errors.user?.confirmPass?.message}
-						/>
-					)}
-				/> */}
-				{/* <Controller
-                    control={control}
-                    name="email"
-                    rules={{
-                        required:'Обьязательное поля'
-                    }}
-                    render={({ field:{onChange,value} }) => {
-                        return <TextField
-                                label="Email"
-                                variant="outlined"
-                                type="email"
-                                        sx={{ marginTop: 2, width: '100%' }}
-                                        onChange={onChange}
-                                        value={value?value:''}
-                            />
-                    }}/> */}
+
 				<Button
 					variant='contained'
 					color='error'
 					sx={{ marginTop: 2, width: '100%' }}
 					type='submit'
-					// disabled={useFormState({control}).isValid}
+					disabled={resultAuth.isLoading}
 				>
 					Sign Up
 				</Button>

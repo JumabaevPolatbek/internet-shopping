@@ -21,7 +21,7 @@ export const RequireAdmin:React.FC<Props>=({children})=> {
             dispatch(login(cookie.get('token')))
         }
     },[])
-    if(decode.is_admin!==1){
+    if(decode.is_admin!==1 ){
         return <Navigate to='/' replace={true}/>
     }
     return (

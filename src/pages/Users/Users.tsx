@@ -1,11 +1,13 @@
 import  React from 'react'
 import { Button, Table, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material";
-import Detail from "../../components/Detail";
 import { useGetAllUsersQuery } from "../../store/api/user"
 import CircularProgress from '@mui/material/CircularProgress';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { SearchUser } from '../../components/Search';
+import {DetailUser} from "./DetailUser";
+import CustomizedDialogs from "../../components/BootstrapDialog/CustomizedDialogs";
+import {NewUser} from "./NewUser/NewUser";
 
 
 export function Users() {
@@ -20,15 +22,21 @@ export function Users() {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+    const [open,setOpen]=React.useState(false)
     return(
         <div className="container mx-auto flex flex-col py-2">
             {location.pathname.includes('admin/users') && 
                 <div className='w-full flex items-center justify-between px-[15px] py-3'>
-                    <Link to={'add'}>
-                        <Button variant='contained' color='success'>
+                        <Button
+                            variant='contained'
+                            color='success'
+                            onClick={()=>setOpen(true)}
+                        >
                             Add User
                         </Button>
-                    </Link>
+                    <CustomizedDialogs open={open} setOpen={setOpen}>
+                        <NewUser setOpen={setOpen}/>
+                    </CustomizedDialogs>
                     <SearchUser/>
                 </div>
             }
@@ -63,7 +71,7 @@ export function Users() {
                         {!data && <CircularProgress />}
                 
                 {data?.map((user) => {
-                    return <Detail key={user.id} {...user}/>
+                    return <DetailUser key={user.id} {...user}/>
                 })}
                     </Table>
                 </TableContainer>

@@ -10,9 +10,8 @@ type Props = {
 export const RequireAuth:React.FC<Props>=({ children })=> {
     const cookie = new Cookies()
     const location = useLocation()
-    const navigate = useNavigate()
     if (!cookie.get('token')) {
-        return <Navigate to='login' state={{from:location}} replace/>
+        return <Navigate to='/login' state={{from:location}} replace/>
     }
     return (
         <>

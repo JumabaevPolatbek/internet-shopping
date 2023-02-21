@@ -1,21 +1,52 @@
 import React from "react"
-import { Controller, useForm, SubmitHandler } from "react-hook-form"
-import { NewCountry } from "../../store/models/countries"
+import {  useForm, SubmitHandler } from "react-hook-form"
+import {Countrie, NewCountry} from "../../store/models/countries"
 import TextField from "@mui/material/TextField"
 import { useAddNewCountrieMutation,useGetAllCountriesQuery} from "../../store/api/country"
 import { Button } from "@mui/material"
-import Notification from '../../components/Notification'
+import {toast} from "react-toastify";
 
-export function EditCountry() {
+type Props={
+    setOpen:React.Dispatch<React.SetStateAction<boolean>>,
+    country:Countrie
+}
+
+
+export function EditCountry({setOpen,country}:Props) {
+    const {country_name}=country
     const [addCountry,result]=useAddNewCountrieMutation()
     const { handleSubmit, control, register, formState } = useForm<NewCountry>({
-        mode:'onSubmit'
+        mode:'onSubmit',
+        defaultValues:{
+            country_name,
+        }
     })
-    const [open, setOpen] = React.useState(false)
-    const formSubmit: SubmitHandler<NewCountry> = (data) => addCountry(data)
-    const handleOpen = () => {
-        setOpen(open=>!open)
-    }
+    const formSubmit: SubmitHandler<NewCountry> = async (data) => await addCountry(data)
+        .unwrap()
+        .then(response=>{
+            toast.success(`${country_name} успешьно изменен`,{
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+            setTimeout(()=>setOpen(false),2000)
+        })
+        .catch(error=>toast.error(`${error.data.detail}`,{
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        }))
+
     return (
         <div className="w-[500px] h-[400px] flex justify-center items-center  border rounded self-center">
             <form
@@ -29,7 +60,6 @@ export function EditCountry() {
                             value: 3,
                             message:'Минимум 3 симбола'
                         },
-                        value:'Uzbekistan'
                     })}
                     type="text"
                     label="Страна"
@@ -41,14 +71,12 @@ export function EditCountry() {
                     variant="contained"
                     type="submit"
                     className="mt-3"
-                    // disabled={!formState.isValid}
-                    onClick={handleOpen}
+                    disabled={result.isLoading}
                 >
                     Add
                 </Button>
             </form>
-            {result.isSuccess && <Notification value="Страна успешно добавлено" open={open} setOpen={setOpen} />}
-            {result.isError && <Notification value="Ошибка" open={ open } setOpen={setOpen} />}
+
         </div>
     )
 }

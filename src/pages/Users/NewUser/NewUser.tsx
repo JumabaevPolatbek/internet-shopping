@@ -7,8 +7,13 @@ import { NewUserRoot } from "../../../store/models/userModels"
 import { NewUserSelect } from "./NewUserSelect";
 import { NewUserTypePhone } from "./NewUserTypePhone";
 import Notification from "../../../components/Notification"
+import {toast} from "react-toastify";
 
-export function NewUser() {
+type Props={
+    setOpen:React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export function NewUser({setOpen}:Props) {
     const [addUser,result] = useAddNewUserMutation()
     const initValue:NewUserRoot = {
         user:{
@@ -32,21 +37,38 @@ export function NewUser() {
             country_id:1
         }
     }
-    const [open,setOpen]=React.useState(false)
-    // const {data}=useGetAllUsersQuery()
     const {register,handleSubmit,control,setValue,reset,formState}=useForm<NewUserRoot>({
         defaultValues: initValue,
         mode:'onChange'
     });
 
     // Добавление пользовтеля
-    const formSubmit: SubmitHandler<NewUserRoot> = (data) => addUser(data)
-    const handleOpenAlert = ()=>{
-        setOpen(open=>!open)
-        if(result.isSuccess){
-            reset(initValue)
-        }
-    }
+    const formSubmit: SubmitHandler<NewUserRoot> = async (data) => await addUser(data)
+        .unwrap()
+        .then(response => {
+            toast.success(`${response.user.username} успешьно добавлен!`,{
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+            setTimeout(()=>setOpen(false),2000)
+        })
+        .catch(error=>toast.error(`${error.data.detail}`,{
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        }))
+
     return(
         <>
         <div className="w-full h-[400px] flex justify-center items-center">
@@ -68,9 +90,6 @@ export function NewUser() {
                                             if (value.match(/[а-яА-я]/)) {
                                                 return 'Имя не можеть содержать русский буквы'
                                             }
-                                            // if(data?.find(user=>user.username===value)){
-                                            //     return 'Это имя пользователя уже занято'
-                                            // }
                                             return true
                                         }
                                     }) }
@@ -136,13 +155,7 @@ export function NewUser() {
                             type="text"
                             label="Город"
                         />
-                            {/* <select {...register('user_address.country_id')}>
-                                {data?.map(country => {
-                                    return <option key={country.country_name} value={country.id}>
-                                        {country.country_name}
-                                    </option>
-                                })}
-                            </select> */}
+
                             <Controller
                                 name="user_address.country_id"
                                 control={control}
@@ -158,13 +171,7 @@ export function NewUser() {
                                     type="text"
                                     label="Телефон:"
                                 />
-                                {/* <select {...register('user_phones.0.type')}>
-                                    {['mobile', 'work', 'home'].map((type,index) => {
-                                        return <option key={type} value={type}>
-                                                {type}
-                                        </option>
-                                    })}
-                                </select> */}
+
                                 <Controller
                                     name={register('user_phones.0.type').name}
                                     control={control}
@@ -177,16 +184,14 @@ export function NewUser() {
                     </div>
                 </div>
                 <Button 
-                onClick={handleOpenAlert}
-                variant="contained" 
+                variant="contained"
                 color="success" 
                 type="submit"
-                disabled={!formState.isValid}
+                disabled={result.isLoading}
                 >Добавить</Button>
             </form>
         </div>
-        {result.isSuccess && <Notification value="Пользовател добавлен" open={open} setOpen={setOpen}/>}
-        {result.isError && <Notification value="Ошибка" open={open} setOpen={setOpen}/>}
+
         </>
     )
 }

@@ -10,14 +10,13 @@ import Dashboard from './pages/Dashboard';
 //orders
 import  Orders  from './pages/Orders';
 //products
-import  {NewAddProduct, PageProduct, DetailProducts, EditProduct} from './pages/Product/';
+import  { DetailProducts} from './pages/Product/';
 //users
-import {Users,NewUser,EditUser,User} from './pages/Users';
+import {Users} from './pages/Users';
 //category
-import  {CategorieLayout,DetailCategory,NewCategory}  from './pages/Category';
-import { EditCategory } from './pages/Category/Edit/EditCategories';
+import  {DetailCategory}  from './pages/Category';
 //country
-import { CountryLayout, DetailCountry, NewCountrie } from './pages/Country';
+import { Country } from './pages/Country';
 //cabinet
 import { RequireAdmin } from './utils/requireAdmin';
 import { LayoutPerson } from './pages/Cabinet/LayoutCabinet';
@@ -46,35 +45,21 @@ function App() {
                 </CheckAuth>} />
         <Route path='*' element={<NotFound/>}/>
       </Route>
-      <Route path='admin' element={
+    <Route path='admin' element={
+      <RequireAuth>
         <RequireAdmin>
           <Admin />
           </RequireAdmin>
-      }>
+      </RequireAuth>
+  }>
           <Route index element={<Dashboard/>}/>
-        <Route path='users' element={<User />}>
-            <Route index element={<Users/>}/>
-            <Route path='edit/:id' element={<EditUser/>}/>
-            <Route path='add' element={<NewUser />} />
-          </Route>
-          <Route path='category' element={<CategorieLayout/>}>
-            <Route index element={<DetailCategory/>}/>
-            {/*<Route path='add' element={<NewCategory/>}/>*/}
-            {/*<Route path='edit/:id'element={<EditCategory/>}/>*/}
-          </Route>
-          <Route path='products' element={<PageProduct/>}>
-            <Route index element={<DetailProducts/>}/>
-            {/*<Route path='add' element={<NewAddProduct/>}/>*/}
-            <Route path='edit/:id' element={<EditProduct/>}/>
-        </Route>
-        <Route path='country' element={<CountryLayout/>}>
-          <Route index element={<DetailCountry />} />
-          <Route path='add' element={<NewCountrie />} />
-          <Route path='edit/:id' element={<NewCountrie />} />
-        </Route>
+          <Route path='users' element={<Users />}/>
+          <Route path='category' element={<DetailCategory/>}/>
+          <Route path='products' element={<DetailProducts/>}/>
+          <Route path='country' element={<Country/>}/>
           <Route path='orders' element={<Orders/>}/>
           <Route path='*' element={<NotFound />} />
-      </Route>
+    </Route>
     </Routes>
   );
 }

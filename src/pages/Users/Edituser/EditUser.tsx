@@ -1,46 +1,57 @@
 import React from "react";
-import { useUpdateUserMutation, useGetSingleUserQuery } from "../../../store/api/user";
-import { FormControlLabel, FormGroup, LinearProgress, Switch, TextField } from "@mui/material"
+import { useUpdateUserMutation } from "../../../store/api/user";
+import { FormControlLabel, FormGroup, Switch, TextField } from "@mui/material"
 import Button from "@mui/material/Button"
-import { useForm,SubmitHandler, Controller } from "react-hook-form"
+import { useForm,SubmitHandler } from "react-hook-form"
 import { UpdateUserRoot, User } from "../../../store/models/userModels";
-import { useParams } from "react-router-dom";
-import Notification from "../../../components/Notification";
 
+import {toast} from "react-toastify";
 
-export function EditUser() {
-    const {id}=useParams()
-    const { data ,isSuccess,isLoading} = useGetSingleUserQuery(id)
+type Props={
+    user:User,
+    setOpen:React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export function EditUser({user,setOpen}:Props) {
+    const {is_admin,id}=user
     const [update,result]=useUpdateUserMutation()
     const {register,handleSubmit,formState}=useForm<UpdateUserRoot>({
-        // defaultValues: {
-        //     user: {
-        //         username: data?.username,
-        //         is_admin:data?.is_admin
-        //     },
-        //     user_detail: {
-        //         first_name: data?.user_detail.first_name,
-        //         last_name: data?.user_detail.last_name,
-        //         user_image:data?.user_detail.user_image
-        //     }
-        // },
+        defaultValues:user,
         mode:'onChange'
     });
-    const [open, setOpen] = React.useState(false);
-    const btnSubmit = () => {
-        setOpen(open=>!open)
-    }
+
     // Изменение пользовтеля
-    const formSubmit: SubmitHandler<UpdateUserRoot> = (data) => update({
+    const formSubmit: SubmitHandler<UpdateUserRoot> = async (data) => await update({
         idUser: id,
         dataUser:data
     })
+        .unwrap()
+        .then(response=>{
+            toast.success(`${response.username} успешно изменен`,{
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+            setTimeout(()=>setOpen(false),2000)
+        })
+        .catch(error=>toast.error(`${error.data.detail}`,{position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",}))
     return(
         <>
             
             <div className="w-full h-[400px] flex flex-col items-center">
-                {isLoading && <LinearProgress />}
-                {isSuccess && <form
+                 <form
                 onSubmit={handleSubmit(formSubmit)}
                 className="flex flex-col justify-between h-full w-[845px] mx-auto"
             >
@@ -63,16 +74,15 @@ export function EditUser() {
                                     }) }
                                     type="text"
                                     label="Login"
-                                    value={data?.username}
                                 />
                         <FormGroup>
                             <FormControlLabel 
                             {...register('user.is_admin')}
                             sx={{
-                                color:`${data?.is_admin?'#333':'#ccc'}`
+                                color:`${is_admin?'#333':'#ccc'}`
                             }}
                                         control={<Switch
-                                            defaultChecked={data?.is_admin||false}
+                                            defaultChecked={is_admin||false}
                                         />} 
                             label="Администратор" />
                         </FormGroup>
@@ -81,31 +91,25 @@ export function EditUser() {
                             {...register('user_detail.first_name')}
                             type="text"
                                 label="Имя"
-                                value={data?.user_detail.first_name}
                         />
                         <TextField
                             {...register('user_detail.last_name')}
                             type="text"
                                 label="Фамилия"
-                                value={data?.user_detail.last_name}
                         />
                         <TextField
                             {...register('user_detail.user_image')}
                             type="text"
                                 label="Ссылька на фото"
-                                value={data?.user_detail.user_image}
                         />
                     </div>
                 </div>
                     <Button
-                        onClick={btnSubmit}
                         variant="contained"
                         color="success"
-                        disabled={!formState.isValid}
+                        disabled={result.isLoading}
                         type="submit">Изменит</Button>
-                </form>}
-            
-                {result.isSuccess && <Notification value="Пользователь успешно изменен" open={ open} setOpen={setOpen} />}
+                </form>
         </div>
         </>
     )

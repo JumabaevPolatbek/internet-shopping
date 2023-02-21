@@ -2,7 +2,7 @@ import {Button, TextField} from "@mui/material";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { User } from "../../store/models/authUser";
 import {useSigInMutation} from '../../store/api/auth'
-import {Navigate, useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 type Props = {
     display: boolean,
@@ -11,22 +11,34 @@ type Props = {
 export function SignIn({display,setDisplay}:Props) {
     const [login, result] = useSigInMutation()
     const navigate = useNavigate()
-    const { handleSubmit,  formState, register ,getValues} = useForm<User>()
+    const { handleSubmit,  register } = useForm<User>()
     
-    const btnSubmit: SubmitHandler<User> = (data) => login(data)
-    if(result.isSuccess){
-        toast(`Welcome ${getValues('username')}`,{
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
+    const btnSubmit: SubmitHandler<User> = async (data) => await login(data)
+        .unwrap()
+        .then(response=>{
+            toast.success(`Добро пожаловать ${data.username}`,{
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
+            setTimeout(()=>navigate('/',{replace:true}),2000)
         })
-        navigate('/',{replace:true})
-    }
+        .catch(error=>toast.error(`${error.data.detail}`,{
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+        }))
+
     return(
         <div
             className={` py-2 ${display?'flex':'hidden'} flex-col justify-between items-center duration-200`}
@@ -53,7 +65,7 @@ export function SignIn({display,setDisplay}:Props) {
                     color="error"
                     sx={{ marginTop: 2, width: '100%' }}
                     type="submit"
-                    // disabled={useFormState({control}).isValid}
+                    disabled={result.isLoading}
                 >Sign In</Button>
             </form>
             <div>
