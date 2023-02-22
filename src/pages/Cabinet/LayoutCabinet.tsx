@@ -2,8 +2,7 @@ import React from 'react'
 import { Link, useLocation, Outlet } from "react-router-dom";
 
 export const LayoutPerson:React.FC=()=> {
-    // const location = useLocation();
-    // console.log(location)
+
     return(
         <div className="container flex flex-col items-start mx-auto">
             <div>

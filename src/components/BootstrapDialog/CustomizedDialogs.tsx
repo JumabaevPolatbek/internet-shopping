@@ -42,7 +42,7 @@ export default function CustomizedDialogs({open,setOpen,id,username,children}:Pr
               open={open}
                 >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal for change
+          Modal
         </BootstrapDialogTitle>
         <DialogContent dividers>
 

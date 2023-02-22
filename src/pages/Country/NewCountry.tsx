@@ -5,18 +5,14 @@ import TextField from "@mui/material/TextField"
 import { useAddNewCountrieMutation, useGetSingleCountrieQuery, useUpdateCountrieMutation } from "../../store/api/country"
 import { useLocation,useParams } from "react-router-dom"
 import { Button } from "@mui/material"
-import Notification from '../../components/Notification'
 
 export function NewCountrie() {
     const location = useLocation()
     const {id}=useParams()
     const [addCountry, result] = useAddNewCountrieMutation()
     const [update, resultUpdate] = useUpdateCountrieMutation()
-    const {data}=useGetSingleCountrieQuery(id)
+    // const {data}=useGetSingleCountrieQuery(id)
     const { handleSubmit, register, formState } = useForm<NewCountry>({
-        defaultValues: location.pathname.includes('admin/country/edit') ?
-            data :
-            {},
         mode:'onSubmit'
     })
     const [open, setOpen] = React.useState(false)
@@ -62,9 +58,6 @@ export function NewCountrie() {
                     {location.pathname.includes('admin/country/edit')?'Изменит':'Добавить'}
                 </Button>
             </form>
-            {result.isSuccess && <Notification value="Страна успешно добавлено" open={open} setOpen={setOpen} />}
-            {resultUpdate.isSuccess && <Notification value="Страна успешно изменен" open={open} setOpen={setOpen} />}
-            {result.isError && <Notification value="Ошибка" open={ open } setOpen={setOpen} />}
         </div>
     )
 }

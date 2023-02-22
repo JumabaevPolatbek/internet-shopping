@@ -11,7 +11,7 @@ export const actionsCountrie = createApi({
             query: () => 'countries',
             providesTags:['countries']
         }),
-        getSingleCountrie: builder.query<Countrie, string|undefined>({
+        getSingleCountrie: builder.query<Countrie, number|undefined>({
             query: (id) => `countries/${id}`,
             providesTags:['countries']
         }),

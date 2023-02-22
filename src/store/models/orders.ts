@@ -1,11 +1,41 @@
-export type ServerOrder = Order[]
+export interface ServerResponse {
+  order: Order
+  order_details: OrderDetail[]
+}
 
 export interface Order {
-  full_name: string
-  phone_number: string
-  start_time: string
-  end_time: string
-  comment?: string
+  user_id: number
+  order_date: string
+  address_id: number
+  order_status_id: number
+}
+
+export interface OrderDetail {
+  product_id: number
+  quantity: number
+  price: number
+}
+export interface ResponseOrderStatus {
+  status: string
   id: number
 }
+export interface ResponseOrders {
+  user_id: number
+  order_date: string
+  address_id: number
+  id: number
+  order_details: OrderDetail[]
+  order_status: ResponseOrderStatus
+}
+
+
+export interface OrderDetail {
+  order_id: number
+  product_id: number
+  quantity: number
+  price: number
+}
+
+
+
 

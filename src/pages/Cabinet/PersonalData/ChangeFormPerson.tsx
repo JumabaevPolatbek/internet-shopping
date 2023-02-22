@@ -5,7 +5,6 @@ import Button from "@mui/material/Button"
 import { useForm,SubmitHandler } from "react-hook-form"
 import { UpdateUserRoot } from "../../../store/models/userModels";
 
-import Notification from "../../../components/Notification";
 
 type Props = {
     id?: number,
@@ -81,7 +80,6 @@ export function ChangeFormPerson({id,open,setOpen}:Props) {
                         type="submit">Изменит</Button>
                 </form>}
             
-                {result.isSuccess && <Notification value="Пользователь успешно изменен" open={ open} setOpen={setOpen} />}
         </div>
         </>
     )

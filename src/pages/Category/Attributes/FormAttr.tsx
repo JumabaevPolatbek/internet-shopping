@@ -6,7 +6,6 @@ import { useAddAttributeMutation } from "../../../store/api/attributes";
 import {RootAttr} from '../../../store/models/attributes'
 import { Button, IconButton, TextField, Tooltip } from "@mui/material";
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
-import Notification from "../../../components/Notification";
 
 type Props={
     modal:React.Dispatch<React.SetStateAction<boolean>>
@@ -91,7 +90,6 @@ export function FormAttr({modal,id,open}:Props){
             >
                 Save
             </Button>
-            {result.isSuccess && <Notification value='Attribute has added' open={open} setOpen={modal}/>}
         </form>
     )
 }

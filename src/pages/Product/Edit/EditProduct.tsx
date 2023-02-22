@@ -1,10 +1,8 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import {Product, UpdateProduct} from "../../../store/models/products"
-import { Box, Button, LinearProgress, TextField } from "@mui/material"
-import {  useGetSingleProductQuery, useUpdateProductMutation } from "../../../store/api/product"
-import Notification from "../../../components/Notification"
+import { Button, TextField } from "@mui/material"
+import {   useUpdateProductMutation } from "../../../store/api/product"
 import React from "react"
-import { useLocation, useParams } from "react-router-dom"
 import { SelectUpdateProduct } from "./SelectUpdateProduct"
 import {toast} from "react-toastify";
 type Props={

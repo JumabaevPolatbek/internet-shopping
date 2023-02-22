@@ -9,6 +9,7 @@ import { getAll } from "./api/all";
 import { searchValue } from "./api/search";
 import attributeActions  from "./api/attributes";
 import { authUser } from "./api/auth";
+import {ordersAction} from "./api/orders";
 
 export const store = configureStore({
     reducer: rootReducer,
@@ -21,6 +22,7 @@ export const store = configureStore({
         searchValue.middleware,
         attributeActions,
         authUser.middleware,
+        ordersAction.middleware
     )
 });
 export type RootState = ReturnType<typeof store.getState>

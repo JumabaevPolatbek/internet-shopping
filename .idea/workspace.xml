@@ -4,26 +4,40 @@
     <list default="true" id="a101907b-e942-44ed-8c79-ed3ee4d03b43" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Auth/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Auth/SignIn.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Auth/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Auth/SignUp.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Category/ItemCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Category/ItemCategory.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Country/CountryLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Country/Country.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Country/DetailCountry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Country/DetailCountry.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Country/EditCountry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Country/EditCountry.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Country/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Country/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Product/DetailProducts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Product/DetailProducts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BootstrapDialog/CustomizedDialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BootstrapDialog/CustomizedDialogs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MenuActions/MenuActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MenuActions/MenuActions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NewCategory/NewCategory.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NewCategory/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NewCountrie/NewCountrie.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NewCountrie/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NewProduct/NewProduct.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NewProduct/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NewUser/NewUser.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NewUser/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Notification/Notification.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Notification/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Product/Product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Product/Product.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SelectCountry/SelectCountry.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SelectCountry/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Cabinet/LayoutCabinet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Cabinet/LayoutCabinet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Cabinet/Orders.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Cabinet/Orders.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Cabinet/PersonalData/ChangeFormPerson.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Cabinet/PersonalData/ChangeFormPerson.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Category/Attributes/Attributes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Category/Attributes/Attributes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Category/Attributes/FormAttr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Category/Attributes/FormAttr.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Country/NewCountry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Country/NewCountry.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Layout/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Layout/Layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Orders/Orders.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Orders/Orders.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Orders/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Orders/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Product/Edit/EditProduct.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Product/Edit/EditProduct.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Product/PageProduct.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Product/Product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Product/Product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Product/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Product/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Users/Edituser/EditUser.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Users/Edituser/EditUser.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Users/NewUser/NewUser.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Users/NewUser/NewUser.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Users/User.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Users/DetailUser.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Users/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Users/Users.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Users/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Users/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/api/country/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/api/country/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/api/orders/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/api/orders/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/api/product/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/api/product/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/requireAdmin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/requireAdmin.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/requireAuth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/requireAuth.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/models/orders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/models/orders.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducer/cartProduct.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducer/cartProduct.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducer/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducer/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +105,7 @@
       <workItem from="1676801936504" duration="542000" />
       <workItem from="1676802509945" duration="9611000" />
       <workItem from="1676988439733" duration="2055000" />
-      <workItem from="1676990788327" duration="6137000" />
+      <workItem from="1676990788327" duration="32769000" />
     </task>
     <servers />
   </component>
@@ -119,14 +133,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/App.tsx</url>
-          <line>5</line>
-          <option name="timeStamp" value="2" />
+          <line>49</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/App.tsx</url>
-          <line>16</line>
+          <url>file://$PROJECT_DIR$/src/pages/Orders/AddOrderStatus.tsx</url>
+          <line>26</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

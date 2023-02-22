@@ -24,6 +24,8 @@ import { PersonalData } from './pages/Cabinet/PersonalData';
 import { RequireAuth } from './utils/requireAuth';
 
 import {CheckAuth} from "./utils/checkAuth";
+import {ProductInfo} from "./pages/Home/Product/ProductInfo";
+import {Carts} from "./pages/Carts";
 
 
 function App() {
@@ -32,7 +34,8 @@ function App() {
     <Routes>
         <Route path='/' element={<Layout/>}>
         <Route index element={<Home />} />
-        
+        <Route path='/product/:name' element={<ProductInfo/>}/>
+            <Route path='/carts' element={<Carts/>}/>
         <Route path='/cabinet' element={
           <RequireAuth>
             <LayoutPerson />

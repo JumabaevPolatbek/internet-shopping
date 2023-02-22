@@ -1,10 +1,8 @@
 import ProductItem from "../../components/Product";
 import SliderItems from "../../components/Slider";
 import { useGetProductsQuery } from "../../store/api/product";
-import {useLocation} from "react-router-dom";
 
 export function Home() {
-    const location=useLocation()
     const { data } = useGetProductsQuery()
 
     return (

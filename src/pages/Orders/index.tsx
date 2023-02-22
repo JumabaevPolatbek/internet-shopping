@@ -1,2 +1,2 @@
-import { Orders } from "../Cabinet/Orders";
+import { Orders } from "./Orders";
 export default Orders

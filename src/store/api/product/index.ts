@@ -12,7 +12,7 @@ export const actionsProduct = createApi({
             query: () => 'products/',
             providesTags:['products']
         }),
-        getSingleProduct: builder.query<Product,string|undefined>({
+        getSingleProduct: builder.query<Product,number|undefined>({
             query: (id) => `products/${id}`,
             providesTags:['products']
         }),
