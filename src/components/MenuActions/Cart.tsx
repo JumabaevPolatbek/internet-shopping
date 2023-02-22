@@ -6,7 +6,8 @@ import {useAppSlector} from "../../utils/hook";
 
 
 export function Cart(){
-    const {count}=useAppSlector(state=>state.cartProduct)
+    const {product,count}=useAppSlector(state=>state.cartProduct)
+    console.log(product)
     return(
         <Link
             to={'/carts'}

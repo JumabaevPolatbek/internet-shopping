@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { pathApi } from "..";
-import { ResponseOrders, ResponseOrderStatus} from "../../models/orders";
+import {Order, OrderDetail, ResponseOrders, ResponseOrderStatus, ServerResponse} from "../../models/orders";
+import {StateProdcut} from "../../reducer/cartProduct";
 
 
 export const ordersAction=createApi({
@@ -36,7 +37,7 @@ export const ordersAction=createApi({
                     url:`orders/status/${id}`,
                     method:'POST',
                     headers:{
-                        'Content-type': 'application/json'
+                        'Content-type': 'application/json; charset=UTF-8'
                     },
                     body:(data)
                 }
@@ -56,22 +57,24 @@ export const ordersAction=createApi({
         getOrdersUser:builder.query<ResponseOrders[],number>({
             query:(user_id)=>`orders/${user_id}`
         }),
-        addOrder:builder.mutation<ResponseOrders,ResponseOrders[]>({
+        addOrder:builder.mutation<ResponseOrders,{order:Order,order_detail:OrderDetail[]}>({
             query:(data)=>{
+
+                console.log(JSON.stringify(data))
                 return {
-                    url:'orders/',
+                    url:'orders',
                     method:'POST',
                     headers:{
                         'Content-type': 'application/json'
                     },
-                    body:(data)
+                    body:JSON.stringify(data)
                 }
             }
         }),
         delOrder:builder.mutation<ResponseOrders,{id_order:number|undefined,id_user:number|undefined}>({
             query: ({id_order,id_user})=>{
                 return {
-                    url:`orders/${id_order}/${id_order}`,
+                    url:`orders/${id_user}/${id_order}`,
                     method:'DELETE'
                 }
             }

@@ -29,7 +29,7 @@ export interface ResponseOrders {
 }
 
 
-export interface OrderDetail {
+export interface OrderDetails {
   order_id: number
   product_id: number
   quantity: number
