@@ -1,21 +1,19 @@
 import {CartMain} from "./CartMain";
 import {Button} from "@mui/material";
 import React from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Cookies} from "react-cookie";
 import CustomizedDialogs from "../../components/BootstrapDialog/CustomizedDialogs";
 import {CheckPaper} from "./CheckPaper";
-import {useAddOrderMutation} from "../../store/api/orders";
 import {useAppSlector} from "../../utils/hook";
-import {StateProdcut} from "../../store/reducer/cartProduct";
 import jwtDecode from "jwt-decode";
 import {Decode} from "../../store/models/jwtDecode";
-import {useGetAllUsersQuery} from "../../store/api/user";
-import {toast} from "react-toastify";
+import {NotCart} from "./NotCart";
+
 
 
 export function Carts(){
-
+    const {product}=useAppSlector(state=>state.cartProduct)
 
     const [open,setOpen]=React.useState(false)
     const navigate=useNavigate()
@@ -30,8 +28,9 @@ export function Carts(){
             navigate('/login')
         }
     }
-
-
+    if(product.length===0){
+        return <NotCart/>
+    }
     return(
         <div
             className="container mx-auto px-[15px]"

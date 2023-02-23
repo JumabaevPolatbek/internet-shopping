@@ -7,8 +7,9 @@ import {Decode} from "../../store/models/jwtDecode";
 import {CheckProductList} from "./CheckProductList";
 import {CheckAddress} from "./CheckAddress";
 import {useForm,SubmitHandler} from "react-hook-form";
-import {Button} from "@mui/material";
-import {Order, OrderDetail} from "../../store/models/orders";
+import {Button, Divider, Typography} from "@mui/material";
+import {Order, OrderDetail, ServerResponseOrder} from "../../store/models/orders";
+import React from "react";
 
 type Props={
     decode:Decode
@@ -17,12 +18,24 @@ type Props={
 }
 
 export function CheckPaper({decode,setOpen,cookie}:Props){
-    const {product}=useAppSlector(state=>state.cartProduct)
+    const {product,address}=useAppSlector(state=>state.cartProduct)
 
     const {data:users}=useGetAllUsersQuery()
+
     const [addOrder,result]=useAddOrderMutation()
-    const {handleSubmit,register}=useForm<{order:Order,order_detail:OrderDetail[]}>()
-    const btnSubmit:SubmitHandler<{order:Order,order_detail:OrderDetail[]}> = async (data) =>
+    const {handleSubmit,register,getValues,setValue}=useForm<ServerResponseOrder>()
+    const date = new Date()
+    React.useEffect(()=>{
+        setValue('order',{
+            user_id:users?.find(user=>user.username===decode.sub)?.id || 1 ,
+            order_date:'27-02-2023',
+            address_id:address.id,
+            order_status_id:1
+        })
+        setValue('order_details',product)
+    },[users])
+    const btnSubmit:SubmitHandler<ServerResponseOrder> = async (data) =>
+        // await console.log(data)
         await addOrder(data)
             .unwrap()
             .then(response=> {
@@ -52,25 +65,33 @@ export function CheckPaper({decode,setOpen,cookie}:Props){
 
     return(
         <form
-            className="w-[500px] py-2 px-[15px] flex flex-col"
+            className="w-[500px] py-2 px-[15px] flex flex-col items-center"
             onSubmit={handleSubmit(btnSubmit)}
         >
             {product.map(item=><CheckProductList
                 key={item.product_id}
                 {...item}
             />)}
-            {users?.find(user=>user.username===decode.sub)?.
-            addresses.map(address=>
-                <CheckAddress
-                    address={address}
-                    key={address.id}
-                    ref={register('order.address_id').ref}
-                />)}
+            <div
+                className="py-2"
+            >
+                Адресс доставки: {address.country.country_name+', '
+                    +address.city+', '
+                    +address.street_address}
+            </div>
+            <Typography
+                variant="h6"
+                className="py-[10px]"
+
+            >
+                Итого: {product.reduce((prev,cur)=>prev+(cur.quantity*cur.price),0)} сум
+            </Typography>
             <Button
                 variant="contained"
                 color="success"
                 disabled={result.isLoading}
                 type="submit"
+
             >
                 Заказать
             </Button>

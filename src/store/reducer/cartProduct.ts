@@ -3,6 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from './../index';
 import { Product } from "../models/products";
 import {OrderDetail} from "../models/orders";
+import {Address} from "../models/userModels";
 
 export type StateProdcut={
     product_id:number,
@@ -12,11 +13,15 @@ export type StateProdcut={
 type State={
     count:number
     product:OrderDetail[]
+    address:Address
+    date:string
 }
 
 const initialState:State = {
     count:0,
     product:[] ,
+    address:{} as Address,
+    date:''
 }
 
 export const cartProduct=createSlice({
@@ -53,6 +58,12 @@ export const cartProduct=createSlice({
             var index:number = state.product.findIndex(item=>item.product_id===action.payload)
             state.count= state.count - state.product[index].quantity
             state.product = state.product.filter(item=>item.product_id!==action.payload)
+        },
+        addAddress: (state,action:PayloadAction<Address>)=>{
+            state.address=action.payload
+        },
+        setDate:(state,action:PayloadAction<string>)=>{
+            state.date=action.payload
         }
     }
 })
@@ -60,5 +71,8 @@ export const cartProduct=createSlice({
 export const {
     addProduct,
     delProduct,
-    decrementQty}=cartProduct.actions
+    decrementQty,
+    addAddress,
+    setDate
+}=cartProduct.actions
 export const cartProductOrder=(state:RootState)=>state.cartProduct

@@ -1,4 +1,4 @@
-export interface ServerResponse {
+export interface ServerResponseOrder {
   order: Order
   order_details: OrderDetail[]
 }

@@ -1,17 +1,16 @@
-import * as React from 'react';
-import {useDispatch} from "react-redux";
+import  React from 'react';
 import {useGetSingleProductQuery} from "../../store/api/product";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import { OrderDetail} from "../../store/models/orders";
+import {OrderDetail} from "../../store/models/orders";
 import {Divider, } from "@mui/material";
 import {BtnActionsCart} from "./BtnActionsCart";
 
 
-export  function CheckProductList(props:OrderDetail) {
+export  const CheckProductList = React.forwardRef<HTMLDivElement,OrderDetail>((props,ref)=> {
     const {product_id,quantity}=props
     const {data:dataProduct}=useGetSingleProductQuery(product_id)
 
@@ -19,6 +18,7 @@ export  function CheckProductList(props:OrderDetail) {
         <>
         <div
             className="flex justify-between items-center py-2"
+            ref={ref}
         >
             <div>
                 <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
@@ -36,9 +36,8 @@ export  function CheckProductList(props:OrderDetail) {
                     </ListItem>
                 </List>
             </div>
-                <BtnActionsCart product_id={product_id} quantity={quantity} dataProduct={dataProduct}/>
             </div>
             <Divider/>
         </>
     );
-}
+})

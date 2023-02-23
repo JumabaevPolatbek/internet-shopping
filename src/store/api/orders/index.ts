@@ -1,6 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { pathApi } from "..";
-import {Order, OrderDetail, ResponseOrders, ResponseOrderStatus, ServerResponse} from "../../models/orders";
+import {
+    Order,
+    OrderDetail,
+    ResponseOrders,
+    ResponseOrderStatus,
+    ServerResponseOrder
+} from "../../models/orders";
 import {StateProdcut} from "../../reducer/cartProduct";
 
 
@@ -57,7 +63,7 @@ export const ordersAction=createApi({
         getOrdersUser:builder.query<ResponseOrders[],number>({
             query:(user_id)=>`orders/${user_id}`
         }),
-        addOrder:builder.mutation<ResponseOrders,{order:Order,order_detail:OrderDetail[]}>({
+        addOrder:builder.mutation<ResponseOrders,ServerResponseOrder>({
             query:(data)=>{
 
                 console.log(JSON.stringify(data))
