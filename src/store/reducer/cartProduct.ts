@@ -23,7 +23,7 @@ export const cartProduct=createSlice({
     name:'cartProduct',
     initialState,
     reducers:{
-        addProduct:(state,action:PayloadAction<Product>)=>{
+        addProduct: (state,action:PayloadAction<Product>)=>{
             const {price,id}=action.payload
             if(state.product.find(item=>item.product_id===action.payload.id)===undefined){
                 state.product.push({
@@ -37,7 +37,7 @@ export const cartProduct=createSlice({
             }
                 state.count += 1
         },
-        decrementQty:(state,action:PayloadAction<number>)=>{
+        decrementQty: (state,action:PayloadAction<number>)=>{
             var index:number = state.product.findIndex(item=>item.product_id===action.payload)
 
             if(state.product.find(item=>item.product_id===action.payload)?.quantity===1){
