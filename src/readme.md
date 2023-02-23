@@ -1,13 +1,8 @@
 
-# E-commerce API Documentation 
 
-URL - https://ecommerce.icedev.uz//
-
-
- 
 ## Login
 ```
-fetch('https://ecommerce.icedev.uz//token',{
+fetch('https://ecommerce.icedev.uz/token',{
           method: 'POST',
           body: JSON.stringify({
               username: 'any username',
@@ -32,7 +27,7 @@ fetch('https://ecommerce.icedev.uz//token',{
 ## Call Orders
 #### Get all call orders
 ```
-fetch('https://ecommerce.icedev.uz//call_orders/')
+fetch('https://ecommerce.icedev.uz/call_orders/')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -62,7 +57,7 @@ fetch('https://ecommerce.icedev.uz//call_orders/')
 
 #### Get a single call order
 ```
-fetch('https://ecommerce.icedev.uz//call_orders/1')
+fetch('https://ecommerce.icedev.uz/call_orders/1')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -83,7 +78,7 @@ fetch('https://ecommerce.icedev.uz//call_orders/1')
 
 #### Add new call order
 ```
-fetch('https://ecommerce.icedev.uz//call_orders/',{
+fetch('https://ecommerce.icedev.uz/call_orders/',{
             method:"POST",
             body:JSON.stringify(
                 {
@@ -112,9 +107,13 @@ fetch('https://ecommerce.icedev.uz//call_orders/',{
 </pre>
 </details>
 
+
 #### Delete a call order
+> **Note**
+> *Only admin can delete*
+
 ```
-fetch('https://ecommerce.icedev.uz//call_orders/7',{
+fetch('https://ecommerce.icedev.uz/call_orders/7',{
             method:"DELETE"
         })
             .then(res=>res.json())
@@ -132,7 +131,7 @@ fetch('https://ecommerce.icedev.uz//call_orders/7',{
 ## Countries
 #### Get all countries
 ```
-fetch('https://ecommerce.icedev.uz//countries')
+fetch('https://ecommerce.icedev.uz/countries')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -155,7 +154,7 @@ fetch('https://ecommerce.icedev.uz//countries')
 
 #### Get a single country
 ```
-fetch('https://ecommerce.icedev.uz//countries/1')
+fetch('https://ecommerce.icedev.uz/countries/1')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -172,7 +171,7 @@ fetch('https://ecommerce.icedev.uz//countries/1')
 
 #### Limit results
 ```
-fetch('https://ecommerce.icedev.uz//countries?limit=5&offset=5')
+fetch('https://ecommerce.icedev.uz/countries?limit=5&offset=5')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -195,8 +194,10 @@ fetch('https://ecommerce.icedev.uz//countries?limit=5&offset=5')
 
 
 #### Add new country
+> **Note**
+> *Only admin can add*
 ```
-fetch('https://ecommerce.icedev.uz//countries',{
+fetch('https://ecommerce.icedev.uz/countries',{
             method:"POST",
             body:JSON.stringify(
                 {
@@ -218,8 +219,10 @@ fetch('https://ecommerce.icedev.uz//countries',{
 </details>
 
 #### Update a country
+> **Note**
+> *Only admin can update*
 ```
-fetch('https://ecommerce.icedev.uz//countries/7',{
+fetch('https://ecommerce.icedev.uz/countries/7',{
             method:"PUT",
             body:JSON.stringify(
                 {
@@ -241,8 +244,10 @@ fetch('https://ecommerce.icedev.uz//countries/7',{
 </details>
 
 #### Delete a country
+> **Note**
+> *Only admin can delete*
 ```
-fetch('https://ecommerce.icedev.uz//countries/7',{
+fetch('https://ecommerce.icedev.uz/countries/7',{
             method:"DELETE"
         })
             .then(res=>res.json())
@@ -261,7 +266,7 @@ fetch('https://ecommerce.icedev.uz//countries/7',{
 
 #### Get all categories
 ```
-fetch('https://ecommerce.icedev.uz//categories')
+fetch('https://ecommerce.icedev.uz/categories')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -310,7 +315,7 @@ fetch('https://ecommerce.icedev.uz//categories')
 
 #### Get a single category
 ```
-fetch('https://ecommerce.icedev.uz//categories/1')
+fetch('https://ecommerce.icedev.uz/categories/1')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -333,7 +338,7 @@ fetch('https://ecommerce.icedev.uz//categories/1')
 
 #### Limit results
 ```
-fetch('https://ecommerce.icedev.uz//categories?limit=5&offset=5')
+fetch('https://ecommerce.icedev.uz/categories?limit=5&offset=5')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -381,8 +386,10 @@ fetch('https://ecommerce.icedev.uz//categories?limit=5&offset=5')
 </details>
 
 #### Add new category
+> **Note**
+> *Only admin can add*
 ```
-fetch('https://ecommerce.icedev.uz//categories',{
+fetch('https://ecommerce.icedev.uz/categories',{
             method:"POST",
             body:JSON.stringify(
                 {
@@ -410,8 +417,10 @@ fetch('https://ecommerce.icedev.uz//categories',{
 </details>
 
 #### Update a category
+> **Note**
+> *Only admin can update*
 ```
-fetch('https://ecommerce.icedev.uz//categories/7',{
+fetch('https://ecommerce.icedev.uz/categories/7',{
             method:"PUT",
             body:JSON.stringify(
                 {
@@ -439,8 +448,10 @@ fetch('https://ecommerce.icedev.uz//categories/7',{
 </details>
 
 #### Delete a category
+> **Note**
+> *Only admin can delete*
 ```
-fetch('https://ecommerce.icedev.uz//categories/7',{
+fetch('https://ecommerce.icedev.uz/categories/7',{
             method:"DELETE"
         })
             .then(res=>res.json())
@@ -460,7 +471,7 @@ fetch('https://ecommerce.icedev.uz//categories/7',{
 
 #### Get all products
 ```
-fetch('https://ecommerce.icedev.uz//products/')
+fetch('https://ecommerce.icedev.uz/products/')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -531,7 +542,7 @@ fetch('https://ecommerce.icedev.uz//products/')
 
 #### Limit products
 ```
-fetch('https://ecommerce.icedev.uz//products?limit=5')
+fetch('https://ecommerce.icedev.uz/products?limit=5')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -602,7 +613,7 @@ fetch('https://ecommerce.icedev.uz//products?limit=5')
 
 #### Get products by category
 ```
-fetch('https://ecommerce.icedev.uz//categories/1/products/')
+fetch('https://ecommerce.icedev.uz/categories/1/products/')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -671,10 +682,36 @@ fetch('https://ecommerce.icedev.uz//categories/1/products/')
 </pre>
 </details>
 
+#### Sort products by min and max price
+```
+fetch('https://ecommerce.icedev.uz/categories/{category_id}/products?min_price=500&max_price=1000')
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+
+#### Filter products by attributes
+```
+fetch('https://ecommerce.icedev.uz/categories/{category_id}/products?filters=variant_id&filters=variant_id&filters=variant_id&....')
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+
+#### Sort products
+
+> **sort=cheap**   *# sort products by ascending price*
+>
+> **sort=expensive**   *# sort products by descending price*
+
+```
+fetch('https://ecommerce.icedev.uz/categories/{category_id}/products?sort=cheap')
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+
 
 #### Get a single product
 ```
-fetch('https://ecommerce.icedev.uz//products/1')
+fetch('https://ecommerce.icedev.uz/products/1')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -714,8 +751,10 @@ fetch('https://ecommerce.icedev.uz//products/1')
 
 
 #### Add new product
+> **Note**
+> *Only admin can add*
 ```
-fetch('https://ecommerce.icedev.uz//products',{
+fetch('https://ecommerce.icedev.uz/products',{
             method:"POST",
             body:JSON.stringify(
                 {
@@ -776,8 +815,10 @@ fetch('https://ecommerce.icedev.uz//products',{
 </details>
 
 #### Update a product
+> **Note**
+> *Only admin can update*
 ```
-fetch('https://ecommerce.icedev.uz//products/1',{
+fetch('https://ecommerce.icedev.uz/products/1',{
             method:"PUT",
             body:JSON.stringify(
                 {
@@ -828,8 +869,10 @@ fetch('https://ecommerce.icedev.uz//products/1',{
 </details>
 
 #### Delete a product
+> **Note**
+> *Only admin can delete*
 ```
-fetch('https://ecommerce.icedev.uz//products/7',{
+fetch('https://ecommerce.icedev.uz/products/7',{
             method:"DELETE"
         })
             .then(res=>res.json())
@@ -845,10 +888,110 @@ fetch('https://ecommerce.icedev.uz//products/7',{
 </details>
 
 
+#### Add new product variant
+> **Note**
+> *Only admin can add*
+```
+fetch('https://ecommerce.icedev.uz/products/{product_id}/attributes',{
+            method:"POST",
+            body:JSON.stringify(
+                {
+                  "variant_id": 8,
+                }
+            )
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+
+<details><summary>Output</summary>
+<pre>
+    {
+    "name": "iPhone 14",
+    "price": 1400,
+    "description": "string",
+    "quantity": 10,
+    "discount": 0,
+    "id": 1,
+    "images": [
+      {
+        "product_id": 1,
+        "image_path": "product1.jpg",
+        "id": 1
+      }
+    ],
+    "category": {
+      "name": "Smartphones",
+      "id": 2,
+      "children_category": [],
+      "parent_category": null
+    },
+    "attributes": [
+      {
+        "value": "green",
+        "id": 8,
+        "attribute": {
+          "id": 3,
+          "attribute_name": "color",
+          "category_id": 2
+        }
+      }
+    ]
+  }
+</pre>
+</details>
+
+
+
+#### Get product attributes
+```
+fetch('https://ecommerce.icedev.uz/products/{product_id}/attributes')
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+
+<details><summary>Output</summary>
+<pre>
+[
+  {
+    "value": "green",
+    "id": 8,
+    "attribute": {
+      "id": 3,
+      "attribute_name": "color",
+      "category_id": 2
+    }
+  }
+]
+</pre>
+</details>
+
+
+#### Delete a product attribute
+> **Note**
+> *Only admin can delete*
+```
+fetch('https://ecommerce.icedev.uz/products/{product_id}/{variant_id}',{
+            method:"DELETE"
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+
+<details><summary>Output</summary>
+<pre>
+  {
+    "ok": True
+  }
+</pre>
+</details>
+
 ## Users
 #### Get all users
+> **Note**
+> *Only admin can get*
 ```
-fetch('https://ecommerce.icedev.uz//users/')
+fetch('https://ecommerce.icedev.uz/users/')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -896,7 +1039,7 @@ fetch('https://ecommerce.icedev.uz//users/')
 
 #### Limit results
 ```
-fetch('https://ecommerce.icedev.uz//users?limit=5')
+fetch('https://ecommerce.icedev.uz/users?limit=5')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -943,7 +1086,7 @@ fetch('https://ecommerce.icedev.uz//users?limit=5')
 
 #### Get a single user
 ```
-fetch('https://ecommerce.icedev.uz//users/1')
+fetch('https://ecommerce.icedev.uz/users/1')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -986,7 +1129,7 @@ fetch('https://ecommerce.icedev.uz//users/1')
 
 #### Add new user
 ```
-fetch('https://ecommerce.icedev.uz//users',{
+fetch('https://ecommerce.icedev.uz/users',{
             method:"POST",
             body:JSON.stringify(
                 {
@@ -1053,8 +1196,10 @@ fetch('https://ecommerce.icedev.uz//users',{
 </details>
 
 #### Add new admin
+> **Note**
+> *Only admin can add*
 ```
-fetch('https://ecommerce.icedev.uz//users/admin',{
+fetch('https://ecommerce.icedev.uz/users/admin',{
             method:"POST",
             body:JSON.stringify(
                 {
@@ -1121,8 +1266,10 @@ fetch('https://ecommerce.icedev.uz//users/admin',{
 </details>
 
 #### Update a user
+> **Note**
+> *Only authenticated user can update*
 ```
-fetch('https://ecommerce.icedev.uz//users/7',{
+fetch('https://ecommerce.icedev.uz/users/7',{
             method:"PUT",
             body:JSON.stringify(
                 {
@@ -1176,8 +1323,10 @@ fetch('https://ecommerce.icedev.uz//users/7',{
 </details>
 
 #### Delete a user
+> **Note**
+> *Only admin can delete*
 ```
-fetch('https://ecommerce.icedev.uz//users/7',{
+fetch('https://ecommerce.icedev.uz/users/7',{
             method:"DELETE"
         })
             .then(res=>res.json())
@@ -1197,7 +1346,7 @@ fetch('https://ecommerce.icedev.uz//users/7',{
 
 #### Get category attributes
 ```
-fetch('https://ecommerce.icedev.uz//categories/{category_id}/attributes')
+fetch('https://ecommerce.icedev.uz/categories/{category_id}/attributes')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -1238,7 +1387,7 @@ fetch('https://ecommerce.icedev.uz//categories/{category_id}/attributes')
 
 #### Get a single attribute
 ```
-fetch('https://ecommerce.icedev.uz//attributes/1')
+fetch('https://ecommerce.icedev.uz/attributes/1')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -1264,7 +1413,7 @@ fetch('https://ecommerce.icedev.uz//attributes/1')
 
 #### Limit results
 ```
-fetch('https://ecommerce.icedev.uz//categories/{category_id}/attributes?limit=5&offset=0')
+fetch('https://ecommerce.icedev.uz/categories/{category_id}/attributes?limit=5&offset=0')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -1305,8 +1454,10 @@ fetch('https://ecommerce.icedev.uz//categories/{category_id}/attributes?limit=5&
 
 
 #### Add new attribute
+> **Note**
+> *Only admin can add*
 ```
-fetch('https://ecommerce.icedev.uz//attributes',{
+fetch('https://ecommerce.icedev.uz/attributes',{
             method:"POST",
             body:JSON.stringify(
                 {
@@ -1351,8 +1502,10 @@ fetch('https://ecommerce.icedev.uz//attributes',{
 
 
 #### Add new attribute variant
+> **Note**
+> *Only admin can add*
 ```
-fetch('https://ecommerce.icedev.uz//attributes/{attribute_id}/variants',{
+fetch('https://ecommerce.icedev.uz/attributes/{attribute_id}/variants',{
             method:"POST",
             body:JSON.stringify(
                 {
@@ -1368,14 +1521,21 @@ fetch('https://ecommerce.icedev.uz//attributes/{attribute_id}/variants',{
 <pre>
   {
       "value": "blue",
-      "id": 2
+      "id": 2,
+      "attribute": {
+        "id": 1,
+        "attribute_name": "color",
+        "category_id": 2
+      }
   }
 </pre>
 </details>
 
 #### Update an attribute
+> **Note**
+> *Only admin can update*
 ```
-fetch('https://ecommerce.icedev.uz//attributes/7',{
+fetch('https://ecommerce.icedev.uz/attributes/7',{
             method:"PUT",
             body:JSON.stringify(
                 {
@@ -1409,8 +1569,10 @@ fetch('https://ecommerce.icedev.uz//attributes/7',{
 </details>
 
 #### Delete an attribute
+> **Note**
+> *Only admin can delete*
 ```
-fetch('https://ecommerce.icedev.uz//attributes/7',{
+fetch('https://ecommerce.icedev.uz/attributes/7',{
             method:"DELETE"
         })
             .then(res=>res.json())
@@ -1426,8 +1588,10 @@ fetch('https://ecommerce.icedev.uz//attributes/7',{
 </details>
 
 #### Delete an attribute variant
+> **Note**
+> *Only admin can delete*
 ```
-fetch('https://ecommerce.icedev.uz//attributes/{attribute_id}/variants/{variant_id}',{
+fetch('https://ecommerce.icedev.uz/attributes/{attribute_id}/variants/{variant_id}',{
             method:"DELETE"
         })
             .then(res=>res.json())
@@ -1446,7 +1610,7 @@ fetch('https://ecommerce.icedev.uz//attributes/{attribute_id}/variants/{variant_
 ### Orders
 #### Get all order status
 ```
-fetch('https://ecommerce.icedev.uz//orders/status/')
+fetch('https://ecommerce.icedev.uz/orders/status/')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -1469,7 +1633,7 @@ fetch('https://ecommerce.icedev.uz//orders/status/')
 
 #### Get a single order status
 ```
-fetch('https://ecommerce.icedev.uz//orders/status/1/')
+fetch('https://ecommerce.icedev.uz/orders/status/1/')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -1484,8 +1648,10 @@ fetch('https://ecommerce.icedev.uz//orders/status/1/')
 </details>
 
 #### Add new order status
+> **Note**
+> *Only admin can add*
 ```
-fetch('https://ecommerce.icedev.uz//orders/status',{
+fetch('https://ecommerce.icedev.uz/orders/status',{
             method:"POST",
             body:JSON.stringify(
                 {
@@ -1507,8 +1673,10 @@ fetch('https://ecommerce.icedev.uz//orders/status',{
 </details>
 
 #### Update an order status
+> **Note**
+> *Only admin can update*
 ```
-fetch('https://ecommerce.icedev.uz//orders/status/7',{
+fetch('https://ecommerce.icedev.uz/orders/status/7',{
             method:"PUT",
             body:JSON.stringify(
                 {
@@ -1530,8 +1698,10 @@ fetch('https://ecommerce.icedev.uz//orders/status/7',{
 </details>
 
 #### Delete an order status
+> **Note**
+> *Only admin can delete*
 ```
-fetch('https://ecommerce.icedev.uz//orders/status/7',{
+fetch('https://ecommerce.icedev.uz/orders/status/7',{
             method:"DELETE"
         })
             .then(res=>res.json())
@@ -1549,8 +1719,10 @@ fetch('https://ecommerce.icedev.uz//orders/status/7',{
 
 
 #### Get all orders
+> **Note**
+> *Only admin can get*
 ```
-fetch('https://ecommerce.icedev.uz//orders/')
+fetch('https://ecommerce.icedev.uz/orders/')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -1588,7 +1760,7 @@ fetch('https://ecommerce.icedev.uz//orders/')
 
 #### Get all user orders
 ```
-fetch('https://ecommerce.icedev.uz//orders/{user_id}')
+fetch('https://ecommerce.icedev.uz/orders/{user_id}')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -1625,7 +1797,7 @@ fetch('https://ecommerce.icedev.uz//orders/{user_id}')
 
 #### Get a single user order
 ```
-fetch('https://ecommerce.icedev.uz//orders/{user_id}/{order_id}')
+fetch('https://ecommerce.icedev.uz/orders/{user_id}/{order_id}')
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
@@ -1648,7 +1820,7 @@ fetch('https://ecommerce.icedev.uz//orders/{user_id}/{order_id}')
 
 #### Add new order
 ```
-fetch('https://ecommerce.icedev.uz//orders/',{
+fetch('https://ecommerce.icedev.uz/orders/',{
             method:"POST",
             body:JSON.stringify(
                 {
@@ -1708,7 +1880,7 @@ fetch('https://ecommerce.icedev.uz//orders/',{
 
 #### Update an order
 ```
-fetch('https://ecommerce.icedev.uz//orders/{order_id}',{
+fetch('https://ecommerce.icedev.uz/orders/{order_id}',{
             method:"PUT",
             body:JSON.stringify(
                 {
@@ -1747,8 +1919,10 @@ fetch('https://ecommerce.icedev.uz//orders/{order_id}',{
 </details>
 
 #### Delete an order
+> **Note**
+> *Only admin can delete*
 ```
-fetch('https://ecommerce.icedev.uz//orders/{user_id}/{order_id}',{
+fetch('https://ecommerce.icedev.uz/orders/{user_id}/{order_id}',{
             method:"DELETE"
         })
             .then(res=>res.json())
@@ -1764,7 +1938,26 @@ fetch('https://ecommerce.icedev.uz//orders/{user_id}/{order_id}',{
 </details>
 
 ## Reviews
-Coming soon...
 
-## Comments
-Coming soon...
+#### Add new review
+> **Note**
+> *Only authenticated user can leave review*
+```
+fetch('https://ecommerce.icedev.uz/products/{product_id}/reviews',{
+            method:"POST",
+            body:JSON.stringify(
+                {
+                  "review": {
+                    "stars": 5
+                  },
+                  "comment": {
+                    "comment": "some comment",
+                    "created_date": "2023-02-16 20:10:20"
+                  }
+                }
+            )
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+

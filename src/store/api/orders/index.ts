@@ -57,8 +57,19 @@ export const ordersAction=createApi({
                 }
             }
         }),
-        getOrders:builder.query<ResponseOrders[],void>({
-            query:()=>'orders'
+        getOrders:builder.query<ResponseOrders[],string>({
+            // query:()=>'orders'
+            query:(token)=>{
+                return {
+                    url:'orders',
+                    method:'GET',
+                    headers:{
+                        'Authorization': `Bearer <${token}>`
+                    },
+
+                    // credentials:'include'
+                }
+            }
         }),
         getOrdersUser:builder.query<ResponseOrders[],number>({
             query:(user_id)=>`orders/${user_id}`

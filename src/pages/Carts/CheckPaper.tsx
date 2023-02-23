@@ -23,12 +23,13 @@ export function CheckPaper({decode,setOpen,cookie}:Props){
     const {data:users}=useGetAllUsersQuery()
 
     const [addOrder,result]=useAddOrderMutation()
-    const {handleSubmit,register,getValues,setValue}=useForm<ServerResponseOrder>()
+    const {handleSubmit,setValue}=useForm<ServerResponseOrder>()
     const date = new Date()
+    const getOrderDate=new Date(date.setHours(96))
     React.useEffect(()=>{
         setValue('order',{
             user_id:users?.find(user=>user.username===decode.sub)?.id || 1 ,
-            order_date:'27-02-2023',
+            order_date:`${getOrderDate.getFullYear()}-${getOrderDate.getMonth()<10?'0'+getOrderDate.getMonth():getOrderDate.getMonth()}-${getOrderDate.getDate()}`,
             address_id:address.id,
             order_status_id:1
         })

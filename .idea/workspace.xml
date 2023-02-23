@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a101907b-e942-44ed-8c79-ed3ee4d03b43" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/store/api/admin/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MenuActions/Cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MenuActions/Cart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Carts/CartProduct.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Carts/CartProduct.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Carts/Carts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Carts/Carts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ButtonPerson/ButtonPerson.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ButtonPerson/ButtonPerson.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin/Admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin/Admin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Auth/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Auth/SignIn.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Carts/CheckPaper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Carts/CheckPaper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Orders/Orders.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Orders/Orders.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/api/orders/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/api/orders/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/models/orders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/models/orders.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducer/cartProduct.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducer/cartProduct.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducer/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducer/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +82,8 @@
       <workItem from="1676802509945" duration="9611000" />
       <workItem from="1676988439733" duration="2055000" />
       <workItem from="1676990788327" duration="32853000" />
-      <workItem from="1677065712289" duration="6512000" />
+      <workItem from="1677065712289" duration="6591000" />
+      <workItem from="1677169374873" duration="9685000" />
     </task>
     <servers />
   </component>

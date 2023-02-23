@@ -4,6 +4,8 @@ import { User } from "../../store/models/authUser";
 import {useSigInMutation} from '../../store/api/auth'
 import { useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
+import {Decode} from "../../store/models/jwtDecode";
+import jwtDecode from "jwt-decode";
 type Props = {
     display: boolean,
     setDisplay :React.Dispatch<React.SetStateAction<boolean>>
@@ -12,6 +14,7 @@ export function SignIn({display,setDisplay}:Props) {
     const [login, result] = useSigInMutation()
     const navigate = useNavigate()
     const { handleSubmit,  register } = useForm<User>()
+
     
     const btnSubmit: SubmitHandler<User> = async (data) => await login(data)
         .unwrap()
@@ -26,7 +29,12 @@ export function SignIn({display,setDisplay}:Props) {
                 progress: undefined,
                 theme: "light",
             })
-            setTimeout(()=>navigate('/',{replace:true}),2000)
+            const decode:Decode=jwtDecode(response.access_token)
+            if(decode.is_admin===1){
+                navigate('/admin')
+            } else{
+                navigate('/',{replace:true})
+            }
         })
         .catch(error=>toast.error(`${error.data.detail}`,{
                 position: "bottom-right",
