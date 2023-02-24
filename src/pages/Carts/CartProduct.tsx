@@ -27,7 +27,7 @@ export function CartProduct({id,quantity}:Props){
 
     return(
         <div className="py-2">
-            <Paper elevation={1}
+            <div
                 className="flex justify-between items-center px-[15px] py-2"
             >
                  <div
@@ -78,7 +78,7 @@ export function CartProduct({id,quantity}:Props){
                         }
                     </Typography>
                 </div>
-            </Paper>
+            </div>
         </div>
     )
 }

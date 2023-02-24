@@ -10,7 +10,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import {Link, useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {decodeJWT} from "../../utils/decodeJWT";
 
 
@@ -71,12 +71,18 @@ export function ButtonPerson() {
             >
                 <MenuItem onClick={(e)=>handleCloseUserMenu(e)}>
                     <Typography textAlign="center">
-                        Профиль
+                        <NavLink
+                            className={({isActive})=>`${isActive?'text-[#da002b]':''}`}
+                            to='/personal'
+                        >Профиль</NavLink>
                   </Typography>
                 </MenuItem>
                 { findUser?.is_admin && <MenuItem>
                     <Typography textAlign="center">
-                        <Link to='/admin'>Администратирование</Link>
+                        <NavLink
+                            className={({isActive})=>`${isActive?'text-[#da002b]':''}`}
+                            to='/admin'
+                        >Администратирование</NavLink>
                     </Typography>
                 </MenuItem>}
                 <MenuItem onClick={handleCloseUserMenu}>

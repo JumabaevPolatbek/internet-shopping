@@ -14,6 +14,7 @@ import {cartProduct} from "./cartProduct";
 import {tokenSlice} from "./tokenSlice";
 import {ordersAction} from "../api/orders";
 import {adminActions} from "../api/admin";
+import {likesCount} from "./likesCount";
 
 export const rootReducer = combineReducers({
     [actionsCountrie.reducerPath]: actionsCountrie.reducer,
@@ -30,6 +31,7 @@ export const rootReducer = combineReducers({
     cartProduct:cartProduct.reducer,
     token:tokenSlice.reducer,
     [ordersAction.reducerPath]:ordersAction.reducer,
-    [adminActions.reducerPath]:adminActions.reducer
+    [adminActions.reducerPath]:adminActions.reducer,
+    likesCount:likesCount.reducer
 });
 export type RootState = ReturnType<typeof rootReducer>

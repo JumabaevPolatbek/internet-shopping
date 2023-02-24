@@ -26,6 +26,7 @@ import { RequireAuth } from './utils/requireAuth';
 import {CheckAuth} from "./utils/checkAuth";
 import {ProductInfo} from "./pages/Home/Product/ProductInfo";
 import {Carts} from "./pages/Carts";
+import {Favorites} from "./pages/Favorites/Favorites";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
                 <Route path='/login' element={<CheckAuth>
                     <Auth/>
                 </CheckAuth>} />
+            <Route path='/favorites' element={<Favorites/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Route>
     <Route path='admin' element={

@@ -1,25 +1,22 @@
-import {StateProdcut} from "../../store/reducer/cartProduct";
 import {toast} from "react-toastify";
 import {useAddOrderMutation} from "../../store/api/orders";
 import {useGetAllUsersQuery} from "../../store/api/user";
 import {useAppSlector} from "../../utils/hook";
 import {Decode} from "../../store/models/jwtDecode";
 import {CheckProductList} from "./CheckProductList";
-import {CheckAddress} from "./CheckAddress";
 import {useForm,SubmitHandler} from "react-hook-form";
-import {Button, Divider, Typography} from "@mui/material";
-import {Order, OrderDetail, ServerResponseOrder} from "../../store/models/orders";
+import {Button,  Typography} from "@mui/material";
+import { ServerResponseOrder} from "../../store/models/orders";
 import React from "react";
+import {decodeJWT} from "../../utils/decodeJWT";
 
 type Props={
-    decode:Decode
     setOpen:React.Dispatch<React.SetStateAction<boolean>>
-    cookie:string
 }
 
-export function CheckPaper({decode,setOpen,cookie}:Props){
+export function CheckPaper({setOpen}:Props){
     const {product,address}=useAppSlector(state=>state.cartProduct)
-
+    const {token}=useAppSlector(state=>state.token)
     const {data:users}=useGetAllUsersQuery()
 
     const [addOrder,result]=useAddOrderMutation()
@@ -28,7 +25,7 @@ export function CheckPaper({decode,setOpen,cookie}:Props){
     const getOrderDate=new Date(date.setHours(96))
     React.useEffect(()=>{
         setValue('order',{
-            user_id:users?.find(user=>user.username===decode.sub)?.id || 1 ,
+            user_id:users?.find(user=>user.username===decodeJWT(token).sub)?.id || 1 ,
             order_date:`${getOrderDate.getFullYear()}-${getOrderDate.getMonth()<10?'0'+getOrderDate.getMonth():getOrderDate.getMonth()}-${getOrderDate.getDate()}`,
             address_id:address.id,
             order_status_id:1

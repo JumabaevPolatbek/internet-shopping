@@ -1,18 +1,16 @@
 import React from 'react'
-import {Cookies} from "react-cookie";
 import {useGetAllUsersQuery} from "../../store/api/user";
-import jwtDecode from "jwt-decode";
-import {Decode} from "../../store/models/jwtDecode";
 import {User} from "../../store/models/userModels";
 import {CheckAddress} from "./CheckAddress";
 import {Typography} from "@mui/material";
+import {useAppSlector} from "../../utils/hook";
+import {decodeJWT} from "../../utils/decodeJWT";
 
 
 export function OrderAddress(){
-    const cookie = new Cookies()
-    const decode:Decode = jwtDecode(cookie.get('token'))
+    const {token}=useAppSlector(state=>state.token)
     const {data:users}=useGetAllUsersQuery()
-    const userFind = users?.find(user=>user.username===decode.sub) || {} as User
+    const userFind = users?.find(user=>user.username===decodeJWT(token).sub) || {} as User
     return(
         <div
             className="flex flex-col px-2"

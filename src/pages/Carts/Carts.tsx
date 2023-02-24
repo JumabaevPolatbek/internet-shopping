@@ -14,15 +14,14 @@ import {NotCart} from "./NotCart";
 
 export function Carts(){
     const {product}=useAppSlector(state=>state.cartProduct)
-
+    const {token} = useAppSlector(state=>state.token)
     const [open,setOpen]=React.useState(false)
     const navigate=useNavigate()
-    const cookie = new Cookies()
-    const decode:Decode = jwtDecode(cookie.get('token'))
+    // const decode:Decode = jwtDecode(token)
 
 
     const handleOrder=()=>{
-        if(cookie.get('token')){
+        if(token){
             setOpen(true)
         }else {
             navigate('/login')
@@ -40,6 +39,7 @@ export function Carts(){
             >
                 <div className="flex flex-col justify-between w-[70%]">
                     <CartMain/>
+
                 </div>
                 <Button
                     onClick={handleOrder}
@@ -48,7 +48,7 @@ export function Carts(){
                 </Button>
             </div>
             <CustomizedDialogs open={open} setOpen={setOpen}>
-                <CheckPaper decode={decode} setOpen={setOpen} cookie={cookie.get('token')}/>
+                <CheckPaper  setOpen={setOpen} />
             </CustomizedDialogs>
         </div>
     )
