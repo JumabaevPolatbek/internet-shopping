@@ -6,8 +6,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { SearchProduct } from "../Search";
 import MenuActions from "../MenuActions";
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import {Cookies} from "react-cookie";
-// import {getCookie} from "../../utils/getCookie";
 
 
 export function Navbar() {
@@ -15,12 +13,10 @@ export function Navbar() {
     const openMenu = () => {
         setDisplayMenu(displayMenu=>!displayMenu)
     }
-    const cookie = new Cookies()
-    // const [token,setToken]=React.useState(false)
-    // if(getCookie(cookie)){
-    //     setToken(true)
-    // }
-    // console.log(state)
+    const displayTime=setTimeout(()=>setDisplayMenu(false),2000)
+    const clearDisplay=()=>{
+        clearTimeout(displayTime)
+    }
     return (
         <div className="container mx-auto px-[5px] md:px-[15px] flex items-center justify-between mt-3">
             <div className="flex items-center flex-col xl:flex-row w-full">
@@ -31,7 +27,11 @@ export function Navbar() {
                     <Link to={'/'} className="text-[#da002b] text-[24px] font-bold ">Logo</Link>
                 </div>
                 <div className="flex justify-between w-full items-center ">
-                    <div className="relative flex flex-col w-[360px]">
+                    <div
+                        className="relative flex flex-col w-[360px]"
+                        onMouseLeave={()=>displayMenu}
+                        onMouseEnter={clearDisplay}
+                    >
                     <button
                         onClick={openMenu}
                         className={`   text-[18px]  border w-[fit-content] ${!displayMenu ? 'border-[#da002b] text-[#da002b]' : 'text-[#333] border-[#333]'} rounded-md px-[15px] py-[2px] ml-0 xl:ml-4`}>
@@ -42,7 +42,7 @@ export function Navbar() {
                             <MenuCategory display={ displayMenu} />
                         </div>
                     </div>
-                    <SearchProduct/>
+                    {/*<SearchProduct/>*/}
                     <MenuActions />
                 </div>
             </div>

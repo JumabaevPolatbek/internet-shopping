@@ -1,7 +1,7 @@
 import { Outlet } from "react-router"
 import HeaderTop from "../../components/HeaderTop"
 import Navbar from "../../components/Navbar"
-import {BreadCrumbs} from "../../components/BreadCrumbs";
+// import BreadCrumbs from "../../components/BreadCrumbs";
 
 
 export function Layout() {
@@ -10,7 +10,7 @@ export function Layout() {
              <header className="flex flex-col">
                 <HeaderTop/>
                 <Navbar/>
-                 <BreadCrumbs/>
+                 {/*<BreadCrumbs/>*/}
             </header>
             <main>
                 <Outlet/>

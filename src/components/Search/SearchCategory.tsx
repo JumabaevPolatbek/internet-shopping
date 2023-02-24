@@ -2,13 +2,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import { LinearProgress } from '@mui/material';
 import useDebounce from '../../store/hook/debounce';
 import React from 'react';
-import { useGetCategoriesQuery } from '../../store/api/category';
+// import { useGetCategoriesQuery } from '../../store/api/category';
 import { NavLink } from 'react-router-dom';
 
 
 
 export function SearchCategory() {
-    const {data,isLoading,isSuccess}=useGetCategoriesQuery()
+    // const {data,isLoading,isSuccess}=useGetCategoriesQuery()
     const [searchValue,setSearchValue]=React.useState('')
     const debounce = useDebounce<string>(searchValue)
     return (
@@ -25,23 +25,23 @@ export function SearchCategory() {
                 <SearchIcon style={{color:'#fff',fontSize:'35px'}}/>
             </div>
             </div>
-            {isSuccess && <ul
-                className='list-none absolute top-[44px] right-0 left-0  max-h-[200px] bg-white shadow-md z-[999] overflow-y-scroll'
-            >
-                {data?.map(category => {
-                    if (category.name.toLowerCase().includes(debounce) && debounce.length > 3) {
-                        return <li
-                        className='py-2 px-4 hover:bg-slate-600 hover:text-white transition-colors cursor-pointer w-full'
-                            key={category.id}
-                        >
-                            <NavLink
-                                to={`edit/${category.id}`}
-                                className="block"
-                            >{category.name}</NavLink>
-                        </li>
-                       }
-                   })}
-                </ul>}
+            {/*{isSuccess && <ul*/}
+            {/*    className='list-none absolute top-[44px] right-0 left-0  max-h-[200px] bg-white shadow-md z-[999] overflow-y-scroll'*/}
+            {/*>*/}
+            {/*    {data?.map(category => {*/}
+            {/*        if (category.name.toLowerCase().includes(debounce) && debounce.length > 3) {*/}
+            {/*            return <li*/}
+            {/*            className='py-2 px-4 hover:bg-slate-600 hover:text-white transition-colors cursor-pointer w-full'*/}
+            {/*                key={category.id}*/}
+            {/*            >*/}
+            {/*                <NavLink*/}
+            {/*                    to={`edit/${category.id}`}*/}
+            {/*                    className="block"*/}
+            {/*                >{category.name}</NavLink>*/}
+            {/*            </li>*/}
+            {/*           }*/}
+            {/*       })}*/}
+            {/*    </ul>}*/}
             </div>
     )
 }

@@ -16,7 +16,7 @@ type Props = {
 }
 export function ProductItem({product}:Props) {
     const {product:stateProduct}=useAppSlector(state=>state.cartProduct)
-    const {count,products}=useAppSlector(state=>state.likesCount)
+    const {products}=useAppSlector(state=>state.likesCount)
     const dispatch = useDispatch()
     const handleAddCart=(cart:Product)=> dispatch(addProduct(cart))
     const [hover,setHover]=React.useState(false)

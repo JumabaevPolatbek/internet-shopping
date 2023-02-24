@@ -9,7 +9,6 @@ import {ProductOrder} from "./ProductOrder";
 export function ProductInfo(){
     const location = useLocation()
     const {state}=location
-    console.log('Location',state)
     return (
         <div className="container mx-auto px-[15px] pt-[10px]">
             <div>BreadCrumbs</div>

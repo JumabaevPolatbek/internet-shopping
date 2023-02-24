@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { pathApi } from '..';
 import { Categories, Category, NewCategories } from '../../models/categories';
+import {RootState} from "../../index";
 
 export const actionsCategories = createApi({
     reducerPath: 'actionsCategory',
@@ -15,16 +16,16 @@ export const actionsCategories = createApi({
             // }),
             providesTags:['categories']
         }),
-        parentCategory: builder.query<Categories,void>({
+        getParentCategory: builder.query<Categories,void>({
             query: () => 'categories',
             transformResponse: (response: Categories) => response.filter(categor=> categor.parent_category===null),
             providesTags:['categories']
         }),
-        childCategory: builder.query<Categories, void>({
+        getChildCategory: builder.query<Categories, void>({
             query: () => 'categories',
             transformResponse: (response:Categories) => response.filter(categor=>categor.parent_category!==null )
         }),
-        nestChildCategory: builder.query<Categories, void>({
+        getNestChildCategory: builder.query<Categories, void>({
             query: () => 'categories',
             transformResponse: (response:Categories)=>response.filter(categor=>categor.children_category?.length===0)
         }),
@@ -77,13 +78,15 @@ export const actionsCategories = createApi({
     })
 })
 
-export const { useGetCategoriesQuery,
+export const {
+    useGetCategoriesQuery,
     useGetCategoryQuery,
     useGetLimitCategoryQuery, 
     useAddNewCategoryMutation, 
     useUpdateCategoryMutation,
     useDeleteCategoryMutation,
-    useParentCategoryQuery,
-    useNestChildCategoryQuery,
-    useChildCategoryQuery
+    useGetParentCategoryQuery,
+    useGetNestChildCategoryQuery,
+    useGetChildCategoryQuery
 } = actionsCategories;
+

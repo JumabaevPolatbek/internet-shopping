@@ -5,7 +5,6 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { UseFormSetValue } from 'react-hook-form';
 import {  NewCategories } from '../../store/models/categories';
-import { useGetCategoriesQuery } from '../../store/api/category';
 import { ListSubheader } from '@mui/material';
 
 type Props = {
@@ -15,7 +14,7 @@ type Ref=HTMLSelectElement
 
 export const SelectCategory=React.forwardRef<Ref,Props>(({ setName },ref)=> {
   
-  const {data}=useGetCategoriesQuery()
+  // const {data}=useGetCategoriesQuery()
   const [age, setAge] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -35,34 +34,14 @@ export const SelectCategory=React.forwardRef<Ref,Props>(({ setName },ref)=> {
           onChange={handleChange}
           inputRef={ref}
         >
-          {data?.map(category => {
-            // if (category.parent_category !== null) {
-            //   return <ListSubheader key={category.id}>
-            //     {category.name}
-            //       {category.children_category.map(child=>{
-            //         return <MenuItem key={child.id} value={child.id}>{child.name}</MenuItem>
-            //       })}
-            //     </ListSubheader>
-              // <MenuItem
-              //   value={category.parent_category?.id}
-              //   key={category.parent_category?.id}
-              // >{category.parent_category?.name}
-              // </MenuItem>
-          //  }
-          // return (
-          //   <ListSubheader key={category.id}>
-          //     {category.name}
-          //       {category.children_category.map(child=>{
-          //         return <MenuItem key={child.id} value={child.id}>{child.name}</MenuItem>
-          //       })}
-          //     </ListSubheader>
-          // )
-          return (
-            <MenuItem key={category.id} value={category.id}>
-                {category.name}
-            </MenuItem>
-          )
-         })}
+         {/* {data?.map(category => {*/}
+         {/*   */}
+         {/* return (*/}
+         {/*   <MenuItem key={category.id} value={category.id}>*/}
+         {/*       {category.name}*/}
+         {/*   </MenuItem>*/}
+         {/* )*/}
+         {/*})}*/}
         </Select>
       </FormControl>
     </div>

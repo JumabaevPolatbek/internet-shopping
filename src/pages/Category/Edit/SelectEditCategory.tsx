@@ -4,7 +4,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useGetCategoriesQuery } from '../../../store/api/category';
+// import { useGetCategoriesQuery } from '../../../store/api/category';
 import { UseFormSetValue } from 'react-hook-form';
 import { NewCategories } from '../../../store/models/categories';
 
@@ -13,7 +13,7 @@ type Props={
   id?:number
 }
 export const  SelectEditCategory=React.forwardRef<HTMLSelectElement,Props>(({setValue,id},ref)=> {
-  const {data}=useGetCategoriesQuery()
+  // const {data}=useGetCategoriesQuery()
   const [category, setCategory] = React.useState('');
   const handleChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value);
@@ -31,12 +31,12 @@ export const  SelectEditCategory=React.forwardRef<HTMLSelectElement,Props>(({set
           onChange={handleChange}
           inputRef={ref}
           >
-            {data?.map(category=>{
-              return <MenuItem
-                key={category.name}
-                value={category.id}
-              >{category.name}</MenuItem>
-            })}
+            {/*{data?.map(category=>{*/}
+            {/*  return <MenuItem*/}
+            {/*    key={category.name}*/}
+            {/*    value={category.id}*/}
+            {/*  >{category.name}</MenuItem>*/}
+            {/*})}*/}
           </Select>
       </FormControl>
     </Box>

@@ -1,1 +1,1 @@
-export {BreadCrumbs} from './BreadCrumbs'
+export {BreadCrumbs as default} from './BreadCrumbs'

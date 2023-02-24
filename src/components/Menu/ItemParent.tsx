@@ -3,21 +3,34 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { ChildList } from "./Child";
 import { Collapse, Divider } from "@mui/material";
-import { useChildCategoryQuery } from "../../store/api/category";
+import { useGetChildCategoryQuery } from "../../store/api/category";
+import {NavLink} from "react-router-dom";
+
+const activeClass="flex justify-between items-center py-2 px-4 bg-slate-400 text-white hover:bg-slate-400 transition-colors cursor-pointer"
+const defClass="flex justify-between items-center py-2 px-4 bg-[#da002b] text-white hover:bg-slate-400 transition-colors cursor-pointer"
 
 export function ItemParent({ name,parent_id }: { name:string,parent_id?:number}) {
     const [open, setOpen] = React.useState(false)
-    const { data } = useChildCategoryQuery()
+    const { data } = useGetChildCategoryQuery()
     return (
         <>
         <div
-            className="flex justify-between items-center py-2 px-4 hover:bg-slate-400 hover:text-white transition-colors cursor-pointer"
-            onClick={()=>setOpen(open=>!open)}
+            className={open?activeClass:defClass}
         >
-            {name}
-            {open ? 
-                <KeyboardArrowUpIcon/>:
-                <KeyboardArrowDownIcon /> 
+            <NavLink
+                to={`/category/${parent_id}`}
+                state={parent_id}
+                className="text-white"
+            >
+                {name}
+            </NavLink>
+            {open ?
+                <KeyboardArrowUpIcon
+                    onClick={()=>setOpen(false)}
+                />:
+                <KeyboardArrowDownIcon
+                    onClick={()=>setOpen(true)}
+                />
             }
             </div>
            
