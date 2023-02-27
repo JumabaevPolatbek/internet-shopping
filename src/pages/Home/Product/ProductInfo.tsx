@@ -11,7 +11,7 @@ export function ProductInfo(){
     const {state}=location
     return (
         <div className="container mx-auto px-[15px] pt-[10px]">
-            <div>BreadCrumbs</div>
+
             <div className="flex flex-col">
                 <Typography variant="h2" className="py-2">
                     {state.name}

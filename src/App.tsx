@@ -27,6 +27,7 @@ import {CheckAuth} from "./utils/checkAuth";
 import {ProductInfo} from "./pages/Home/Product/ProductInfo";
 import {Carts} from "./pages/Carts";
 import {Favorites} from "./pages/Favorites/Favorites";
+import {CategoryProducts} from "./pages/Home/Category/CategoryProducts";
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
                     <Auth/>
                 </CheckAuth>} />
             <Route path='/favorites' element={<Favorites/>}/>
+            <Route path='/category/:id' element={<CategoryProducts/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Route>
     <Route path='admin' element={

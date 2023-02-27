@@ -2,25 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a101907b-e942-44ed-8c79-ed3ee4d03b43" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/Home/Category/CategoryProducts.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Home/Category/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/BreadCrumbs/BreadCrumbs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BreadCrumbs/BreadCrumbs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BreadCrumbs/Crumb.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BreadCrumbs/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BreadCrumbs/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Category/Category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Category/Category.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Menu/Child.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu/Child.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Menu/ItemParent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu/ItemParent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Menu/Menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu/Menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Menu/NestedList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu/NestedList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Product/Product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Product/Product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Search/SearchCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Search/SearchCategory.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SelectCategory/SelectCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SelectCategory/SelectCategory.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Category/Edit/SelectEditCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Category/Edit/SelectEditCategory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Category/Category.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Category/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dashboard/Dashboard.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dashboard/index.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home/Home.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Home/Product/ProductInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home/Product/ProductInfo.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Layout/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Layout/Layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Product/Edit/SelectUpdateProduct.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Product/Edit/SelectUpdateProduct.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/api/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/api/category/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +85,9 @@
       <workItem from="1677065712289" duration="6591000" />
       <workItem from="1677169374873" duration="9727000" />
       <workItem from="1677226982436" duration="9549000" />
-      <workItem from="1677249261966" duration="11663000" />
+      <workItem from="1677249261966" duration="11949000" />
+      <workItem from="1677421627963" duration="688000" />
+      <workItem from="1677516735224" duration="4458000" />
     </task>
     <servers />
   </component>
@@ -120,7 +115,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/App.tsx</url>
-          <line>51</line>
+          <line>53</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
