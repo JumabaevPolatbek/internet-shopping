@@ -1,0 +1,9 @@
+.asnav-for .slick-slide{
+    padding: 5px 5px;
+    cursor:pointer;
+}
+
+.asnav-for  .slick-current > div{
+    border: 2px solid #da002b;
+    border-radius: 3px;
+}

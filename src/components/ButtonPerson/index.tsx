@@ -1,0 +1,1 @@
+export {ButtonPerson} from './ButtonPerson'

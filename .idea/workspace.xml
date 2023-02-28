@@ -5,7 +5,6 @@
       <change afterPath="$PROJECT_DIR$/src/pages/Home/Category/CategoryProducts.tsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/pages/Home/Category/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internet-shopping" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/BreadCrumbs/BreadCrumbs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BreadCrumbs/BreadCrumbs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Category/Category.tsx" beforeDir="false" />
@@ -89,7 +88,6 @@
       <workItem from="1677249261966" duration="11949000" />
       <workItem from="1677421627963" duration="688000" />
       <workItem from="1677516735224" duration="4458000" />
-      <workItem from="1677526389641" duration="48000" />
     </task>
     <servers />
   </component>

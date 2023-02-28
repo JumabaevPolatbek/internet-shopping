@@ -1,0 +1,70 @@
+import * as React from 'react';
+import Dialog from '@mui/material/Dialog';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import CloseIcon from '@mui/icons-material/Close';
+import Slide from '@mui/material/Slide';
+import { TransitionProps } from '@mui/material/transitions';
+import TextIncreaseIcon from '@mui/icons-material/TextIncrease';
+import { Tooltip } from '@mui/material';
+import { FormAttr } from './FormAttr';
+
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+export  function Attributes({open,setAttr,idCategory}:{open:boolean,setAttr:React.Dispatch<React.SetStateAction<boolean>>,idCategory?:number}) {
+
+  const handleClickOpen = () => {
+    setAttr(true);
+  };
+
+  const handleClose = () => {
+    setAttr(false);
+  };
+
+  return (
+    <div>
+        <Tooltip title="Add Attribute" arrow>
+        <IconButton
+        onClick={handleClickOpen}
+        color="error">
+            <TextIncreaseIcon/>
+        </IconButton>
+        </Tooltip>
+      <Dialog
+        fullScreen
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'relative' }} color="secondary">
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              Attributes
+            </Typography>
+            {/* <Button autoFocus color="inherit" onClick={handleClose}>
+            Save
+            </Button> */}
+          </Toolbar>
+        </AppBar>
+        <FormAttr modal={setAttr} id={idCategory} open={open}/>
+      </Dialog>
+    </div>
+  );
+}
