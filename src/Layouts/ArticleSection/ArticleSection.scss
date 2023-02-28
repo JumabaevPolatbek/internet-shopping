@@ -1,0 +1,58 @@
+@use 'src/Styles/mixins.scss';
+@import 'src/Styles/variables.scss';
+
+.article-section {
+    font-family: 'Inter';
+
+    section {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    aside {
+        display: flex;
+        flex-direction: column;
+
+        .interesting__section {
+            margin: 64px 0;
+
+            h4 {
+                @include mixins.caption04(600);
+                padding: 16px 0;
+                border-bottom: 1px solid $color06;
+            }
+
+            ul {
+                li {
+                    padding: 15px 0;
+                    border-bottom: 1px solid $color06;
+                    cursor: pointer;
+
+                    .type {
+                        @include mixins.descriptor01();
+                        color: $color04;
+                        margin-bottom: 6px;
+                    }
+
+                    .text {
+                        @include mixins.caption02();
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .article-section {
+        section {
+            flex-direction: row;
+
+            aside {
+                width: 384px;
+            }
+        }
+    }
+}

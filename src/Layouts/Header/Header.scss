@@ -1,0 +1,11 @@
+@use 'src/Styles/_mixins.scss';
+@import 'src/Styles/_default.scss';
+@import 'src/Styles/_variables.scss';
+
+
+.header-top {
+    font-family: 'Inter';
+    color: $color01;
+    display: flex;
+    justify-content: space-between;
+}

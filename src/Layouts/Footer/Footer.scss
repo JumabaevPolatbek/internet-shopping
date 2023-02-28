@@ -1,0 +1,218 @@
+@use 'src/Styles/mixins.scss';
+@import 'src/Styles/variables.scss';
+@import 'src/Styles/default.scss';
+
+.footer {
+    font-family: 'Inter';
+    padding: 72px 0 16px;
+    background-color: $color01;
+    color: $color00;
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .about {
+            text-align: center;
+            order: 1;
+
+            .description {
+                @include mixins.descriptor01;
+                color: $color03;
+                margin-bottom: 29px;
+            }
+
+            a {
+                display: none;
+            }
+        }
+
+        .contacts {
+            order: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            .contact__info {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .phone {
+                @include mixins.caption03();
+                margin-bottom: 5px;
+                flex-basis: 100%;
+            }
+
+            .desc__work,
+            .desc__time {
+                @include mixins.descriptor01();
+                margin-bottom: 47px;
+            }
+
+            .social__links {
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+                width: fit-content;
+                margin-bottom: 32px;
+
+                li {
+                    padding: 0 16px;
+                    transition: transform .5s ease;
+
+                    &:hover {
+                        transform: scale(1.12, 1.12);
+                        transform-origin: center center;
+                    }
+
+                    a {
+                        display: block;
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    &:nth-child(1) a {
+                        background-color: $color09;
+                    }
+
+                    &:nth-child(2) a {
+                        background: radial-gradient(65% 65% at 20% 90%, #FFD43D 0%, rgba(247, 95, 43, 0.12) 100%), linear-gradient(167.77deg, #3350F3 5.05%, #D41EB0 52.59%, #F8214E 91.1%);
+                    }
+
+                    &:nth-child(3) a {
+                        background: #00D15D;
+                    }
+                }
+
+
+            }
+        }
+
+        .navs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            order: 3;
+            margin-bottom: 45px;
+
+            li a {
+                @include mixins.caption03();
+                color: $color06;
+                transition: color .4s ease;
+                font-family: 'Inter';
+
+                &:hover {
+                    color: $color00;
+                }
+            }
+
+            li {
+                flex-basis: 45%;
+                margin-bottom: 23px;
+            }
+        }
+
+        .politics-mobile {
+            order: 4;
+            @include mixins.descriptor01();
+            text-align: center;
+            color: $color00;
+            margin-bottom: 37px;
+            text-decoration: underline;
+        }
+    }
+
+    .invite {
+        text-align: center;
+        padding: 21px 0;
+
+        a {
+            color: $color00;
+            @include mixins.button02-text();
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 6px;
+                right: -20px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: #00D15D;
+            }
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .footer {
+        &__info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: row;
+
+            .about {
+                width: 224px;
+                order: 1;
+                text-align: left;
+
+                img {
+                    margin-bottom: 19px;
+                }
+
+                a {
+                    display: block;
+                    @include mixins.descriptor01();
+                    color: $color00;
+                    text-decoration: underline;
+                }
+            }
+
+            .navs {
+                order: 2;
+                margin: 0;
+                width: auto;
+                width: 600px;
+
+                li {
+                    flex-basis: 30%;
+                    margin-bottom: 34px;
+                }
+            }
+
+            .contacts {
+                order: 3;
+                width: 150px;
+                text-align: left;
+
+                .contact__info {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .desc__work{
+                    margin-bottom: 0;
+                }
+                .phone {
+                    margin-bottom: 13px;
+                    flex-basis: auto;
+                }
+            }
+
+            .politics-mobile {
+                display: none;
+            }
+        }
+    }
+}

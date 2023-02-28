@@ -1,0 +1,103 @@
+@use 'src/Styles/mixins.scss';
+@import 'src/Styles/variables.scss';
+
+.header-middle {
+    display: none;
+}
+
+@media (min-width: 1280px) {
+    .header-middle {
+        display: block;
+        font-family: 'Inter';
+
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &__item {
+                display: inline-block;
+            }
+
+            &__item a {
+                color: $color01;
+                @include mixins.caption02();
+                display: inline-block;
+                padding: 6px 15px;
+                border-radius: 28px;
+                background-color: $color07;
+
+                &:active {
+                    color: $color03;
+                }
+            }
+
+            margin-bottom: 32px;
+        }
+
+        .menu__btn {
+            color: $color01;
+            @include mixins.caption02();
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 28px;
+            background-color: $color07;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            &.active {
+                color: $color03;
+            }
+
+
+        }
+
+        .extra {
+            position: relative;
+
+            nav {
+                position: absolute;
+                top: calc(100% + 10px);
+                right: 0;
+                transition: transform .4s ease;
+                transform: scale(0);
+                transform-origin: top right;
+
+                &.open {
+                    transform: scale(1);
+                }
+
+                ul {
+                    background: $color00;
+                    border: 1px solid $color06;
+                    box-shadow: 0px 3px 15px $color05;
+                    border-radius: 4px;
+                    padding: 13px 1px;
+
+                    li {
+                        width: 170px;
+
+                        &:not(:last-of-type) a {
+                            margin-bottom: 10px;
+                        }
+                    }
+
+                    li a {
+                        border-radius: 0;
+                        padding: 7px 18px;
+                        background-color: $color00;
+                        @include mixins.caption02();
+                        transition: background-color;
+                        width: 100%;
+
+                        &:hover {
+                            background-color: $color07;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+}

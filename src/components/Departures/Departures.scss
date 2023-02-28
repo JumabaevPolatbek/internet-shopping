@@ -1,0 +1,136 @@
+@use 'src/Styles/mixins.scss';
+@import 'src/Styles/variables.scss';
+
+.departures {
+    .departure {
+        padding: 24px;
+        width: 328px;
+        height: 200px;
+        position: relative;
+        background-size: 100% 100%;
+        margin-bottom: 16px;
+
+        &__info {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            align-items: flex-start;
+        }
+
+        &__title {
+            @include mixins.caption04(600);
+            margin-bottom: 14px;
+        }
+
+        &__extra {
+            padding: 0 20px;
+            flex: 1;
+
+            li {
+                @include mixins.caption01();
+                list-style: disc;
+
+            }
+        }
+
+        &__icon {
+            position: absolute;
+            right: 24px;
+            bottom: 24px;
+            width: 104px;
+            height: 104px;
+        }
+
+        &__link {
+            display: inline-block;
+            @include mixins.button01-text();
+            padding: 4px 12px 4px 30px;
+            border: 1px solid $color04;
+            border-radius: 4px;
+            position: relative;
+            color: $color02;
+            transition: all .4s ease;
+
+            &:hover {
+                color: $color01;
+                border-color: $color01;
+            }
+
+            &::before {
+                content: '...';
+                position: absolute;
+                left: 12px;
+                font-weight: 900;
+                font-family: 'Inter';
+            }
+        }
+    }
+
+    &__more {
+        @include mixins.button01-text();
+        color: $color02;
+        outline: none;
+        width: 100%;
+        text-align: center;
+        padding: 13px 0;
+        background-color: $color00;
+        border: 1px solid $color06;
+        border-radius: 4px;
+        margin-bottom: 14px;
+        position: relative;
+        cursor: pointer;
+        transition: all .3s ease;
+
+        &.open {
+            display: none;
+        }
+
+        &:hover {
+            color: $color01;
+            border-color: $color02;
+        }
+    }
+
+    .extra {
+        display: none;
+
+        &.open {
+            display: block;
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .departures {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .departure {
+            width: 384px;
+            height: 248px;
+            margin-bottom: 32px;
+            padding: 24px 32px;
+
+            &__icon {
+                width: 120px;
+                height: 120px;
+                right: 32px;
+            }
+        }
+
+        &__more {
+            padding: 13px 0;
+        }
+
+        .extra {
+            justify-content: space-between;
+            flex-wrap: wrap;
+            display: none;
+
+            &.open {
+                display: flex;
+            }
+        }
+    }
+}

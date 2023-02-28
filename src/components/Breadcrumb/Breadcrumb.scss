@@ -1,0 +1,63 @@
+@use 'src/Styles/mixins.scss';
+@import 'src/Styles/variables.scss';
+@import 'src/Styles/default.scss';
+
+.breadcrumb {
+    padding: 16px 0;
+
+    a {
+        font-family: 'Inter';
+        @include mixins.descriptor01();
+        color: $color01;
+        transition: color .4s ease;
+    }
+
+    ul {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        li {
+            position: relative;
+
+            &:hover a {
+                color: $color04;
+            }
+
+            &:not(:last-of-type) {
+                margin-right: 20px;
+
+                &::after {
+                    content: '/';
+                    position: absolute;
+                    top: 0;
+                    right: -10px;
+                    color: $color04;
+                }
+            }
+
+            &:last-of-type a {
+                color: $color04;
+            }
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .breadcrumb {
+        padding: 16px 0;
+        margin-bottom: 22px;
+
+        ul li {
+            &:not(:last-of-type) {
+                margin-right: 32px;
+
+                &::after {
+                    right: -16px;
+                    font-size: 20px;
+                    line-height: 22px;
+                }
+            }
+        }
+    }
+}

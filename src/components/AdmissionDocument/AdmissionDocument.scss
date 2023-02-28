@@ -1,0 +1,320 @@
+@use 'src/Styles/mixins.scss';
+@import 'src/Styles/variables.scss';
+@import 'src/Styles/default.scss';
+
+.admission-document {
+    font-family: 'Inter';
+    margin-bottom: 32px;
+
+    &>.title {
+        @include mixins.title01();
+        margin: 26px 0;
+    }
+
+    .selected-univer {
+        padding: 16px;
+        margin-bottom: 16px;
+        text-align: right;
+        background-size: cover;
+        .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+
+            img {
+                width: 40px;
+                margin-right: 15px;
+            }
+
+            p {
+                @include mixins.caption02(600);
+                text-align: left;
+            }
+        }
+
+        .change-univer__button {
+            @include mixins.button01-text();
+            outline: none;
+            border: 1px solid $color01;
+            border-radius: 4px;
+            padding: 4px 12px;
+            background-color: transparent;
+            cursor: pointer;
+        }
+    }
+
+    form {
+        border: 1px solid $color06;
+        padding: 15px;
+        position: relative;
+
+        #showLevel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+
+            span {
+                display: inline-block;
+                width: 30%;
+                height: 3px;
+                border-radius: 4px;
+                background-color: $color06;
+
+                &#active {
+                    background-color: $color01;
+                }
+            }
+        }
+
+        &>div>h2 {
+            @include mixins.title02();
+            margin-bottom: 25px;
+            margin-top: 40px;
+        }
+
+        .input-group {
+
+            input[type='text'],
+            input[type='email'],
+            input[type='tel'],
+            select {
+                padding: 16px 20px;
+                @include mixins.caption02();
+                border: none;
+                border-radius: 4px;
+                background-color: $color07;
+                font-family: 'Inter';
+                outline: none;
+                caret-color: $color09;
+            }
+
+            select {
+
+                background-color: transparent;
+                border: none;
+                padding: 0 1em 0 0;
+                margin: 0;
+                width: 100%;
+                font-family: inherit;
+                font-size: inherit;
+                cursor: inherit;
+                line-height: inherit;
+                outline: none;
+                padding: 16px 20px;
+                @include mixins.caption02();
+                border: none;
+                border-radius: 4px;
+                background-color: $color07;
+                font-family: 'Inter';
+            }
+
+            &#text {
+                display: flex;
+                flex-direction: column;
+                margin: 24px 0;
+
+                label {
+                    @include mixins.caption02();
+                    margin-bottom: 8px;
+                }
+            }
+
+            &#file {
+                background-color: $color07;
+                border-radius: 3px;
+                padding: 24px;
+                margin-bottom: 24px;
+
+                input {
+                    display: none;
+                }
+
+                label {
+                    @include mixins.button01-text();
+                    width: 100%;
+                    display: inline-block;
+                    text-align: center;
+                    border: 1px dashed $color05;
+                    cursor: pointer;
+                    padding: 13px;
+                    border-radius: 4px;
+                    text-transform: uppercase;
+                }
+
+                &>p {
+                    @include mixins.caption02();
+                    text-align: center;
+                    margin-bottom: 19px;
+                }
+
+                .scaners {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    margin-top: 32px;
+                    flex-wrap: wrap;
+
+                    .wrap {
+                        position: relative;
+                        margin-right: 7px;
+
+                        span {
+                            position: absolute;
+                            top: 0px;
+                            right: 0;
+                            font-size: 12px;
+                            display: inline-block;
+                            background-color: rgba($color: #000000, $alpha: 0.5);
+                            padding: 2px;
+                            border-radius: 50%;
+                            width: 16px;
+                            text-align: center;
+                            color: $color00;
+                            line-height: 100%;
+                            font-weight: 300;
+                            transition: all .5s ease;
+                            cursor: pointer;
+
+                            &:hover {
+                                color: $color01;
+                                background-color: rgba($color: #fff, $alpha: 0.5);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .step3 {
+            &>p {
+                @include mixins.text01();
+                margin-bottom: 16px;
+            }
+
+            .check-age {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 30px;
+
+                .switch {
+                    display: block;
+                    width: 50px;
+                    height: 20px;
+                }
+
+                .switch input[type=checkbox] {
+                    height: 0;
+                    width: 0;
+                    visibility: hidden;
+                }
+
+                .switch input[type=checkbox]:checked+label {
+                    background: $color01;
+                }
+
+                .switch input[type=checkbox]:checked+label::after {
+                    left: calc(100% - 4px);
+                    transform: translateX(-100%);
+                }
+
+                .switch label {
+                    display: block;
+                    cursor: pointer;
+                    width: 40px;
+                    height: 20px;
+                    background: grey;
+                    border-radius: 24px;
+                    position: relative;
+                }
+
+                .switch label::after {
+                    content: "";
+                    position: absolute;
+                    top: 4px;
+                    left: 4px;
+                    width: 16px;
+                    height: 16px;
+                    background: white;
+                    border-radius: 16px;
+                    transition: 0.3s;
+                }
+            }
+        }
+
+        .submit {
+            outline: none;
+            border: none;
+            background-color: $color01;
+            color: $color00;
+            padding: 22px 0;
+            @include mixins.button02-text();
+            margin: 24px 0;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all .5s ease;
+
+            &:hover {
+                background-color: $color02;
+            }
+        }
+
+        .agree-give-documents {
+            @include mixins.descriptor01();
+            margin-bottom: 16px;
+
+            span {
+                border-bottom: 1px solid $color06;
+            }
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .admission-document {
+        &>.title {
+            margin-bottom: 44px;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+
+            form {
+                order: 1;
+                width: 600px;
+                padding: 72px 40px;
+
+                .scaners {
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    width: 100%;
+
+                    .wrap {
+                        width: 72px;
+                        height: 72px;
+
+                        img {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+
+            .selected-univer {
+                order: 2;
+                width: 400px;
+                position: sticky;
+                top: 0;
+            }
+        }
+    }
+}

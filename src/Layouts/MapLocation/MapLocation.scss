@@ -1,0 +1,32 @@
+@use 'src/Styles/mixins.scss';
+@import 'src/Styles/variables.scss';
+@import 'src/Styles/default.scss';
+
+.location {
+    margin: 64px 0;
+    font-family: 'Inter';
+
+    .title {
+        @include mixins.title02();
+        margin-bottom: 24px;
+    }
+
+    .map {
+        img {
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .location {
+        .title {
+            width: 700px;
+            margin-bottom: 50px;
+        }
+
+        .map img {
+            height: 456px;
+        }
+    }
+}

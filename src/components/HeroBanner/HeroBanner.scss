@@ -1,0 +1,92 @@
+@use 'src/Styles/mixins.scss';
+@import 'src/Styles/variables.scss';
+
+.hero {
+    &-banner {
+        font-family: 'Inter';
+        color: $color01;
+        padding: 24px;
+        background-size: cover;
+    }
+
+    &-title {
+        @include mixins.title01();
+        margin-bottom: 20px;
+        position: relative;
+        
+
+        .share__btn{
+            position: absolute;
+            top: 0;
+            right: 0;
+            cursor: pointer
+        }
+    }
+
+    &-text {
+        @include mixins.text02();
+        margin-bottom: 38px;
+    }
+
+    &-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        ul {
+            padding-left: 16px;
+        }
+
+        ul li {
+            list-style: disc;
+            @include mixins.text02();
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .hero {
+        &-banner {
+            flex-basis: 800px;
+            height: 496px;
+            padding: 40px;
+        }
+
+        &-title {
+            margin-bottom: 21px;
+            width: 600px;
+            padding-right: 20px;
+
+            .share__btn{
+                right: -100px;
+                top: -20px;
+            }
+        }
+
+        &-text {
+            margin-bottom: 68px;
+            width: 552px;
+        }
+
+        &-info {
+            position: relative;
+
+            img {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 135px;
+                height: 135px;
+            }
+        }
+
+        &-stat {
+            display: flex;
+            padding: 0;
+
+            li {
+                margin-right: 30px;
+            }
+        }
+    }
+}

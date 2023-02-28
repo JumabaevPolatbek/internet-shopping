@@ -1,0 +1,122 @@
+@use 'src/Styles/mixins.scss';
+@import 'src/Styles/variables.scss';
+@import 'src/Styles/default.scss';
+
+.submit-documents {
+    font-family: 'Inter';
+
+    .title {
+        @include mixins.title01();
+        margin-bottom: 18px;
+    }
+
+    .description {
+        @include mixins.caption02();
+        margin-bottom: 40px;
+    }
+
+    .alert {
+        @include mixins.title02();
+        margin-bottom: 24px;
+    }
+
+    .input-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+    }
+
+    input {
+        border: none;
+        outline: none;
+        background-color: $color07;
+        @include mixins.descriptor01();
+        border-radius: 4px;
+        padding: 16px 16px 16px 52px;
+        font-size: 14px;
+        position: relative;
+        width: 184px;
+    }
+
+    .departure {
+        padding: 24px;
+        position: relative;
+        background-size: 100% 100%;
+        margin-bottom: 16px;
+        width: 328px;
+        height: 248px;
+
+        &__type {
+            @include mixins.descriptor02();
+            margin-bottom: 9px;
+        }
+
+        &__title {
+            @include mixins.caption04(600);
+            margin-bottom: 9px;
+        }
+
+        &__extra {
+            @include mixins.caption01();
+        }
+
+        &__univ {
+            position: absolute;
+            right: 24px;
+            bottom: 24px;
+            width: 88px;
+            height: 88px;
+        }
+
+        &__link {
+            display: inline-block;
+            @include mixins.button01-text();
+            padding: 4px 12px;
+            border: 1px solid $color04;
+            border-radius: 4px;
+            color: $color02;
+            transition: all .4s ease;
+
+            &::before {
+                display: none;
+            }
+
+            &:hover {
+                color: $color01;
+                border-color: $color01;
+            }
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .submit-documents {
+        .title {
+            margin-bottom: 13px;
+        }
+
+        .description {
+            margin-bottom: 64px;
+        }
+
+        .alert {
+            margin-bottom: 42px;
+        }
+
+        .input-group {
+            width: 650px;
+            margin-bottom: 31px;
+        }
+
+        input {
+            width: 384px;
+        }
+
+        .departure {
+            width: 384px;
+            height: 271px;
+            margin-bottom: 32px;
+        }
+    }
+}

@@ -1,19 +1,27 @@
-import ProductItem from "../../components/Product";
-import SliderItems from "../../components/Slider";
-import { useGetProductsQuery } from "../../store/api/product";
+import Header from "../../Layouts/Header";
+import HeroSection from "../../Layouts/HeroSection";
+import DeparturesSection from "../../Layouts/DeparturesSection";
+import Partners from "../../Layouts/Partners";
+import Graduate from "../../Layouts/Graduate";
+import InformationSection from "../../Layouts/InformationSection";
+import SubmitDocuments from "../../Layouts/SubmitDocuments";
+import MapLocation from "../../Layouts/MapLocation";
+import Footer from "../../Layouts/Footer";
 
-export function Home() {
-    const { data } = useGetProductsQuery()
+function Home() {
     return (
-                <div className="container mx-auto mt-3">
-                    <div className="banner h-[350px]">
-                            <SliderItems data={data}/>
-                    </div>
-                    <div className=" flex flex-wrap justify-around">
-                        {data?.map(product => {
-                        return <ProductItem product={product} key={product.id}/>
-                    })}
-                    </div>
-                </div>
+        <>
+            <Header />
+            <HeroSection />
+            <Partners />
+            <DeparturesSection />
+            <Graduate />
+            <InformationSection />
+            <SubmitDocuments />
+            <MapLocation />
+            <Footer />
+        </>
     )
 }
+
+export default Home;

@@ -1,0 +1,82 @@
+@use 'src/Styles/mixins.scss';
+@import 'src/Styles/variables.scss';
+@import 'src/Styles/default.scss';
+
+
+.departures-section {
+    font-family: 'Inter';
+    margin-bottom: 64px;
+    .title {
+        @include mixins.title01();
+        margin-bottom: 12px;
+        color: $color01;
+    }
+
+    .tab {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $color06;
+        margin-bottom: 32px;
+
+        &__item {
+            position: relative;
+            @include mixins.caption04();
+            color: $color04;
+            padding: 12px 0;
+            transition: all .5s ease;
+            cursor: pointer;
+
+            &#active {
+                color: $color01;
+
+                &::after {
+                    transform: scaleX(1);
+                }
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                transition: all .3s ease-in;
+                background-color: $color01;
+                transform: scaleX(0);
+                transform-origin: left;
+            }
+
+            span {
+                @include mixins.caption01();
+                position: absolute;
+                top: -2px;
+                right: -15px;
+                transition: all .5s ease;
+            }
+        }
+
+        #active.tab__item::after {
+            transform: scaleX(1);
+        }
+
+    }
+}
+
+@media (min-width: 1280px) {
+    .departures-section {
+        .title {
+            margin-bottom: 32px;
+        }
+
+        .tab {
+            display: block;
+
+            &__item {
+                display: inline-block;
+                margin: 0 30px;
+            }
+        }
+    }
+}
