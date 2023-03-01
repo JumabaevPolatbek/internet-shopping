@@ -99,7 +99,7 @@ export function ProductItem({product}:Props) {
                                 <ShoppingCartOutlinedIcon/>
                             </Button>
                         :
-                        <BtnActionsCart product_id={product.id} quantity={stateProduct.find(item=>item.product_id===product.id)?.quantity}/>
+                        <BtnActionsCart product_id={product.id} quantity={stateProduct.find(item=>item.product_id===product.id)?.quantity} dataProduct={product}/>
                     }
                 </div>
             </div>

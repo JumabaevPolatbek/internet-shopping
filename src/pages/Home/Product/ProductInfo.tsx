@@ -5,13 +5,17 @@ import {RatingProduct} from "./RatingProduct";
 import {ProductImages} from "./ProductImages";
 import {ProductAtrr} from "./ProductAtrr";
 import {ProductOrder} from "./ProductOrder";
+import BreadCrumbs from "../../../components/BreadCrumbs";
 
 export function ProductInfo(){
     const location = useLocation()
     const {state}=location
     return (
         <div className="container mx-auto px-[15px] pt-[10px]">
+            <div>
 
+                <BreadCrumbs/>
+            </div>
             <div className="flex flex-col">
                 <Typography variant="h2" className="py-2">
                     {state.name}

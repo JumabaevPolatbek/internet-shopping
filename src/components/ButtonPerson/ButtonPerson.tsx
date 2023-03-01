@@ -34,6 +34,7 @@ export function ButtonPerson() {
           if (e.currentTarget.textContent === 'Выйти') {
 
                 dispatch(logout())
+                navigate('/')
 
             } else if(e.currentTarget.textContent === 'Профиль') {
 

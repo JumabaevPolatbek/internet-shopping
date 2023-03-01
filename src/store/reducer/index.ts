@@ -15,6 +15,7 @@ import {tokenSlice} from "./tokenSlice";
 import {ordersAction} from "../api/orders";
 import {adminActions} from "../api/admin";
 import {likesCount} from "./likesCount";
+import {callBack} from "../api/call";
 
 export const rootReducer = combineReducers({
     [actionsCountrie.reducerPath]: actionsCountrie.reducer,
@@ -32,6 +33,7 @@ export const rootReducer = combineReducers({
     token:tokenSlice.reducer,
     [ordersAction.reducerPath]:ordersAction.reducer,
     [adminActions.reducerPath]:adminActions.reducer,
-    likesCount:likesCount.reducer
+    likesCount:likesCount.reducer,
+    [callBack.reducerPath]:callBack.reducer
 });
 export type RootState = ReturnType<typeof rootReducer>

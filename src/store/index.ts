@@ -11,6 +11,7 @@ import attributeActions  from "./api/attributes";
 import { authUser } from "./api/auth";
 import {ordersAction} from "./api/orders";
 import {adminActions} from "./api/admin";
+import {callBack} from "./api/call";
 
 export const store = configureStore({
     reducer: rootReducer,
@@ -24,7 +25,8 @@ export const store = configureStore({
         attributeActions,
         authUser.middleware,
         ordersAction.middleware,
-        adminActions.middleware
+        adminActions.middleware,
+        callBack.middleware
     )
 });
 export type RootState = ReturnType<typeof store.getState>
