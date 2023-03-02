@@ -1,15 +1,13 @@
-import { Sidebar, Menu, MenuItem, useProSidebar, SubMenu } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
 import { Link} from 'react-router-dom';
-import Switch from '@mui/material/Switch';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import CategoryIcon from '@mui/icons-material/Category';
 import PublicIcon from '@mui/icons-material/Public';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import DehazeIcon from '@mui/icons-material/Dehaze';
-import ClearAllIcon from '@mui/icons-material/ClearAll';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { Tooltip } from '@mui/material';
 export function SideBarAdmin(){
     const { collapsed,collapseSidebar } = useProSidebar()
@@ -19,17 +17,13 @@ export function SideBarAdmin(){
             <div className='flex flex-col items-center bg-[#3c4b64] h-full border-[#757ce8]'>
                 <div className='w-full px-5 flex justify-between items-center'>
                         {!collapsed && <Link to={'/'} className="py-4 text-[24px] text-[#fff] font-semibold">Logo</Link>}
-                        {/* {!collapsed && <button onClick={() => collapseSidebar()}>
-                            <ClearAllIcon/>
-                        </button>}
-                        {collapsed &&  */}
+
                         <button
                                 className=' rounded py-4'
                                 onClick={()=>collapseSidebar()}
                             >
                                     <DehazeIcon/>
                                 </button>
-                                {/* } */}
                 </div>
                 <Menu className='flex flex-col items-center bg-[#636f83]'>
                     <MenuItem routerLink={<Link to={'/admin'} />}>
@@ -79,6 +73,14 @@ export function SideBarAdmin(){
                         <div className='flex justify-between items-center w-full'>
                             {!collapsed && <span>Countrie</span>}
                             <PublicIcon/>
+                        </div>
+                        </Tooltip>
+                    </MenuItem>
+                    <MenuItem routerLink={<Link to={'call_back'}/>}>
+                        <Tooltip title={collapsed && 'Call Back'} placement="right">
+                        <div className='flex justify-between items-center w-full'>
+                            {!collapsed && <span>Call Back</span>}
+                            <LocalPhoneIcon/>
                         </div>
                         </Tooltip>
                     </MenuItem>

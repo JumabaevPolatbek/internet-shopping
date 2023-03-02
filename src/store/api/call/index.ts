@@ -6,6 +6,7 @@ import {CallBack, ResponseCallBack} from "../../models/callBack";
 export const callBack=createApi({
     reducerPath:'callBack',
     baseQuery:fetchBaseQuery({baseUrl:pathApi}),
+    tagTypes:['call_orders'],
     endpoints: build => ({
         sendCall:build.mutation<CallBack,CallBack>({
             query : (data)=>{
@@ -17,9 +18,23 @@ export const callBack=createApi({
                     },
                     body:(data)
                 }
-            }
+            },
+            invalidatesTags:['call_orders']
+        }),
+        getCalls:build.query<ResponseCallBack[],void>({
+            query:()=>'call_orders',
+            providesTags:['call_orders']
+        }),
+        removeCall:build.mutation<ResponseCallBack,number|undefined>({
+            query: (id)=>{
+                return {
+                    url:`call_orders/${id}`,
+                    method:'DELETE'
+                }
+            },
+            invalidatesTags:['call_orders']
         })
     })
 })
 
-export const {useSendCallMutation}=callBack
+export const {useSendCallMutation,useGetCallsQuery,useRemoveCallMutation}=callBack

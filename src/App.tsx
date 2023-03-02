@@ -27,6 +27,7 @@ import {CheckAuth} from "./utils/checkAuth";
 import {ProductInfo} from "./pages/Home/Product/ProductInfo";
 import {Carts} from "./pages/Carts";
 import {Favorites} from "./pages/Favorites/Favorites";
+import {CallBack} from "./pages/CallBack";
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
           <Route path='products' element={<DetailProducts/>}/>
           <Route path='country' element={<Country/>}/>
           <Route path='orders' element={<Orders/>}/>
+          <Route path='call_back' element={<CallBack/>}/>
           <Route path='*' element={<NotFound />} />
     </Route>
     </Routes>
