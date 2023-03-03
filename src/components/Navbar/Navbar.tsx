@@ -42,7 +42,7 @@ export function Navbar() {
                             <MenuCategory display={ displayMenu} />
                         </div>
                     </div>
-                    {/*<SearchProduct/>*/}
+                    <SearchProduct/>
                     <MenuActions />
                 </div>
             </div>

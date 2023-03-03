@@ -23,9 +23,14 @@ export function SearchProduct() {
                     value={searchValue}
                     onChange={(e)=>setSearchValue(e.target.value)}
                     />
-                    <div className='px-4 py-1 bg-[#da002b] rounded-r-lg'>
-                        <SearchIcon style={{color:'#fff',fontSize:'35px'}}/>
-            </div>
+                <NavLink
+                    to='advanced-search'
+                    className='px-4 py-1 bg-[#da002b] rounded-r-lg'
+                >
+                    <SearchIcon
+                        style={{ color: '#fff', fontSize: '35px' }}
+                    />
+            </NavLink>
             </div>
             
             {isSuccess && <ul

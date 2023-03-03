@@ -28,6 +28,7 @@ import {ProductInfo} from "./pages/Home/Product/ProductInfo";
 import {Carts} from "./pages/Carts";
 import {Favorites} from "./pages/Favorites/Favorites";
 import {CallBack} from "./pages/CallBack";
+import { AdvancedSearch } from './components/Search/AdvancedSearch';
 
 
 function App() {
@@ -37,7 +38,8 @@ function App() {
         <Route path='/' element={<Layout/>}>
         <Route index element={<Home />} />
         <Route path='/product/:name' element={<ProductInfo/>}/>
-            <Route path='/carts' element={<Carts/>}/>
+        <Route path='/carts' element={<Carts />} />
+        <Route path='/advanced-search' element={ <AdvancedSearch/>} />
         <Route path='/cabinet' element={
           <RequireAuth>
             <LayoutPerson />
