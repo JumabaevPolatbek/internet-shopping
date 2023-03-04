@@ -6,7 +6,6 @@ import { actionsUser } from '../api/user';
 import { getAll } from '../api/all';
 import { editSlice } from './edit';
 import { editProduct } from './editProduct';
-import { searchValue } from '../api/search';
 import { attributes } from './addAtrribute';
 import { attributeActions } from '../api/attributes';
 import { authUser } from '../api/auth';
@@ -16,6 +15,8 @@ import {ordersAction} from "../api/orders";
 import {adminActions} from "../api/admin";
 import {likesCount} from "./likesCount";
 import {callBack} from "../api/call";
+import { advancedSearch } from '../api/search';
+import { seacrhSlice } from '../api/search/searchSlice';
 
 export const rootReducer = combineReducers({
     [actionsCountrie.reducerPath]: actionsCountrie.reducer,
@@ -25,7 +26,6 @@ export const rootReducer = combineReducers({
     [getAll.reducerPath]: getAll.reducer,
     editUser: editSlice.reducer,
     editProduct:editProduct.reducer,
-    [searchValue.reducerPath]:searchValue.reducer,
     stateAttribute:attributes.reducer,
     [attributeActions.reducerPath]:attributeActions.reducer,
     [authUser.reducerPath]:authUser.reducer,
@@ -34,6 +34,8 @@ export const rootReducer = combineReducers({
     [ordersAction.reducerPath]:ordersAction.reducer,
     [adminActions.reducerPath]:adminActions.reducer,
     likesCount:likesCount.reducer,
-    [callBack.reducerPath]:callBack.reducer
+    [callBack.reducerPath]:callBack.reducer,
+    [advancedSearch.reducerPath]:advancedSearch.reducer,
+    searchState:seacrhSlice.reducer
 });
 export type RootState = ReturnType<typeof rootReducer>

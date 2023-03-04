@@ -28,7 +28,7 @@ import {ProductInfo} from "./pages/Home/Product/ProductInfo";
 import {Carts} from "./pages/Carts";
 import {Favorites} from "./pages/Favorites/Favorites";
 import {CallBack} from "./pages/CallBack";
-import { AdvancedSearch } from './components/Search/AdvancedSearch';
+import { AdvancedSearch } from './pages/AdvancedSearch/AdvancedSearch';
 
 
 function App() {

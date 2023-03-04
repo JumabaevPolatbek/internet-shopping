@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { NewProduct, Product, Products, UpdateProduct } from '../../models/products';
 import { pathApi } from '..';
+import { addIdCategory, searchSliceActions } from '../search/searchSlice';
 
 
 export const actionsProduct = createApi({
@@ -21,7 +22,15 @@ export const actionsProduct = createApi({
             providesTags:['products']
         }),
         getCategoryProducts: builder.query<Product, number>({
-            query:(id_category)=>`categories/${id_category}/products`,
+            query:(id_category:number)=>`categories/${id_category}/products`,
+            async onQueryStarted(data,{dispatch}){
+                try{
+                    dispatch(addIdCategory(data))
+                }
+                catch(e){
+                    console.log(e)
+                }
+            },
             providesTags:['products']
         }),
         addNewProduct: builder.mutation<NewProduct,Partial<NewProduct>>({

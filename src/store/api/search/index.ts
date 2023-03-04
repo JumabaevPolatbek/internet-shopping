@@ -1,43 +1,24 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { pathApi } from '..';
-import { Categories  } from '../../models/categories';
-import {  Countries } from '../../models/countries';
-import {  Products } from '../../models/products';
-import {  UserServer } from '../../models/userModels';
+import { Products } from '../../models/products';
+import { StateSearch } from './searchSlice';
 
 
-export const searchValue=createApi({
-    reducerPath:'search',
+export const advancedSearch=createApi({
+    reducerPath:'advancedSearch',
     baseQuery:fetchBaseQuery({baseUrl:pathApi}),
-    tagTypes:['products','categories','countries','users'],
-    endpoints:(builder)=>({
-        getValueProducts:builder.query<Products,string>({
-            query:(name)=>`${name}/`,
-            providesTags:['products']
-        }),
-        getValueCategorys:builder.query<Categories,string>({
-            query:(category)=>`${category}`,
-            providesTags:['categories']
-        }),
-        getValueUsers:builder.query<UserServer,string>({
-            query:(user)=>`${user}`,
-            providesTags:['users']
-        }),
-        getValueCountries:builder.query<Countries,string>({
-            query:(country)=>`${country}`,
-            providesTags:['countries']
-        }),
-        getValues:builder.query({
-            query:(value:string)=>`${value}`
+    tagTypes:['categories','products'],
+    endpoints:build => ({
+        filterProduct: build.query<Products,{type:string,filters:StateSearch}>({
+            query : ({type,filters})=>({
+                url:`category/${filters.category_id}/`,
+                params:{
+                    products:type==='price'
+                    ?`min_price=${filters.price.min}&max_price=${filters.price.max}`
+                    :filters.value.join('&')
+                }
+            })
         })
     })
 })
 
-
-export const {
-    useGetValueCategorysQuery,
-    useGetValueProductsQuery,
-    useGetValueCountriesQuery,
-    useGetValueUsersQuery,
-    useGetValuesQuery
-}=searchValue

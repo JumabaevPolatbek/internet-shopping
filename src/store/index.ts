@@ -6,12 +6,12 @@ import { actionsCategories } from "./api/category";
 import { actionsProduct } from "./api/product";
 import { actionsUser } from "./api/user";
 import { getAll } from "./api/all";
-import { searchValue } from "./api/search";
 import attributeActions  from "./api/attributes";
 import { authUser } from "./api/auth";
 import {ordersAction} from "./api/orders";
 import {adminActions} from "./api/admin";
 import {callBack} from "./api/call";
+import { advancedSearch } from "./api/search";
 
 export const store = configureStore({
     reducer: rootReducer,
@@ -21,12 +21,12 @@ export const store = configureStore({
         actionsProduct.middleware,
         actionsUser.middleware,
         getAll.middleware,
-        searchValue.middleware,
         attributeActions,
         authUser.middleware,
         ordersAction.middleware,
         adminActions.middleware,
-        callBack.middleware
+        callBack.middleware,
+        advancedSearch.middleware
     )
 });
 export type RootState = ReturnType<typeof store.getState>
