@@ -84,7 +84,7 @@ export function Orders(){
                         </Typography>
                     </div>
 
-            {/* {isLoading && <LinearProgress/>} */}
+            {isLoading && <LinearProgress/>}
             <Paper sx={{ width: '100%',margin:'10px 0 0 0' }}>
             <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table">
@@ -98,8 +98,8 @@ export function Orders(){
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {/* {orders?.map(order=> <DetailOrders key={order.id} {...order}/>
-                        )} */}
+                        {orders?.map(order=> <DetailOrders key={order.id} {...order}/>
+                        )}
                     </TableBody>
                 </Table>
             </TableContainer>

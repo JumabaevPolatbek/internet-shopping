@@ -10,7 +10,7 @@ export const adminActions=createApi({
         baseUrl:pathApi,
         prepareHeaders:(headers,{getState})=>{
                 const cookie = new Cookies()
-                console.log(!!cookie.get('token'))
+                console.log(cookie.get('token'))
                 console.log('Store State',(getState() as RootState).token)
                 if(!!cookie.get('token')){
                     return headers.set('Authorization',`Bearer ${cookie.get('token')}`)

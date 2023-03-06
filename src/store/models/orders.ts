@@ -26,6 +26,7 @@ export interface ResponseOrders {
   id: number
   order_details: OrderDetail[]
   order_status: ResponseOrderStatus
+  order_status_id:number
 }
 
 

@@ -1,24 +1,21 @@
+import * as React from "react";
+import {useGetSingleUserQuery} from "../../store/api/user";
+import {ResponseOrders} from "../../store/models/orders";
+import {useGetSingleCountrieQuery} from "../../store/api/country";
+import {useDelOrderMutation} from "../../store/api/orders";
+import {toast} from "react-toastify";
+import {OrderProducts} from "./OrderProducts";
 import TableCell from "@mui/material/TableCell";
 import { IconButton, Tooltip} from "@mui/material";
-import SettingsIcon from "@mui/icons-material/Settings";
 import CustomizedDialogs from "../../components/BootstrapDialog/CustomizedDialogs";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TableRow from "@mui/material/TableRow";
-import * as React from "react";
-import {ResponseOrders} from "../../store/models/orders";
-import {useGetSingleUserQuery} from "../../store/api/user";
-import {useGetSingleCountrieQuery} from "../../store/api/country";
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
-import {OrderProducts} from "./OrderProducts";
-import Collapse from "@mui/material/Collapse";
-import {useDelOrderMutation} from "../../store/api/orders";
-import {toast} from "react-toastify";
 import {AddOrderStatus} from "./AddOrderStatus";
 import AutoAwesomeMotionIcon from '@mui/icons-material/AutoAwesomeMotion';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 export function DetailOrders(props:ResponseOrders){
-    const {order_status,order_details,order_date,address_id,user_id}=props
+    const {order_status,order_details,order_date,address_id,user_id,order_status_id}=props
     const {data:user}=useGetSingleUserQuery(user_id)
     const {data:city}=useGetSingleCountrieQuery(address_id)
     const [open,setOpen]=React.useState(false)
@@ -61,7 +58,7 @@ export function DetailOrders(props:ResponseOrders){
 				</IconButton>
 				<CustomizedDialogs
 					open={products}
-                    setOpen={setProducts}
+					setOpen={setProducts}
 				>
 					{order_details?.map((product) => (
 						<OrderProducts
@@ -86,7 +83,7 @@ export function DetailOrders(props:ResponseOrders){
 							color='secondary'
 							onClick={() => setOpen(true)}
 						>
-							<SettingsIcon />
+							<AppRegistrationIcon />
 						</IconButton>
 					</Tooltip>
 					<CustomizedDialogs
@@ -96,6 +93,7 @@ export function DetailOrders(props:ResponseOrders){
 						<AddOrderStatus
 							setOpen={setOpen}
 							type='Change'
+							id={order_status_id}
 						/>
 					</CustomizedDialogs>
 					<Tooltip
