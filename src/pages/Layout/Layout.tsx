@@ -16,7 +16,7 @@ export function Layout() {
                  {/*<BreadCrumbs/>*/}
             </header>
             <main>
-                <Outlet/>
+                <Outlet />
             </main>
             {
                 location.pathname!=='/' ? '' : <Footer/>

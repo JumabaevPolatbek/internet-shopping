@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 
 export function SearchProduct() {
     const { data, isSuccess, isLoading } = useGetProductsQuery()
-    const [searchValue,setSearchValue]=React.useState('')
+    const [searchValue, setSearchValue] = React.useState<string>('')
     const debounce = useDebounce<string>(searchValue)
     const location = useLocation()
     return (
@@ -46,9 +46,10 @@ export function SearchProduct() {
                             <NavLink to={
                                 location.pathname.includes('admin') ?
                                     `edit/${product.id}` :
-                                    `products/${product.id}`
+                                    `product/${product.name.replace(/[' ']/g,'&')}`
                             }
                                 className="block"
+                                state={product}
                             >
                                 {product.name}
                             </NavLink>

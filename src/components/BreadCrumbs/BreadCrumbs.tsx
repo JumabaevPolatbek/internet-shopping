@@ -2,7 +2,6 @@ import React from 'react'
 import {NavLink, useLocation} from "react-router-dom";
 import {Breadcrumbs} from "@mui/material";
 import {useGetCategoryQuery} from "../../store/api/category";
-import {Categories} from "../../store/models/categories";
 import HomeIcon from '@mui/icons-material/Home';
 
 

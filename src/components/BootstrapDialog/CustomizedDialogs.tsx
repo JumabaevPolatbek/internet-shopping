@@ -5,8 +5,6 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 
 import  BootstrapDialogTitle  from './BootstarpDialog';
-import { ChangeFormPerson } from '../../pages/Cabinet/PersonalData/ChangeFormPerson';
-import {NewCategory} from "../../pages/Category";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {

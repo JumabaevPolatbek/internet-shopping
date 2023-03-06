@@ -1,11 +1,9 @@
 import React from "react";
 import {useGetSingleProductQuery} from "../../store/api/product";
 import {useDispatch} from "react-redux";
-import {decrementQty, delProduct, addProduct} from "../../store/reducer/cartProduct";
-import {Button, Divider, Typography} from "@mui/material";
+import { delProduct} from "../../store/reducer/cartProduct";
+import {Button, Typography} from "@mui/material";
 import {useAppSlector} from "../../utils/hook";
-import {Product} from "../../store/models/products";
-import Paper from "@mui/material/Paper";
 import {BtnActionsCart} from "./BtnActionsCart";
 
 type Props={
@@ -36,6 +34,7 @@ export function CartProduct({id,quantity}:Props){
                     <img
                         className="w-full h-auto"
                         src={dataProduct?.images[0].image_path}
+                        alt={dataProduct?.name}
                     />
                  </div>
                 <div

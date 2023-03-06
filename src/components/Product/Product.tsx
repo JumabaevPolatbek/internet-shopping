@@ -37,6 +37,9 @@ export function ProductItem({product}:Props) {
             elevation={2}
             onMouseEnter={()=>setHover(true)}
             onMouseLeave={mouseLeave}
+            sx={{
+                margin:'5px'
+            }}
         >
         <div
             className="w-[250px] xl:w-[300px] cursor-pointer"
