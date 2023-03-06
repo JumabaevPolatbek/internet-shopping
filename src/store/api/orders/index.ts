@@ -60,11 +60,12 @@ export const ordersAction=createApi({
         getOrders:builder.query<ResponseOrders[],string>({
             // query:()=>'orders'
             query:(token)=>{
+                console.log('token',token)
                 return {
                     url:'orders',
                     method:'GET',
                     headers:{
-                        'Authorization': `Bearer <${token}>`
+                        'Authorization': `Bearer ${token}`
                     },
 
                     // credentials:'include'

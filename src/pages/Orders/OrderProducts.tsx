@@ -14,8 +14,17 @@ export function OrderProducts({id}:Props){
     return(
 
             <div
-                className="flex flex-col"
+                className="flex justify-content items-center"
             >
+                <div
+                    className="w-[100px] h-[100px]"
+                >
+                    <img 
+                    src={data?.images[0].image_path} 
+                    alt={data?.name}
+                     />
+
+                </div>
                 <Typography
                     variant="body1"
                 >

@@ -3,7 +3,7 @@ import {Button, LinearProgress, Typography} from "@mui/material";
 import CustomizedDialogs from "../../components/BootstrapDialog/CustomizedDialogs";
 import {useLocation} from "react-router-dom";
 import {AddOrderStatus} from "./AddOrderStatus";
-import { useGetOrderStatusQuery, useGetOrdersUserQuery} from "../../store/api/orders";
+import { useGetOrderStatusQuery, useGetOrdersUserQuery,} from "../../store/api/orders";
 import {useGetOrdersQuery} from "../../store/api/admin";
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
@@ -13,18 +13,18 @@ import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import TablePagination from "@mui/material/TablePagination";
 import Paper from "@mui/material/Paper";
-import {DetailOrders} from "./DetailOrders";
 import {Cookies} from "react-cookie";
+import { DetailOrders } from "./DetailOrders";
 
 const thArr=['Имя пользователя','Продукты','Статус заказа','Адресс доставки','Срок доставки','Действия']
 
 export function Orders(){
     const cookie = new Cookies()
     const {pathname}=useLocation()
-    const {data,isLoading}=useGetOrdersQuery()
     const {data:status,isLoading:statusFetching}=useGetOrderStatusQuery()
-    const {data:orderUser}=useGetOrdersUserQuery(10)
-    console.log(orderUser)
+    const { data: orders, isLoading } = useGetOrdersQuery();
+    console.log('Orders',orders)
+
     const [open,setOpen]=React.useState(false)
 
     const [page, setPage] = React.useState(0);
@@ -84,7 +84,7 @@ export function Orders(){
                         </Typography>
                     </div>
 
-            {isLoading && <LinearProgress/>}
+            {/* {isLoading && <LinearProgress/>} */}
             <Paper sx={{ width: '100%',margin:'10px 0 0 0' }}>
             <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table">
@@ -98,8 +98,8 @@ export function Orders(){
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {/*{data?.map(order=> <DetailOrders key={order.id} {...order}/>*/}
-                        {/*)}*/}
+                        {/* {orders?.map(order=> <DetailOrders key={order.id} {...order}/>
+                        )} */}
                     </TableBody>
                 </Table>
             </TableContainer>

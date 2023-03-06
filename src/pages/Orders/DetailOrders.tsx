@@ -15,6 +15,7 @@ import Collapse from "@mui/material/Collapse";
 import {useDelOrderMutation} from "../../store/api/orders";
 import {toast} from "react-toastify";
 import {AddOrderStatus} from "./AddOrderStatus";
+import AutoAwesomeMotionIcon from '@mui/icons-material/AutoAwesomeMotion';
 
 export function DetailOrders(props:ResponseOrders){
     const {order_status,order_details,order_date,address_id,user_id}=props
@@ -45,52 +46,76 @@ export function DetailOrders(props:ResponseOrders){
             progress: undefined,
             theme: "light",}))
     return (
-        <TableRow >
-
-            <TableCell>{user ? user.username :''}</TableCell>
-            <TableCell>
-                <IconButton
-                    onClick={()=>setProducts(products=>!products)}
-                >
-                { products ?
-                    <KeyboardArrowUpOutlinedIcon/>
-                    :<KeyboardArrowDownOutlinedIcon/>
-                }
-                </IconButton>
-                <Collapse
-                    in={products}
-                    unmountOnExit
-                >
-                    {order_details?.map(product=><OrderProducts id={product.product_id} key={product.product_id}/>)}
-                </Collapse>
-            </TableCell>
-            <TableCell>{city ? city.country_name : ''}</TableCell>
-            <TableCell>{order_date}</TableCell>
-            <TableCell>{order_status.status}</TableCell>
-            <TableCell>
-                <div className='flex items-center'>
-
-                    <Tooltip title="Изменение статуса" arrow>
-                        <IconButton
-                            color='secondary'
-                            onClick={()=>setOpen(true)}
-                        >
-                            <SettingsIcon/>
-                        </IconButton>
-                    </Tooltip>
-                    <CustomizedDialogs open={open} setOpen={setOpen}>
-                        <AddOrderStatus setOpen={setOpen} type='Change'/>
-                    </CustomizedDialogs>
-                    <Tooltip title="Delete Product" arrow>
-                        <IconButton
-                            color='primary'
-                            onClick={()=>handleDelOrder(order_status.id,user_id)}
-                        >
-                            <DeleteIcon/>
-                        </IconButton>
-                    </Tooltip>
-                </div>
-            </TableCell>
-        </TableRow>
-    )
+		<TableRow>
+			<TableCell>
+				{user ? user.username : ''}
+			</TableCell>
+			<TableCell>
+				Продукты
+				<IconButton
+					onClick={() =>
+						setProducts((products) => !products)
+					}
+				>
+					<AutoAwesomeMotionIcon />
+				</IconButton>
+				<CustomizedDialogs
+					open={products}
+                    setOpen={setProducts}
+				>
+					{order_details?.map((product) => (
+						<OrderProducts
+							id={product.product_id}
+							key={product.product_id}
+						/>
+					))}
+				</CustomizedDialogs>
+			</TableCell>
+			<TableCell>{order_status.status}</TableCell>
+			<TableCell>
+				{city ? city.country_name : ''}
+			</TableCell>
+			<TableCell>{order_date}</TableCell>
+			<TableCell>
+				<div className='flex items-center'>
+					<Tooltip
+						title='Изменение статуса'
+						arrow
+					>
+						<IconButton
+							color='secondary'
+							onClick={() => setOpen(true)}
+						>
+							<SettingsIcon />
+						</IconButton>
+					</Tooltip>
+					<CustomizedDialogs
+						open={open}
+						setOpen={setOpen}
+					>
+						<AddOrderStatus
+							setOpen={setOpen}
+							type='Change'
+						/>
+					</CustomizedDialogs>
+					<Tooltip
+						title='Удалить заказ'
+						arrow
+					>
+						<IconButton
+							color='primary'
+							onClick={() =>
+								handleDelOrder(
+									order_status.id,
+									user_id
+								)
+							}
+						>
+							<DeleteIcon />
+						</IconButton>
+					</Tooltip>
+				</div>
+			</TableCell>
+		</TableRow>
+	);
 }
