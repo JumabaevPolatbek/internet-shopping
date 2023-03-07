@@ -62,7 +62,7 @@ export function AddOrderStatus({ setOpen, type, id, name }: Props) {
       );
   const btnSumbitUpdate: SubmitHandler<
     Omit<ResponseOrderStatus, "id">
-  > = async (data) =>
+  > = async (data) => 
     await updateStatus({
       data,
       id,
@@ -120,7 +120,9 @@ export function AddOrderStatus({ setOpen, type, id, name }: Props) {
               id="demo-simple-select"
               value={age}
               label="Статус заказа"
-              onChange={handleChange}
+              {...register('status')}
+              // onChange={handleChange}
+              // name={register('status').name}
             >
               {data?.map((status) => (
                 <MenuItem value={status.status} key={status.id}>
@@ -138,7 +140,7 @@ export function AddOrderStatus({ setOpen, type, id, name }: Props) {
         disabled={result.isLoading || resultUpdate.isLoading}
         className="mt-3"
       >
-        Создать
+        {type === 'Add' ? 'Создать':'Обновить'}
       </Button>
     </form>
   );

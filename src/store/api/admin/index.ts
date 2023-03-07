@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { pathApi } from "../index";
-import { ResponseOrders } from "../../models/orders";
+import { Order, ResponseOrders } from "../../models/orders";
 import type { RootState } from "../../index";
 import { Cookies } from "react-cookie";
 import { NewProduct, Product, UpdateProduct } from "../../models/products";
@@ -15,11 +15,12 @@ export const adminActions = createApi({
     baseUrl: pathApi,
     prepareHeaders: (headers, { getState }) => {
       const cookie = new Cookies();
-      console.log(cookie.get("token"));
-      console.log("Store State", (getState() as RootState).token);
-      if (!!cookie.get("token")) {
-        return headers.set("Authorization", `Bearer ${cookie.get("token")}`);
+      console.log('PrepareHeaders',cookie.get("token"));
+      if (cookie.get("token")) {
+        console.log('If',cookie.get('token'))
+        headers.set("Authorization", `Bearer ${cookie.get("token")}`);
       }
+      return headers
     },
   }),
   tagTypes: [
@@ -35,11 +36,15 @@ export const adminActions = createApi({
     getOrders: build.query<ResponseOrders[], void>({
       query: () => "orders",
     }),
-    updateOrder: build.mutation<ResponseOrders[], { order_id: number }>({
-      query: ({ order_id }) => {
+    updateOrder: build.mutation<ResponseOrders, { order_id?: number|undefined,order:Order }>({
+      query: ({ order_id,order}) => {
         return {
           url: `orders/${order_id}`,
           method: "PUT",
+          headers:{
+            'Content-type':'Application/json'
+          },
+          body:(order)
         };
       },
     }),
