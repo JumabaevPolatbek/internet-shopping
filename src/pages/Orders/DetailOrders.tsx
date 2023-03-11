@@ -113,6 +113,9 @@ export function DetailOrders(props: ResponseOrders) {
 							order_id={id}
 							setOpen={setOpen}
 							status_id={order_status_id}
+							user_id={user_id}
+							address_id={address_id}
+							order_date={order_date}
 						/>
 					</CustomizedDialogs>
 					<Tooltip

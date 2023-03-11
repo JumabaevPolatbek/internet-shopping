@@ -17,55 +17,69 @@ type Props = {
 	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	order_id?: number | undefined;
 	status_id: number;
+	user_id: number;
+	order_date: string;
+	address_id: number;
 };
 
 export function EditOrder({
 	setOpen,
 	order_id,
 	status_id,
+	user_id,
+	address_id,
+	order_date,
 }: Props) {
 	const { data } = useGetOrderStatusQuery();
 	const [updateOrder, resultUpdate] =
 		useUpdateOrderMutation();
-	const { handleSubmit, register } = useForm<Order>();
+	const { handleSubmit, register, setValue } =
+		useForm<Order>({
+			defaultValues: {
+				user_id,
+				address_id,
+				order_date,
+				order_status_id: status_id,
+			},
+		});
 	const btnSumbitUpdate: SubmitHandler<Order> = async (
 		order
-	) => await console.log(order);
-	// await updateOrder({ order_id, order })
-	// 	.unwrap()
-	// 	.then((response) => {
-	// 		toast.success(
-	// 			`${response.order_status.status} успешно изменен!`,
-	// 			{
-	// 				position: 'top-right',
-	// 				autoClose: 3000,
-	// 				hideProgressBar: false,
-	// 				closeOnClick: true,
-	// 				pauseOnHover: true,
-	// 				draggable: true,
-	// 				progress: undefined,
-	// 				theme: 'light',
-	// 			}
-	// 		);
-	// 		setTimeout(() => setOpen(false), 2000);
-	// 	})
-	// 	.catch((error) =>
-	// 		toast.error(`${error.data.detail}`, {
-	// 			position: 'top-right',
-	// 			autoClose: 3000,
-	// 			hideProgressBar: false,
-	// 			closeOnClick: true,
-	// 			pauseOnHover: true,
-	// 			draggable: true,
-	// 			progress: undefined,
-	// 			theme: 'light',
-	// 		})
-	// 	);
+	) => 
+		await updateOrder({ order_id, order })
+			.unwrap()
+			.then((response) => {
+				toast.success(
+					`${response.order_status.status} успешно изменен!`,
+					{
+						position: 'top-right',
+						autoClose: 3000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: 'light',
+					}
+				);
+				setTimeout(() => setOpen(false), 1000);
+			})
+			.catch((error) =>
+				toast.error(`${error.data.detail}`, {
+					position: 'top-right',
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: 'light',
+				})
+			);
 	const [age, setAge] = React.useState(status_id);
 
 	const handleChange = (event: SelectChangeEvent) => {
 		setAge(+event.target.value);
-        console.log(event.target.value)
+		setValue('order_status_id', +event.target.value);
 	};
 	return (
 		<form
@@ -85,8 +99,7 @@ export function EditOrder({
 						name={
 							register('order_status_id').name
 						}
-						onChange={register('order_status_id').onChange}
-						// name={register('status').name}
+						onChange={handleChange}
 					>
 						{data?.map((status) => (
 							<MenuItem

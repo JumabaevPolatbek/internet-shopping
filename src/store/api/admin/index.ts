@@ -47,6 +47,7 @@ export const adminActions = createApi({
           body:(order)
         };
       },
+      invalidatesTags:['orders']
     }),
     delOrder: build.mutation<
       ResponseOrders[],
