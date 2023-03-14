@@ -8,13 +8,12 @@ import { Button, IconButton, TextField, Tooltip } from "@mui/material";
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
 type Props={
-    modal:React.Dispatch<React.SetStateAction<boolean>>
     id?:number
-    open:boolean
+    open?:boolean
 }
 
 
-export function FormAttr({modal,id,open}:Props){
+export function FormAttr({id,open}:Props){
 
     const attrState=useAppSlector(state=>state.stateAttribute);
     const dispatch=useAppDispatch()
@@ -34,62 +33,88 @@ export function FormAttr({modal,id,open}:Props){
             reset(formState.defaultValues)
         }
     }
-    return(
-        <form 
-            className="flex flex-col h-full"
-            onSubmit={handleSubmit(formSubmit)}
-        >
-            {attrState.arrAttribute.map((attr,index)=>(
-                <div className="w-full flex  items-center" key={index}>
-                    <TextField
-                    {...register('attribute.attribute_name')}
-                    label={attr.attribute.attribute_name}
-                    type="text"
-                    value={formState.defaultValues?.attribute?.attribute_name}
-                    />
-                    {attr.variants.map((variant,index)=>(
-                        <TextField
-                        {...register(`variants.${index}.value`)}
-                            label={variant.value}
-                            // value={variant.value}
-                            type="text"
-                            key={index}
-                        />
-                    ))}
-                    <Tooltip title="Add variants">
-                        <IconButton
-                            onClick={()=>dispatch(increaseVariant({
-                                id:index,
-                                values:{
-                                    value:''
-                                }
-                            }))}>
-                                <ControlPointIcon/>
-                            </IconButton>
-                    </Tooltip>
-                </div>
-            ))}
-            <Tooltip title="Add Attribute">
-                <IconButton
-                onClick={()=>dispatch(increase({
-                    attribute:{
-                        attribute_name:'',
-                        category_id:0
-                    },
-                    variants:[]
-                }))}>
-                    <ControlPointIcon/>
-                </IconButton>
-            </Tooltip>
-            <Button
-                type="submit"
-                variant="contained"
-                color="success"
-                sx={{marginTop:'auto'}}
-                onClick={handleClick}
-            >
-                Save
-            </Button>
-        </form>
-    )
+    return (
+		<form
+			className='flex flex-col h-full'
+			onSubmit={handleSubmit(formSubmit)}
+		>
+			{attrState.arrAttribute.map((attr, index) => (
+				<div
+					className='w-full flex  items-center'
+					key={index}
+				>
+					<TextField
+						{...register(
+							'attribute.attribute_name'
+						)}
+						label={
+							attr.attribute.attribute_name
+						}
+						type='text'
+						value={
+							formState.defaultValues
+								?.attribute?.attribute_name
+						}
+					/>
+					{attr.variants.map((variant, index) => (
+						<TextField
+							{...register(
+								`variants.${index}.value`
+							)}
+							label={variant.value}
+							// value={variant.value}
+							type='text'
+							key={index}
+						/>
+					))}
+					<Tooltip title='Add variants'>
+						<IconButton
+							onClick={() =>
+								dispatch(
+									increaseVariant({
+										id: index,
+										values: {
+											value: '',
+										},
+									})
+								)
+							}
+						>
+							<ControlPointIcon />
+						</IconButton>
+					</Tooltip>
+				</div>
+			))}
+			<div>
+                Добавить аттрибут
+				<Tooltip title='Add Attribute'>
+					<IconButton
+						onClick={() =>
+							dispatch(
+								increase({
+									attribute: {
+										attribute_name: '',
+										category_id: 0,
+									},
+									variants: [],
+								})
+							)
+						}
+					>
+						<ControlPointIcon />
+					</IconButton>
+				</Tooltip>
+			</div>
+
+			<Button
+				type='submit'
+				variant='contained'
+				color='success'
+				sx={{ marginTop: 'auto' }}
+				onClick={handleClick}
+			>
+				Save
+			</Button>
+		</form>
+	);
 }

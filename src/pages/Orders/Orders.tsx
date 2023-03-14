@@ -40,13 +40,13 @@ export function Orders() {
 		useGetOrderStatusQuery();
 	const { data: orders, isLoading } = useGetOrdersQuery();
 	let arrSort: ResponseOrders[] | undefined = orders;
-	console.log('arr',arrSort);
+	console.log('arr', arrSort);
 	const [open, setOpen] = React.useState(false);
 
 	const [page, setPage] = React.useState(0);
 
 	const [rowsPerPage, setRowsPerPage] =
-		React.useState(10);
+		React.useState(5);
 
 	const handleChangePage = (
 		event: unknown,
@@ -139,19 +139,25 @@ export function Orders() {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{orders?.map((order) => (
-								<DetailOrders
-									key={order.id}
-									{...order}
-								/>
-							))}
+							{orders
+								?.slice(
+									page * rowsPerPage,
+									page * rowsPerPage +
+										rowsPerPage
+								)
+								.map((order) => (
+									<DetailOrders
+										key={order.id}
+										{...order}
+									/>
+								))}
 						</TableBody>
 					</Table>
 				</TableContainer>
 				<TablePagination
-					rowsPerPageOptions={[10, 25, 100]}
+					rowsPerPageOptions={[5, 10, 20]}
 					component='div'
-					count={4}
+					count={orders?.length || 4}
 					rowsPerPage={rowsPerPage}
 					page={page}
 					onPageChange={handleChangePage}
