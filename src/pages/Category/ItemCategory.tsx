@@ -11,7 +11,6 @@ import {
 } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { Attributes } from './Attributes/Attributes';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDeleteCategoryMutation } from '../../store/api/category';
@@ -22,6 +21,7 @@ import { toast } from 'react-toastify';
 import CustomizedDialogs from '../../components/BootstrapDialog/CustomizedDialogs';
 import { EditCategory } from './Edit/EditCategories';
 import TextIncreaseIcon from '@mui/icons-material/TextIncrease';
+import { FormAttr } from './Attributes/FormAttr';
 const ItemCategory: React.FC = (
 	props: Partial<Category>
 ) => {
@@ -82,7 +82,7 @@ const ItemCategory: React.FC = (
 							open={attr}
 							setOpen={setAttr}
 						>
-							<Attributes />
+							<FormAttr />
 						</CustomizedDialogs>
 						<IconButton
 							color='secondary'
