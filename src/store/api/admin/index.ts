@@ -232,13 +232,13 @@ export const adminActions = createApi({
       }),
       invalidatesTags: ["attributes"],
     }),
-    deleteAttr: build.mutation<RootAttr, string | undefined>({
+    deleteAttr: build.mutation<RootAttr, number | undefined>({
       query: (id) => ({
         url: `attributes/${id}`,
         method: "DELETE",
       }),
     }),
-    delAttrValue: build.mutation<RootAttr, { idAttr: string; idValue: string }>(
+    delAttrValue: build.mutation<RootAttr, { idAttr: number; idValue: number }>(
       {
         query: ({ idAttr, idValue }) => ({
           url: `attributes/${idAttr}/variants/${idValue}`,

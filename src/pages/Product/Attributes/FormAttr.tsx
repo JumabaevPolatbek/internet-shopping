@@ -10,32 +10,17 @@ export function FormAttr(){
     console.log(attrState)
     return(
         <form>
-            {attrState.arrAttribute.map((attr,index)=>(
-                <div className="w-full flex justify-between items-center" key={index}>
-                    <TextField
-                    label={attr.attribute.attribute_name}
-                    value={attr.attribute.attribute_name}
-                    type="text"
-                    />
-                    {attr.variants.map(variant=>(
-                        <TextField
-                            label={variant.value}
-                            value={variant.value}
-                            type="text"
-                        />
-                    ))}
-                </div>
-            ))}
-            <IconButton
+            
+            {/* <IconButton
             onClick={()=>dispatch(increase({
                 attribute:{
                     attribute_name:'',
                     category_id:0
                 },
                 variants:[]
-            }))}>
-                <ControlPointIcon/>
-            </IconButton>
+            }))}> */}
+                {/* <ControlPointIcon/> */}
+            {/* </IconButton> */}
         </form>
     )
 }

@@ -6,14 +6,14 @@ import { UseFormSetValue } from 'react-hook-form';
 import { RootAttr } from '../../../store/models/attributes';
 import TextDecreaseIcon from '@mui/icons-material/TextDecrease';
 import { useDispatch } from 'react-redux';
-import { decreaseVariant } from '../../../store/reducer/addAtrribute';
+import { decrease } from '../../../store/reducer/addAtrribute';
 type Props = {
-	value?: string;
+	value: string;
 	id: number;
 	setValue: UseFormSetValue<RootAttr>;
 };
 
-export const AttrVariant = React.forwardRef<
+export const AddAttrVariant = React.forwardRef<
 	HTMLInputElement,
 	Props
 >(({ value, id, setValue }, ref) => {
@@ -21,8 +21,7 @@ export const AttrVariant = React.forwardRef<
 	return (
 		<div>
 			<TextField
-				label={`Варианты ${value} аттрибута`}
-				// value={variant.value}
+				label={`Варианты аттрибута`}
 				type='text'
 				inputRef={ref}
 				onChange={(e) =>
@@ -32,11 +31,11 @@ export const AttrVariant = React.forwardRef<
 					)
 				}
 			/>
-			<Tooltip title='Добавить вариант'>
+			<Tooltip title='Удалить вариант'>
 				<IconButton
-				// onClick={() =>
-				// 	// dispatch(decreaseVariant(id))
-				// }
+					onClick={() =>
+						dispatch(decrease(value))
+					}
 				>
 					<TextDecreaseIcon />
 				</IconButton>

@@ -2,11 +2,13 @@ import React from 'react';
 import {
 	Collapse,
 	IconButton,
+	Modal,
 	Table,
 	TableBody,
 	TableCell,
 	TableHead,
 	TableRow,
+	Tooltip,
 	Typography,
 } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -22,6 +24,8 @@ import CustomizedDialogs from '../../components/BootstrapDialog/CustomizedDialog
 import { EditCategory } from './Edit/EditCategories';
 import TextIncreaseIcon from '@mui/icons-material/TextIncrease';
 import { FormAttr } from './Attributes/FormAttr';
+import { TableAttributesCategory } from './Attributes/DetailAttr';
+import EditAttributesIcon from '@mui/icons-material/EditAttributes';
 const ItemCategory: React.FC = (
 	props: Partial<Category>
 ) => {
@@ -31,6 +35,7 @@ const ItemCategory: React.FC = (
 	const [open, setOpen] = React.useState(false);
 	const [attr, setAttr] = React.useState(false);
 	const [modal, setModal] = React.useState(false);
+
 	const handleDelCategory = async () =>
 		await delCategory(id).then((response) => {
 			toast.success(`${name} category have remove!`, {
@@ -49,19 +54,6 @@ const ItemCategory: React.FC = (
 			<TableRow
 				sx={{ '& > *': { borderBottom: 'unset' } }}
 			>
-				<TableCell>
-					<IconButton
-						aria-label='expand row'
-						size='small'
-						onClick={() => setOpen(!open)}
-					>
-						{open ? (
-							<KeyboardArrowUpIcon />
-						) : (
-							<KeyboardArrowDownIcon />
-						)}
-					</IconButton>
-				</TableCell>
 				<TableCell
 					component='th'
 					scope='row'
@@ -73,6 +65,23 @@ const ItemCategory: React.FC = (
 				</TableCell>
 				<TableCell>
 					<div className='flex items-center'>
+						<Tooltip title='Аттрибуты'>
+							<IconButton
+								onClick={() =>
+									setOpen(true)
+								}
+							>
+								<EditAttributesIcon />
+							</IconButton>
+						</Tooltip>
+						<CustomizedDialogs
+							open={open}
+							setOpen={setOpen}
+						>
+							<TableAttributesCategory
+								id={id}
+							/>
+						</CustomizedDialogs>
 						<IconButton
 							onClick={() => setAttr(true)}
 						>
@@ -82,7 +91,10 @@ const ItemCategory: React.FC = (
 							open={attr}
 							setOpen={setAttr}
 						>
-							<FormAttr />
+							<FormAttr
+								id={id}
+								setOpen={setAttr}
+							/>
 						</CustomizedDialogs>
 						<IconButton
 							color='secondary'
@@ -106,32 +118,6 @@ const ItemCategory: React.FC = (
 							<DeleteIcon />
 						</IconButton>
 					</div>
-				</TableCell>
-			</TableRow>
-			<TableRow>
-				<TableCell
-					style={{
-						paddingBottom: 0,
-						paddingTop: 0,
-					}}
-					colSpan={4}
-				>
-					<Collapse
-						in={open}
-						timeout='auto'
-						unmountOnExit
-					>
-						<Box sx={{ margin: 1 }}>
-							<Typography
-								variant='h6'
-								gutterBottom
-								component='div'
-							>
-								{name} attributes
-							</Typography>
-							<ItemsAttr category_id={id} />
-						</Box>
-					</Collapse>
 				</TableCell>
 			</TableRow>
 		</>

@@ -1,62 +1,78 @@
-import IconButton from '@mui/material/IconButton';
-import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
-import * as React from 'react';
-import { UseFormSetValue } from 'react-hook-form';
-import { RootAttr } from '../../../store/models/attributes';
-import { AttrVariant } from './AttrVariant';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import { decrease } from '../../../store/reducer/addAtrribute';
-import { useDispatch } from 'react-redux';
-type Props = {
-	attr: RootAttr;
-	setValue: UseFormSetValue<RootAttr[]>;
-	id: number;
-};
-
-export const Attribute = React.forwardRef<
-	HTMLInputElement,
-	Props
->(({ attr, setValue, id }, ref) => {
-	const dispatch = useDispatch();
-	const handleChange = (
-		e: React.ChangeEvent<
-			HTMLInputElement | HTMLTextAreaElement
-		>
-	) => {
-		// setValue(
-		// 	'attribute.attribute_name',
-		// 	e.target.value
-		// );
-	};
-	console.log(attr);
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import React from 'react';
+import { RootAttrCategory } from '../../../store/models/attributes';
+import { VariantTableCell } from './VariantTableCell';
+import DeleteIcon from '@mui/icons-material/Delete';
+import {
+	CircularProgress,
+	IconButton,
+	Tooltip,
+} from '@mui/material';
+import { useDeleteAttrMutation } from '../../../store/api/admin';
+import { toast } from 'react-toastify';
+export function Attribute({
+	attribute_name,
+	variants,
+	id,
+}: RootAttrCategory) {
+	const [remove, result] = useDeleteAttrMutation();
+	const handleRemove = async () =>
+		await remove(id)
+			.then((response) =>
+				toast.success('Успешьноо!!', {
+					position: 'bottom-left',
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: 'colored',
+				})
+			)
+			.catch((error) =>
+				toast.error('Ошибка', {
+					position: 'bottom-left',
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: 'colored',
+				})
+			);
 	return (
-		<div className='flex flex-col'>
-			<TextField
-				label={'Название аттрибута'}
-				type='text'
-				inputRef={ref}
-			/>
-			<div>
-				Удалить аттрибут
-				<Tooltip title='Добавить аттрибут'>
-					<IconButton
-						onClick={() =>
-							dispatch(decrease(id))
-						}
-					>
-						<RemoveCircleOutlineIcon />
-					</IconButton>
-				</Tooltip>
-			</div>
-			{/* {attr.variants.map((variant,index)=>
-				(
-					<AttrVariant
-						setValue={setValue}
-						value={}
-					/>
-				)
-			)} */}
-		</div>
+		<TableRow
+			key={attribute_name}
+			sx={{
+				'&:last-child td, &:last-child th': {
+					border: 0,
+				},
+			}}
+		>
+			<TableCell>
+				<div className='flex items-center justify-between py-2'>
+					{attribute_name}
+					<Tooltip title='Удаление аттрибута'>
+						<IconButton
+							color='info'
+							onClick={handleRemove}
+							disabled={result.isLoading}
+						>
+							<DeleteIcon />
+						</IconButton>
+					</Tooltip>
+				</div>
+			</TableCell>
+			{variants.map((variant) => (
+				<VariantTableCell
+					{...variant}
+					id_attr={id}
+					key={variant.value}
+				/>
+			))}
+		</TableRow>
 	);
-});
+}
