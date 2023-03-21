@@ -21,15 +21,15 @@ export function ProductInfo() {
           {state.name}
         </Typography>
         <div className="w-full flex justify-between items-center py-[15px]">
-          <RatingProduct />
+          <RatingProduct {...state} />
         </div>
         <div className="w-full flex justify-between items-start">
           <div className="w-[70%] flex justify-between">
             <ProductImages />
-            <div className="flex flex-col">
               <ProductAtrr />
-              <Reviews />
-            </div>
+            {/* <div className="w-[50%] flex flex-col items-start">
+              <Reviews {...state} />
+            </div> */}
           </div>
           <div className="w-[30%] px-3">
             <ProductOrder {...state} />
