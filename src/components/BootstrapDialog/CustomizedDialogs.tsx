@@ -37,7 +37,10 @@ export default function CustomizedDialogs({open,setOpen,id,username,children}:Pr
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
-              open={open}
+        open={open}
+        sx={{
+          maxWidth:'auto'
+        }}
                 >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
           Modal
