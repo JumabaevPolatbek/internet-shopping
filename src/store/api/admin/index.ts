@@ -282,5 +282,6 @@ export const {
   useUpdateCategoryMutation,
   useUpdateCountrieMutation,
   useUpdateProductMutation,
-  useUpdateOrderMutation
+  useUpdateOrderMutation,
+  useBundleAttrProductMutation
 } = adminActions;
