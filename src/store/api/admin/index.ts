@@ -3,7 +3,7 @@ import { pathApi } from "../index";
 import { Order, ResponseOrders } from "../../models/orders";
 import type { RootState } from "../../index";
 import { Cookies } from "react-cookie";
-import { NewProduct, Product, UpdateProduct } from "../../models/products";
+import { NewProduct, Product, RequestProductAttr, UpdateProduct } from "../../models/products";
 import { Category, NewCategories } from "../../models/categories";
 import { Countrie, NewCountry } from "../../models/countries";
 import { NewUserRoot, User } from "../../models/userModels";
@@ -247,6 +247,19 @@ export const adminActions = createApi({
         invalidatesTags: ["attributes"],
       }
     ),
+    bundleAttrProduct:build.mutation<RequestProductAttr,{product_id:number,variant_id:number}>({
+      query:({product_id,variant_id})=>{
+        return {
+          url:`products/${product_id}/attributes`,
+          method:'POST',
+          headers:{
+            'Content-Type':"application/JSON"
+          },
+          body:(variant_id)
+        }
+      },
+      invalidatesTags:['attributes']
+    })
   }),
 });
 

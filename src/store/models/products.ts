@@ -60,6 +60,11 @@ export interface UpdateProduct {
   category_id: number
 }
 
+// Attribute Product
+export interface RequestProductAttr{
+    variant_id:number
+}
+
 // fake product
 export interface ProductFake{
   title: string,
